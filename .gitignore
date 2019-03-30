@@ -29,5 +29,7 @@
 # Executables
 *.exe
 *.out
+
+# PDFs
 *.app
 *.pdf
