@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.2, 2019-03-30T16:37:52. -->
+<!-- Written by QtCreator 4.8.2, 2019-03-30T22:43:31. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -296,8 +296,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">ProjectFeelTheChunder</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ProjectFeelTheChunder2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Django Sr/Documents/SCHOOL/CS1C/project/ProjectFeelTheChunder/ProjectFeelTheChunder.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Django Sr/Documents/SCHOOL/CS1C/project/Git/CS1C-Team-Chundercats/ProjectFeelTheChunder/ProjectFeelTheChunder.pro</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">ProjectFeelTheChunder.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
