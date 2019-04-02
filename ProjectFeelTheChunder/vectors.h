@@ -37,6 +37,13 @@ public:
 	*/
 	void insert(const T &, int);
 	
+	/* push_back
+	*	-function that inserts an item at the end of the list
+	*	-preconditions: n/a
+	*	-postconditions: the item is inserted at the end of the list, and end is updated
+	*/
+	void push_back(const T &);
+	
 	/* set
 	*	-function that sets an index to a specific item
 	*	-preconditions: the index should be positive and within range, otherwise an exception is thrown
@@ -184,6 +191,12 @@ T Vectors<T>::at(int i)
 		return array[i];
 	else 
 		cout << "Accessing an invalid index. available indexes are " << front << '-' << end << endl;
+}
+
+template <class T>
+void Vectors<T>::push_back(const T & item)
+{
+	insert(item, end + 1);
 }
 
 template <class T>
