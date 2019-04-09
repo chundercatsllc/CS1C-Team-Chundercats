@@ -13,8 +13,8 @@ public:
 
     virtual void move() = 0;
     virtual void draw() = 0;
-    virtual void perimeter() = 0;
-    virtual void area() = 0;
+    virtual double perimeter() = 0;
+    virtual double area() = 0;
 protected:
     QPainter painter;
     int id;
