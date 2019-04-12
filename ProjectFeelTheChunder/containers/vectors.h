@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-const int START_CAP = 15; // Needed to increase until recapacitize() is fixed
+const int START_CAP = 4; // Needed to increase until recapacitize() is fixed
  
 template <class T>
 class Vectors
@@ -298,7 +298,7 @@ void Vectors<T>::recapacitize()
 		front = 0;
 	}
 	
-	delete temp;
+	delete[] temp;
 	capacity *= 2;
 }		
 
