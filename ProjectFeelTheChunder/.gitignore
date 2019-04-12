@@ -1,9 +1,0 @@
-# Put any files that are not being uploaded here with the format:
-# !<filename>.<extension>
-#
-# Like this:
-# !compiled.o
-#
-# Only add files from the directory that this makefile is in.
-# Add new makefiles for different directories
-
