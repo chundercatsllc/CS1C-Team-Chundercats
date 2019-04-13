@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-const int START_CAP = 4; // Needed to increase until recapacitize() is fixed
+const int START_CAP = 4;
  
 template <class T>
 class Vectors
