@@ -57,7 +57,6 @@ public:
 	*	-postconditions: the item is erased at the index specified, and every advanced item is shifted left
 	*/
 	void erase(int);
-	void erase(int, int); // Specifically overloaded for strings.
 	
 	/* size
 	*	-function that returns the size of the array in question
@@ -371,7 +370,7 @@ void Vectors<T>::erase(int i)
 	else
 		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
 }
-			
+
 template <class T>			
 int Vectors<T>::getSize()
 {
@@ -395,8 +394,8 @@ int Vectors<T>::getCapacity()
 
 
 
-template <class T>
-void Vectors<T>::erase(int i, int q){
+template <>
+void Vectors<std::string>::erase(int i){
 // Overloaded erase function to work with strings and (char arrays??)
 	if(i >= 0 && i < capacity){
 		if(front < end){
@@ -448,7 +447,6 @@ void Vectors<T>::erase(int i, int q){
 		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
 	}
 }
-
 
 
 
