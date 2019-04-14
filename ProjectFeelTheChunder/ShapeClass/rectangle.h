@@ -2,15 +2,14 @@
 #define RECTANGLE_H
 #include "shape.h"
 
-class Rectangle : public Shape
-{
+class Rectangle : public Shape{
 public:
-    Rectangle();
+	Rectangle();
 
-    void move();
-    void draw();
-    void perimeter();
-    void area();
+	void move();
+	void draw();
+	void perimeter();
+	void area();
 
 };
 

@@ -2,16 +2,15 @@
 #define ELLIPSE_H
 #include "shape.h"
 
-class Ellipse : public Shape
-{
+class Ellipse : public Shape{
 public:
-    Ellipse();
+	Ellipse();
 
 
-    void move();
-    void draw();
-    void perimeter();
-    void area();
+	void move();
+	void draw();
+	void perimeter();
+	void area();
 };
 
 #endif // ELLIPSE_H

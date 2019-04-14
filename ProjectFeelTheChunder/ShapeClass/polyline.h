@@ -2,8 +2,7 @@
 #define POLYLINE_H
 #include "shape.h"
 
-class Polyline : public Shape
-{
+class Polyline : public Shape{
 public:
     Polyline();
 

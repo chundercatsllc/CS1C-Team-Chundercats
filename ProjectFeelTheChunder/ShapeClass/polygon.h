@@ -2,15 +2,14 @@
 #define POLYGON_H
 #include "shape.h"
 
-class Polygon : public Shape
-{
+class Polygon : public Shape{
 public:
-    Polygon();
+	Polygon();
 
-    void move();
-    void draw();
-    void perimeter();
-    void area();
+	void move();
+	void draw();
+	void perimeter();
+	void area();
 
 };
 

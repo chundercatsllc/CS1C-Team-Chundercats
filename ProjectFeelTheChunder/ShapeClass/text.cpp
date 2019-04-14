@@ -1,6 +1,17 @@
 #include "text.h"
 
-Text::Text()
-{
+Text::Text(){
 
+}
+void Text::move(){
+	
+}
+void Text::draw(){
+	
+}
+void Text::perimeter(){
+	
+}
+void Text::area(){
+	
 }

@@ -2,15 +2,14 @@
 #define TEXT_H
 #include "shape.h"
 
-class Text : public Shape
-{
+class Text : public Shape{
 public:
-    Text();
+	Text();
 
-    void move();
-    void draw();
-    void perimeter();
-    void area();
+	void move();
+	void draw();
+	void perimeter();
+	void area();
 
 };
 

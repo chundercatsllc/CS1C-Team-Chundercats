@@ -2,15 +2,14 @@
 #define LINE_H
 #include "shape.h"
 
-class Line : public Shape
-{
+class Line : public Shape{
 public:
-    Line();
+	Line();
 
-    void move();
-    void draw();
-    void perimeter();
-    void area();
+	void move();
+	void draw();
+	void perimeter();
+	void area();
 
 };
 
