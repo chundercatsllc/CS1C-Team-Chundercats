@@ -11,8 +11,6 @@ class Shape : public QPainter
 {
 	public:
 		Shape();
-		Shape(const Shape &);
-		virtual ~Shape() = 0;
 
 		virtual void move() = 0;
 		virtual void draw() = 0;

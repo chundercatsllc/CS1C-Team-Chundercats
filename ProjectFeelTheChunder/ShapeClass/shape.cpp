@@ -3,6 +3,3 @@
 Shape::Shape(){
 	
 }
-Shape(const Shape &){
-	
-}
