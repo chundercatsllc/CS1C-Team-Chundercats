@@ -39,3 +39,6 @@
 *.app
 *.pdf
 
+# Build Folder
+/*build-ProjectFeelTheChunder*/
+
