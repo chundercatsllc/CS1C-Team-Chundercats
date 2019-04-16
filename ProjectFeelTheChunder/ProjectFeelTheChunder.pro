@@ -27,27 +27,30 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    shape.cpp \
-    polygon.cpp \
-    line.cpp \
-    polyline.cpp \
-    rectangle.cpp \
-    ellipse.cpp \
-    text.cpp
+    #shape.cpp \
+    #polygon.cpp \
+    #line.cpp \
+    #polyline.cpp \
+    #rectangle.cpp \
+    #ellipse.cpp \
+    #text.cpp \
+    dialog.cpp
 
 HEADERS += \
         mainwindow.h \
-    shape.h \
-    polygon.h \
-    line.h \
-    polyline.h \
-    rectangle.h \
-    ellipse.h \
-    text.h
+    #shape.h \
+    #polygon.h \
+    #line.h \
+    #polyline.h \
+    #rectangle.h \
+    #ellipse.h \
+    #text.h \
+    dialog.h
 
 FORMS += \
         mainwindow.ui \
-    painter.ui
+   # painter.ui \
+    dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

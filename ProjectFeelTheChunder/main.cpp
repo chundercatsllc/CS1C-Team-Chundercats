@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "vectors.h"
 #include "shape.h"
 #include <QApplication>
 
@@ -9,7 +8,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    Vectors<Shape> ShapeMagazine;
 
 
 

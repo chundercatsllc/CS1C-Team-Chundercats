@@ -18,7 +18,6 @@ public:
 protected:
     QPainter painter;
     int id;
-
 };
 
 #endif // SHAPE_H
