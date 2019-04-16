@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include "./database/dbconnection.h"
 
 int main(int argc, char *argv[])
 {
