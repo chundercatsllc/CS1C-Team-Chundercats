@@ -161,7 +161,7 @@ void Vectors<T>::print()
 			for(int i = front; i <= end; i++)
 				cout << "Index [" << i << "] is: " << array[i] << endl;
 		else if(front == end)
-			cout << "=Index [" << front << "] is: " << array[front] << endl;
+			cout << "Index [" << front << "] is: " << array[front] << endl;	// Fix Stupid equals sign
 		else
 		{
 			for(int j = front; j < capacity; j++)
@@ -171,8 +171,9 @@ void Vectors<T>::print()
 		}
 	}
 	else
-		cout << "Cannot print empty list.";
-	cout << endl;
+	{
+		cout << "Cannot print empty list." << endl;				// Fix bad couting
+	}
 }
 
 template <class T>
@@ -201,16 +202,34 @@ void Vectors<T>::push_back(const T & item)
 
 template <class T>
 void Vectors<T>::insert(const T & item, int i)
+// Recoded this to make it work (better)
 {
 	T temp;
 	int j = 0;
-	int k = 0;
-	if(front < end && (i < front || i > end))
+	//int k = 0;									// Unused Varb
+	if(front < end && (i < front || i > end + 1))	// Acced exception for adding to the very end
 		i = end; 
 	if(front > end && (i > end && i < front))
 		i = end;
 	
-	if(front < end && size != capacity && size != 1)
+	if(empty())
+	{
+		// if(i != 0)
+			// cout << "Forcing index to 0.\n";		// Who cares?
+		array[0] = item;
+		front = 0;
+		end = 0;
+	}
+	else if (size == 1)
+	{
+		// if(i != 0)
+			// cout << "Forcing index to 0.\n";		// Who cares?
+		// array[1] = array[0];
+		front = 0;
+		end = 1;
+		array[1] = item;
+	}
+	else if(front < end && size != capacity && i <= end)
 	{
 		for(j = end; j >= i; j--)
 		{
@@ -219,22 +238,10 @@ void Vectors<T>::insert(const T & item, int i)
 		array[i] = item;
 		end++;
 	}
-	else if (size == 1)
+	else if(front < end && size != capacity && i > end)
 	{
-		if(i != 0)
-			cout << "Forcing index to 0.\n";
-		array[1] = array[0];
-		front = 0;
-		end = 1;
-		array[1] = item;
-	}
-	else if(empty())
-	{
-		if(i != 0)
-			cout << "Forcing index to 0.\n";
-		array[0] = item;
-		front = 0;
-		end = 0;
+		array[i] = item;
+		end++;
 	}
 	else if(front > end && i <= end && size != capacity)
 	{
@@ -290,7 +297,7 @@ void Vectors<T>::recapacitize()
 		front = 0;
 	}
 	
-	delete temp;
+	delete[] temp;
 	capacity *= 2;
 }		
 
@@ -363,7 +370,7 @@ void Vectors<T>::erase(int i)
 	else
 		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
 }
-			
+
 template <class T>			
 int Vectors<T>::getSize()
 {
@@ -381,5 +388,66 @@ int Vectors<T>::getCapacity()
 {
 	return capacity;
 }
+
+
+
+
+
+
+template <>
+void Vectors<std::string>::erase(int i){
+// Overloaded erase function to work with strings and (char arrays??)
+	if(i >= 0 && i < capacity){
+		if(front < end){
+			if(i <= end && i >= front && size != capacity){
+				for(int j = i; j < end; j++){
+					array[j] = array[j + 1];
+				}
+				end--;
+				size--;
+			}else if(i <= end && i >= front && size == capacity){
+				for(int j = i; j < end - 1; j++)
+					array[j] = array[j + 1];
+				array[end] = "";
+				end--;
+				size--;
+			}else{
+				cout << "Element at specified index contains no info...\n";
+			}
+		}else if(front > end){
+			if(i > end && i >= front){
+				for (int j = i; j > front; j--){
+					array[j] = array[j - 1];
+				}
+				array[end] = "";
+				front++;
+				size--;
+			}else if(i <= end && i < front){
+				for(int j = i; j < end; j++)
+					array[j] = array[j + 1];
+				array[end] = "";
+				end--;
+				size--;
+			}else{
+				cout << "Element at specified index contains no info..\n";
+			}
+		}else if (front == end){
+			if(i == front){
+				array[end] = "";
+				size = 0;
+				front = 0;
+				end = 0;
+			}
+		}else if(empty()){
+			cout << "Cannot delete from an empty vector...\n";
+		}else{ 
+			cout << "ERROR: front and end are in disarray\n";
+		}
+	}else{
+		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
+	}
+}
+
+
 
 #endif

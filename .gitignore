@@ -1,3 +1,8 @@
+# Ignore files without an extension
+*
+!/**/
+!*.*
+
 # Prerequisites
 *.d
 
@@ -29,4 +34,11 @@
 # Executables
 *.exe
 *.out
+
+# PDFs
 *.app
+*.pdf
+
+# Build Folder
+/*build-ProjectFeelTheChunder*/
+

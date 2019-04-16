@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-03-30T16:30:54
+# Project created by QtCreator 2019-04-11T17:43:59
 #
 #-------------------------------------------------
 
@@ -34,7 +34,6 @@ SOURCES += \
     #rectangle.cpp \
     #ellipse.cpp \
     #text.cpp \
-    dialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,17 +44,18 @@ HEADERS += \
     #rectangle.h \
     #ellipse.h \
     #text.h \
-    dialog.h
 
 FORMS += \
         mainwindow.ui \
-   # painter.ui \
-    dialog.ui
+        mainwindow.cpp
+
+HEADERS += \
+        mainwindow.h
+
+FORMS += \
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    bachgrounds.qrc

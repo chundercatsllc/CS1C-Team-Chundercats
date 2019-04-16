@@ -1,11 +1,10 @@
-#ifndef LINE_H
-#define LINE_H
+#ifndef POLYLINE_H
+#define POLYLINE_H
 #include "shape.h"
 
-class Line : public Shape
-{
+class Polyline : public Shape{
 public:
-    Line();
+    Polyline();
 
     void move();
     void draw();
@@ -14,4 +13,4 @@ public:
 
 };
 
-#endif // LINE_H
+#endif // POLYLINE_H
