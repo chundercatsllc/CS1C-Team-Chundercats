@@ -5,14 +5,14 @@
 class Line : public Shape{
 
 public:
-    Line(QPaintDevice* qdevice = nullptr, int id = -1) : Shape(qdevice, id, ShapeType::Line) {} ;
+    Line(QPaintDevice* qdevice = nullptr, int id = -1);// : Shape(qdevice, id, Shape::Line);
 
     void setpoints(const QPoint&, const QPoint&);
 
-	void move();
-    void draw(const int x = 0, const int y = 0);
-//	void perimeter();
-//	void area();
+    virtual void move(const int, const int);
+    virtual void draw(QPaintDevice*);
+    virtual double perimeter();
+    virtual double area();
 
     ~Line();
 

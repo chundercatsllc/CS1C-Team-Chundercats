@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "line.h"
+#include "./ShapeClass/shape.h"
+#include "./ShapeClass/line.h"
 
 
 int main(int argc, char *argv[])
