@@ -12,7 +12,11 @@
 class Shape : public QPainter
 {
 	public:
-		Shape();
+
+        enum class ShapeType{null,Line,Polyline,Polygon,Rectangle,Ellipse,Text};
+
+        Shape(QPaintDevice *device = nullptr, int id = -1, ShapeType shape = ShapeType::null);
+        virtual ~Shape(){}
 
 
         void setShape(ShapeType);
@@ -27,7 +31,7 @@ class Shape : public QPainter
         void setDefaultStyle();
 
         virtual void move(const int tX, const int tY) = 0;
-        virtual void draw() = 0;
+        virtual void draw(QPaintDevice*) = 0;
         virtual double perimeter() = 0;
         virtual double area() = 0;
     protected:
