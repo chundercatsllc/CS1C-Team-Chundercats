@@ -31,6 +31,6 @@ void Shape::setDefaultStyle(){
 	painter.setPen(Qt::SolidLine);
 	painter.setBrush(Qt::NoBrush);
 }
-QPainter &Shape::get_qpainter(){
+QPainter &Shape::getQPainter(){
 	return painter;
 }

@@ -22,6 +22,7 @@ class Shape{
 		ShapeType getShape() const;
 		const QBrush &getBrush() const;
 		const QPen &getPen() const;
+		int getID() const{return id;} 
 		
 		void setDefaultStyle();
 		
@@ -30,7 +31,7 @@ class Shape{
 		virtual double perimeter() = 0;
 		virtual double area() = 0;
 	protected:
-		QPainter &get_qpainter();
+		QPainter &getQPainter();
 	private:
 		QPainter painter;
 		int id;
