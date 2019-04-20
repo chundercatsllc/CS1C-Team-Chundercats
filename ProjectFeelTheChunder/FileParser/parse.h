@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include "../containers/vectors.h"
+#include "../containers/AwesomeVector.h"
 using namespace std;
 
 class parse{
@@ -38,7 +38,7 @@ class parse{
 		void parseString();
 		
 		// Vector for dimensions string since it can theoretically be infinitely long:
-		Vectors<string> shpdmnsns;
+		AwesomeVector<string> shpdmnsns;
 		
 		// "save" input to Shape object:
 		void storeInput(int REPLACE_WITH_SHAPE_CLASS);
@@ -99,7 +99,7 @@ void parse::setDefaults(){
 	TextFontStyle = "";
 	TextFontWeight = "";
 	// Clear the Vector object's data
-	int q = shpdmnsns.getSize();
+	int q = shpdmnsns.sizeOf();
 	if(q != 0){
 		for(int i=0; i<q; i++){
 			shpdmnsns.erase(0);
@@ -228,7 +228,7 @@ void parse::print(){
 	if(ShapeId != 0){
 		cout << "ShapeId        : " << ShapeId << '\n';
 	}
-	if(shpdmnsns.getSize() > 0){
+	if(shpdmnsns.sizeOf() > 0){
 		shpdmnsns.print();
 	}
 	if(ShapeType != ""){
