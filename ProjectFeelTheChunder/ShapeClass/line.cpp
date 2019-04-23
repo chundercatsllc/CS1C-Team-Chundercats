@@ -1,32 +1,27 @@
+
 #include "line.h"
 
-Line::Line(QPaintDevice* qdevice = nullptr, int id = 1):Shape(qdevice, id, ShapeType::Line){
 
-    line_begin.setX(0);
-    line_end.setY(50);
-
-}
-void Line::move(const int, const int){
-    int i = 0;
+void Line::move(const int x, const int y) {
+    QPoint temp(x, y);
+    line_begin = temp;
 }
 
 
-void Line::setpoints(const QPoint& line_begin, const QPoint& line_end){
+void Line::draw(QPaintDevice* device) {
 
-    int i = 0;
+    getQPainter().begin(device);
+    getQPainter().setPen(getPen());
+    getQPainter().setBrush(getBrush());
+    getQPainter().drawLine(line_begin.x(), line_begin.y(), line_end.x(), line_end.y());
+    getQPainter().drawText(line_begin,QString::number(getID()));
+    getQPainter().end();
+
 }
 
-void Line::draw(QPaintDevice* qdevice){
-int i = 0;
 
-}
+
 
 	
 
-double Line::perimeter(){
-    int i = 0;
-}
 
-double Line::area(){
-    int i = 0;
-}

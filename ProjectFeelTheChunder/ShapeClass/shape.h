@@ -1,3 +1,4 @@
+
 #ifndef SHAPE_H
 #define SHAPE_H
 
@@ -7,17 +8,12 @@
 #include <QString>
 #include <QPainter>
 // : public QPainter
-
-
-class Shape : public QPainter
-{
-	public:
-
+class Shape{
+    public:
         enum class ShapeType{null,Line,Polyline,Polygon,Rectangle,Ellipse,Text};
 
         Shape(QPaintDevice *device = nullptr, int id = -1, ShapeType shape = ShapeType::null);
-        virtual ~Shape(){}
-
+        virtual ~Shape(){};
 
         void setShape(ShapeType);
         void setBrush(Qt::GlobalColor, Qt::BrushStyle);
@@ -27,15 +23,16 @@ class Shape : public QPainter
         ShapeType getShape() const;
         const QBrush &getBrush() const;
         const QPen &getPen() const;
+        int getID() const {return id;}
 
         void setDefaultStyle();
 
         virtual void move(const int tX, const int tY) = 0;
-        virtual void draw(QPaintDevice*) = 0;
+        virtual void draw() = 0;
         virtual double perimeter() = 0;
         virtual double area() = 0;
     protected:
-        QPainter &get_qpainter();
+        QPainter &getQPainter();
     private:
         QPainter painter;
         int id;
@@ -44,4 +41,4 @@ class Shape : public QPainter
         QBrush brush;
 };
 
-#endif // SHAPE_H
+#endif
