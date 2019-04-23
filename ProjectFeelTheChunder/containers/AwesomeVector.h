@@ -196,10 +196,10 @@ bool AwesomeVector<T>::isEmpty()
 template<typename T>
 void AwesomeVector<T>::push_back(const T& item)
 {
-	list[butt] = item;
 	size++;
 	if(size == capacity)
 		recapacitize();
+	list[butt] = item;
 	
 	butt++;
 	butt %= capacity;
