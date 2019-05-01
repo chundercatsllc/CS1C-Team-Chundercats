@@ -310,6 +310,60 @@ void Vectors<T>::set(const T & item, int i)
 		cout << "Index was out of bounds, no effect." << endl;
 }
 
+template <>
+void Vectors<std::string>::erase(int i){
+// Overloaded erase function to work with strings and (char arrays??)
+	if(i >= 0 && i < capacity){
+		if(front < end){
+			if(i <= end && i >= front && size != capacity){
+				for(int j = i; j < end; j++){
+					array[j] = array[j + 1];
+				}
+				end--;
+				size--;
+			}else if(i <= end && i >= front && size == capacity){
+				for(int j = i; j < end - 1; j++)
+					array[j] = array[j + 1];
+				array[end] = "";
+				end--;
+				size--;
+			}else{
+				cout << "Element at specified index contains no info...\n";
+			}
+		}else if(front > end){
+			if(i > end && i >= front){
+				for (int j = i; j > front; j--){
+					array[j] = array[j - 1];
+				}
+				array[end] = "";
+				front++;
+				size--;
+			}else if(i <= end && i < front){
+				for(int j = i; j < end; j++)
+					array[j] = array[j + 1];
+				array[end] = "";
+				end--;
+				size--;
+			}else{
+				cout << "Element at specified index contains no info..\n";
+			}
+		}else if (front == end){
+			if(i == front){
+				array[end] = "";
+				size = 0;
+				front = 0;
+				end = 0;
+			}
+		}else if(empty()){
+			cout << "Cannot delete from an empty vector...\n";
+		}else{ 
+			cout << "ERROR: front and end are in disarray\n";
+		}
+	}else{
+		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
+	}
+}
+
 template <class T>
 void Vectors<T>::erase(int i)
 {
@@ -388,66 +442,5 @@ int Vectors<T>::getCapacity()
 {
 	return capacity;
 }
-
-
-
-
-
-
-template <>
-void Vectors<std::string>::erase(int i){
-// Overloaded erase function to work with strings and (char arrays??)
-	if(i >= 0 && i < capacity){
-		if(front < end){
-			if(i <= end && i >= front && size != capacity){
-				for(int j = i; j < end; j++){
-					array[j] = array[j + 1];
-				}
-				end--;
-				size--;
-			}else if(i <= end && i >= front && size == capacity){
-				for(int j = i; j < end - 1; j++)
-					array[j] = array[j + 1];
-				array[end] = "";
-				end--;
-				size--;
-			}else{
-				cout << "Element at specified index contains no info...\n";
-			}
-		}else if(front > end){
-			if(i > end && i >= front){
-				for (int j = i; j > front; j--){
-					array[j] = array[j - 1];
-				}
-				array[end] = "";
-				front++;
-				size--;
-			}else if(i <= end && i < front){
-				for(int j = i; j < end; j++)
-					array[j] = array[j + 1];
-				array[end] = "";
-				end--;
-				size--;
-			}else{
-				cout << "Element at specified index contains no info..\n";
-			}
-		}else if (front == end){
-			if(i == front){
-				array[end] = "";
-				size = 0;
-				front = 0;
-				end = 0;
-			}
-		}else if(empty()){
-			cout << "Cannot delete from an empty vector...\n";
-		}else{ 
-			cout << "ERROR: front and end are in disarray\n";
-		}
-	}else{
-		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
-	}
-}
-
-
 
 #endif

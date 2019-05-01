@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,30 +28,23 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    #shape.cpp \
-    #polygon.cpp \
-    #line.cpp \
-    #polyline.cpp \
-    #rectangle.cpp \
-    #ellipse.cpp \
-    #text.cpp \
+        ./ShapeClass/shape.cpp \
+    ShapeClass/shape.cpp \
+    canvas.cpp \
+    FileParser/driver.cpp
+
+
 
 HEADERS += \
         mainwindow.h \
-    #shape.h \
-    #polygon.h \
-    #line.h \
-    #polyline.h \
-    #rectangle.h \
-    #ellipse.h \
-    #text.h \
+        ./containers/vectors.h \
+        ./ShapeClass/shape.h \
+        ./ShapeClass/line.h \
+    containers/AwesomeVector.h \
+    ../../ProjectFeelTheChunder/canvas.h \
+    canvas.h \
+    FileParser/parse.h
 
-FORMS += \
-        mainwindow.ui \
-        mainwindow.cpp
-
-HEADERS += \
-        mainwindow.h
 
 FORMS += \
         mainwindow.ui
@@ -59,3 +53,9 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    siccpixandstuff.qrc
+
+DISTFILES += \
+    FileParser/shapes.txt
