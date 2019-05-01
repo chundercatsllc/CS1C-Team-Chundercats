@@ -1,11 +1,6 @@
 #include "mainwindow.h"
+#include "ShapeClass/shape.h"
 #include "ui_mainwindow.h"
-
-#include "ui_painter.h"
-//#include "vectors.h"
-//#include "polygon.h"
-
-
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -13,14 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    //setWindowIcon(QIcon(":/pix/icon.png"));
 
-
-   // Vectors<int> ShapeMagazine;
-
-
-
-    //QPixmap pix("C:/Users/Django Sr/Pictures/Joshua Tree/IMG_2723.jpg");
-    //ui->pic->setPixmap(pix);
+    //AwesomeVector<Shape *> shapeMagazine;
 
 	ui->setupUi(this);
 

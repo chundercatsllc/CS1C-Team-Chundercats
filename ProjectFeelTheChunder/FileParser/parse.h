@@ -1,31 +1,36 @@
 #ifndef __PARSE_H__
 #define __PARSE_H__
 #include <fstream>
-#include <string>
+#include <QString>
+#include <QDebug>
+#include <QFile>
 #include <iostream>
+#include "../ShapeClass/shape.h"
 #include "../containers/AwesomeVector.h"
 using namespace std;
 
 class parse{
 	public:
 		// Default constructor
-		parse();
+                parse();
 		
 		// Non-default constructor
-		parse(string);
+                parse(QString);
+
+                ~parse(){inputFile.close();}
 		
 		// Sets (new) filename
-		void set_file(string);
+                void set_file(QString);
 		
 		// Pretty obvious
-		void parseInput(int REPLACE_WITH_SHAPE_CLASS);
+                void parseInput(AwesomeVector<Shape*> &shapeMagazine);
 		
 		// NOT PART OF PARSER CLASS REMOVE BEFORE DEVELOPMENT:
 		void print();
 	private:
 		// File IO Variables:
-		string ShapeFileName;
-		ifstream inputFile;
+        QString ShapeFileName;
+        QFile   inputFile;
 		
 		// Set Defaults:
 		void setDefaults();
@@ -34,33 +39,33 @@ class parse{
 		void openFile();	
 		void closeFile();
 		
-		// String Parser:
-		void parseString();
+        // QString Parser:
+        void parseQString();
 		
-		// Vector for dimensions string since it can theoretically be infinitely long:
-		AwesomeVector<string> shpdmnsns;
+        // Vector for dimensions QString since it can theoretically be infinitely long:
+        AwesomeVector<QString> shpdmnsns;
 		
 		// "save" input to Shape object:
-		void storeInput(int REPLACE_WITH_SHAPE_CLASS);
+        void storeInput(AwesomeVector<Shape*> &shapeMagazine);
 		
 		// Shape variables for inputing:
 		int ShapeId;
-		string Dimensions;
-		string ShapeType;
-		string PenColor;
+        QString Dimensions;
+        QString ShapeType;
+        QString PenColor;
 		int PenWidth;
-		string PenStyle;
-		string PenCapStyle;
-		string PenJoinStyle;
-		string BrushColor;
-		string BrushStyle;
-		string TextString;
-		string TextColor;
-		string TextAlignment;
+        QString PenStyle;
+        QString PenCapStyle;
+        QString PenJoinStyle;
+        QString BrushColor;
+        QString BrushStyle;
+        QString TextQString;
+        QString TextColor;
+        QString TextAlignment;
 		int TextPointSize;
-		string TextFontFamily;
-		string TextFontStyle;
-		string TextFontWeight;
+        QString TextFontFamily;
+        QString TextFontStyle;
+        QString TextFontWeight;
 };
 
 //-----------------------------------------------------------------------------------
@@ -69,14 +74,10 @@ class parse{
 
 const char DIVIDER = ' '; // Must be set as a char using ''. not "".
 
-parse::parse(){
-// Dafault Constructor
-	ShapeFileName = '\0';
+parse::parse() : inputFile(new QFile("shapes.txt")){
 	setDefaults();
 }
-parse::parse(string x){
-// Non-dafault Constructor
-	ShapeFileName = x;
+parse::parse(QString x) : inputFile(new QFile(x)){
 	setDefaults();
 }
 void parse::setDefaults(){
@@ -91,7 +92,7 @@ void parse::setDefaults(){
 	PenJoinStyle = "";
 	BrushColor = "";
 	BrushStyle = "";
-	TextString = "";
+    TextQString = "";
 	TextColor = "";
 	TextAlignment = "";
 	TextPointSize = 0;
@@ -106,43 +107,45 @@ void parse::setDefaults(){
 		}
 	}
 }
-void parse::set_file(string x){
-// String name setter
-	ShapeFileName = x;
+void parse::set_file(QString x){
+// QString name setter
+    //inputFile.set
 }
 void parse::openFile(){
-// Obvious? - YES
-	inputFile.open(ShapeFileName);
+    if(inputFile.exists())
+        inputFile.open();
+    else
+        qDebug() << "cannot open input file";
 }	
 void parse::closeFile(){
-// Obvious? - YES
 	inputFile.close();
 }
-void parse::parseInput(int REPLACE_WITH_SHAPE_CLASS){
+void parse::parseInput(AwesomeVector<Shape*> & shapeMagazine){
 	openFile();
-	string tmp;
+    QTextStream txtStream(&inputFile);
+
+    QString tmp;
 	int count = 0;
-	do{
-		// Loop fail control
+    do{
 		count++;
 		if(count > 5000){
-			cout << "Error!\n";
+            qDebug() << "Error!\n";
 			break;
 		}
 		// Begin Parsing:
-		inputFile >> tmp;
+        txtStream >> tmp;
 		if(tmp == "ShapeId:"){
-			inputFile >> ShapeId;
+            txtStream >> ShapeId;
 		}else if(tmp == "ShapeType:"){
-			inputFile >> ShapeType;
-			inputFile.ignore(10000, '\n');
+            txtStream >> ShapeType;
+            txtStream.ignore(10000, '\n');
 			// Gets the "ShapeDimensions" since it is dynamic
 			// and can, for polyline/polygon, can be infinitely
 			// long, we use Vectors.
 			getline(inputFile,Dimensions);
-			// Seperates String "Dimensions" by "DIVIDER"
-			parseString();
-			// Clears "Dimensions" string.
+            // Seperates QString "Dimensions" by "DIVIDER"
+            parseQString();
+            // Clears "Dimensions" QString.
 			Dimensions = "";
 		}else if(tmp == "PenColor:"){
 			inputFile >> PenColor;
@@ -158,8 +161,8 @@ void parse::parseInput(int REPLACE_WITH_SHAPE_CLASS){
 			inputFile >> BrushColor;
 		}else if(tmp == "BrushStyle:"){
 			inputFile >> BrushStyle;
-		}else if(tmp == "TextString:"){
-			inputFile >> TextString;
+        }else if(tmp == "TextQString:"){
+            inputFile >> TextQString;
 		}else if(tmp == "TextColor:"){
 			inputFile >> TextColor;
 		}else if(tmp == "TextAlignment:"){
@@ -174,48 +177,44 @@ void parse::parseInput(int REPLACE_WITH_SHAPE_CLASS){
 			inputFile >> TextFontWeight;
 		}else if(tmp == "--END-SHAPE--"){
 			// After every shape:
-			storeInput(REPLACE_WITH_SHAPE_CLASS);	// Store the inputted shape data to the shape class.
+                        storeInput(shapeMagazine);	// Store the inputted shape data to the shape class.
 			setDefaults();	// Reset evreything in parse class to defaults to eliminate cross-contamination. 
 		}
 	}while(tmp != "--END-FILE--");
 	closeFile();
 }
-void parse::parseString(){
-// Seperates String "Dimensions" by "DIVIDER"
-	string tmp = "";
+void parse::parseQString(){
+// Seperates QString "Dimensions" by "DIVIDER"
+    QString tmp = "";
 	unsigned int i;
 	for(i=0; i<Dimensions.size()+2; i++){
 		if(Dimensions[i] == DIVIDER || Dimensions[i] == '\0' || Dimensions[i] == '\n'){
 			if(tmp != ""){
 				tmp.resize(tmp.size()-1);
 				if(tmp != "ShapeDimensions" && tmp != "" && tmp != " " && tmp != "\0" && tmp != "\n"){
-					shpdmnsns.push_back(tmp);			// Create new string in vector object shpdmnsns
+                    shpdmnsns.push_back(tmp);			// Create new QString in vector object shpdmnsns
 				}
 				tmp = "";
 			}
 		}else{
-			tmp.insert(tmp.end(),Dimensions[i]);	// String Manipulations
+            tmp.insert(tmp.end(),Dimensions[i]);	// QString Manipulations
 		}
 	}
 }
-void parse::storeInput(int REPLACE_WITH_SHAPE_CLASS){
+void parse::storeInput(AwesomeVector<Shape*> & shapeMagazine){
 // Store the inputted shape data to the shape class.
-	if(ShapeType == "Line"){
-cout << "Storing Line\n";
-	}else if(ShapeType == "Polyline"){
-cout << "Storing Polyline\n";
-	}else if(ShapeType == "Polygon"){
-cout << "Storing Polygon\n";
-	}else if(ShapeType == "Rectangle"){
-cout << "Storing Rectangle\n";
-	}else if(ShapeType == "Square"){
-cout << "Storing Square\n";
-	}else if(ShapeType == "Ellipse"){
-cout << "Storing Ellipse\n";
-	}else if(ShapeType == "Circle"){
-cout << "Storing Circle\n";
-	}else if(ShapeType == "Text"){
-cout << "Storing Text\n";
+    if(Shape::ShapeType == "Line"){
+            shapeMagazine.push_back(new Line())
+        }else if(Shape::ShapeType == "Polyline"){
+qDebug() << "Storing Polyline\n";
+        }else if(Shape::ShapeType == "Polygon"){
+qDebug() << "Storing Polygon\n";
+        }else if(Shape::ShapeType == "Rectangle"){
+qDebug() << "Storing Rectangle\n";
+        }else if(Shape::ShapeType == "Ellipse"){
+qDebug() << "Storing Ellipse\n";
+        }else if(Shape::ShapeType == "Text"){
+qDebug() << "Storing Text\n";
 	}
 print();
 }
@@ -226,57 +225,57 @@ print();
 
 void parse::print(){
 	if(ShapeId != 0){
-		cout << "ShapeId        : " << ShapeId << '\n';
+        qDebug() << "ShapeId        : " << ShapeId << '\n';
 	}
 	if(shpdmnsns.sizeOf() > 0){
 		shpdmnsns.print();
 	}
 	if(ShapeType != ""){
-		cout << "ShapeType      : " << ShapeType << '\n';
+        qDebug() << "ShapeType      : " << ShapeType << '\n';
 	}
 	if(PenColor != ""){
-		cout << "PenColor       : " << PenColor << '\n';
+        qDebug() << "PenColor       : " << PenColor << '\n';
 	}
 	if(PenWidth != 0){
-		cout << "PenWidth       : " << PenWidth << '\n';
+        qDebug() << "PenWidth       : " << PenWidth << '\n';
 	}
 	if(PenStyle != ""){
-		cout << "PenStyle       : " << PenStyle << '\n';
+        qDebug() << "PenStyle       : " << PenStyle << '\n';
 	}
 	if(PenCapStyle != ""){
-		cout << "PenCapStyle    : " << PenCapStyle << '\n';
+        qDebug() << "PenCapStyle    : " << PenCapStyle << '\n';
 	}
 	if(PenJoinStyle != ""){
-		cout << "PenJoinStyle   : " << PenJoinStyle << '\n';
+        qDebug() << "PenJoinStyle   : " << PenJoinStyle << '\n';
 	}
 	if(BrushColor != ""){
-		cout << "BrushColor     : " << BrushColor << '\n';
+        qDebug() << "BrushColor     : " << BrushColor << '\n';
 	}
 	if(BrushStyle != ""){
-		cout << "BrushStyle     : " << BrushStyle << '\n';
+        qDebug() << "BrushStyle     : " << BrushStyle << '\n';
 	}
-	if(TextString != ""){
-		cout << "TextString     : " << TextString << '\n';
+    if(TextQString != ""){
+        qDebug() << "TextQString     : " << TextQString << '\n';
 	}
 	if(TextColor != ""){
-		cout << "TextColor      : " << TextColor << '\n';
+        qDebug() << "TextColor      : " << TextColor << '\n';
 	}
 	if(TextAlignment != ""){
-		cout << "TextAlignment  : " << TextAlignment << '\n';
+        qDebug() << "TextAlignment  : " << TextAlignment << '\n';
 	}
 	if(TextPointSize != 0){
-		cout << "TextPointSize  : " << TextPointSize << '\n';
+        qDebug() << "TextPointSize  : " << TextPointSize << '\n';
 	}
 	if(TextFontFamily != ""){
-		cout << "TextFontFamily : " << TextFontFamily << '\n';
+        qDebug() << "TextFontFamily : " << TextFontFamily << '\n';
 	}
 	if(TextFontStyle != ""){
-		cout << "TextFontStyle  : " << TextFontStyle << '\n';
+        qDebug() << "TextFontStyle  : " << TextFontStyle << '\n';
 	}
 	if(TextFontWeight != ""){
-		cout << "TextFontWeight : " << TextFontWeight << '\n';
+        qDebug() << "TextFontWeight : " << TextFontWeight << '\n';
 	}
-	cout << '\n';
+    qDebug() << '\n';
 }
 
 #endif
