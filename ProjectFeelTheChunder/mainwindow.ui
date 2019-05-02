@@ -43,23 +43,17 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="Canvas" name="canvasWidget" native="true">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>89</x>
-      <y>49</y>
-      <width>471</width>
-      <height>331</height>
+      <x>179</x>
+      <y>89</y>
+      <width>301</width>
+      <height>231</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>471</width>
-      <height>0</height>
-     </size>
-    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 233, 213);</string>
+     <string notr="true">background-color: rgb(224, 236, 255);</string>
     </property>
    </widget>
   </widget>
@@ -84,14 +78,6 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Canvas</class>
-   <extends>QWidget</extends>
-   <header>canvas.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="siccpixandstuff.qrc"/>
  </resources>

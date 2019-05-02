@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QFile>
 #include <iostream>
-#include "../ShapeClass/shape.h"
+#include "shape.h"
 #include "../containers/AwesomeVector.h"
 using namespace std;
 

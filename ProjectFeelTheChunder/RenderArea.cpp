@@ -1,6 +1,6 @@
-#include "canvas.h"
+#include "RenderArea.h"
 
-Canvas::Canvas(QWidget *parent)
+RenderArea::RenderArea(QWidget *parent)
       : QWidget(parent), ShapeMagazine(10)
 {
     setBackgroundRole(QPalette::Base);
@@ -9,49 +9,56 @@ Canvas::Canvas(QWidget *parent)
     readShapeFile();
 }
 
-QSize Canvas::sizeHint() const
-{
-    return QSize(1000,500);
-}
-
-QSize Canvas::minimumSizeHint() const
-{
-    return QSize(1000,500);
-}
-
-
-void Canvas::paintEvent(QPaintEvent * event)
+void RenderArea::paintEvent(QPaintEvent * event)
 {
     QPaintDevice* device = this;
     for(int i = 0; i < ShapeMagazine.sizeOf(); i++)
-    {
-        ShapeMagazine[i]->draw(device);//Draw
-        ++i;
-    }
+        ShapeMagazine[i]->draw(device);
 }
 
-void Canvas::shapeAdd(Shape* shapeIn)
+const AwesomeVector<Shape*> & RenderArea::getShapes()
 {
-    ShapeMagazine.push_back(shapeIn);//Add to AwesomeVector
-    IDCount++;
+    return ShapeMagazine;
 }
 
-void Canvas::shapeRemove(int i)
+void RenderArea::addShape(Shape* shapeIn)
+{
+    ShapeMagazine.push_back(shapeIn);
+    numShapes++;
+}
+
+void RenderArea::chopShape(int i)
 {
     ShapeMagazine.erase(i);
 }
 
-void Canvas::shapeMove(int index, int coord, int x, int y)
+void RenderArea::moveShape(int index, int coord, int x, int y)
 {
     for(int i = 0; i < ShapeMagazine.sizeOf(); i++)
         if(ShapeMagazine[i]->getID() == index){
             ShapeMagazine[i]->move(x,y,coord); break; }
 }
 
-void Canvas::writeShapeFile()
+int RenderArea::getSize()
+{
+    return ShapeMagazine.sizeOf();
+}
+
+QSize RenderArea::sizeHint() const
+{
+    return QSize(1000,500);
+}
+
+QSize RenderArea::minimumSizeHint() const
+{
+    return QSize(1000,500);
+}
+
+/*
+void RenderArea::writeShapeFile()
 {
 
-    /*
+
     QFile myFile("C:/Users/Oscar/Desktop/OOF-saddleback-cs1c/img/shape.txt");
 
     if(!myFile.open( QIODevice::WriteOnly | QIODevice::Text))
@@ -191,11 +198,11 @@ void Canvas::writeShapeFile()
 
     myFile.flush();
     myFile.close();
-    */
-}
+
+}*/
 
 
-void Canvas::readShapeFile()
+void RenderArea::readShapeFile()
 {
 
     AwesomeVector<Shape*> shapeMagazine;
@@ -209,41 +216,35 @@ void Canvas::readShapeFile()
 
     QTextStream fileIn(&myFile);
     QString ignoreNewline;
-    ignoreNewline = fileIn.readLine();//Removes empty line
+    ignoreNewline = fileIn.readLine();
 
     while(!fileIn.atEnd())
     {
-        QString garbage; //Will read in identifier and take out ex: "ShapeType:"
+        QString garbage;
         QPen    shapePen;
         QBrush  shapeBrush;
 
 
-        int shapeIDNum ;
-        QString shapeTypeStr = -1;
-        Shape::ShapeType shapeTypeEnum;
+        int id ;
+        QString shapeTypeStr;
+        Shape::ShapeType shapeType;
 
-        //Read ShapeID
         fileIn >> garbage;
-        fileIn >> shapeIDNum;
+        fileIn >> id;
 
-        //Read shape type
         fileIn >> garbage;
         fileIn >> shapeTypeStr;
 
-        //Find correct enum
-        shapeTypeEnum = stringToShapeType(shapeTypeStr);
+        shapeType = getShapeType(shapeTypeStr);
 
-        //Seperate to different shape types
-        switch(shapeTypeEnum)
+        switch(shapeType)
         {
-            //Line
         case Shape::ShapeType::Line:
         {
-            Line *addLine = new Line(this, 0);
+            Line * newLine = new Line(this, 0);
             QPen linePen;
 
-            //Store shape dimensions
-            QString coordStr;
+            QString     coordStr;
             QStringList coordList;
 
             fileIn >> garbage;
@@ -252,99 +253,89 @@ void Canvas::readShapeFile()
             coordList = coordStr.split(',');
             QPoint coord1(coordList[0].toInt(), coordList[1].toInt());
             QPoint coord2(coordList[2].toInt(), coordList[3].toInt());
-            addLine->setPts(coord1, coord2);
+            newLine->setPoints(coord1, coord2);
 
-            //Store Pen color
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            linePen.setColor(strToQTColor(penColorStr));
+            linePen.setColor(getColor(penColorStr));
 
-            //Store Pen Width;
             fileIn >> garbage;
             int penWidth;
             fileIn >> penWidth;
             linePen.setWidth(penWidth);
 
-            //Store Pen Style
             fileIn >> garbage;
             QString penStyleStr;
             fileIn >> penStyleStr;
-            linePen.setStyle(strToQTPenStyle(penStyleStr));
+            linePen.setStyle(getPenStyle(penStyleStr));
 
-            //Store Pen Cap Style
             fileIn >> garbage;
             QString penCapStyleStr;
             fileIn >> penCapStyleStr;
-            linePen.setCapStyle(strToQTCapStyle(penCapStyleStr));
+            linePen.setCapStyle(getPenCapStyle(penCapStyleStr));
 
-            //Store Pen Join Style
             fileIn >> garbage;
             QString penJoinStyleStr;
             fileIn >> penJoinStyleStr;
-            linePen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
+            linePen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
-            addLine->setPen(linePen);
-            addLine->setId(shapeIDNum); //Set shape ID
-            addLine->setShape(ShapeType::LineType);
-            shapeAdd(addLine); //Adding shape
-
-            if(addLine->pen().color() == Qt::GlobalColor::blue){qDebug("corrrrrect");}
-
-            break;
-        }//END LINETYPE
-          //PolyLine
-        case ShapeType::PolylineType:
+            newLine->setPen(linePen);
+            newLine->setID(id);
+            newLine->setShape(Shape::ShapeType::Line);
+            addShape(newLine);
+        }
+        break;
+        case Shape::ShapeType::Polyline:
         {
-            Polyline *addPolyLine = new Polyline(this, 0);
+            Polyline *newPolly = new Polyline(this, 0);
             QPen polylinePen;
 
-            //Store shape dimensions
-            QString coordStr;
+            QString     coordStr;
             QStringList coordList;
 
             fileIn >> garbage;
 
-            coordStr = fileIn.readLine();
+            coordStr  = fileIn.readLine();
             coordList = coordStr.split(',');
-            QPoint coord1(coordList[0].toInt(), coordList[1].toInt());
-            QPoint coord2(coordList[2].toInt(), coordList[3].toInt());
+            QPoint pt1(coordList[0].toInt(), coordList[1].toInt());
+            QPoint pt2(coordList[2].toInt(), coordList[3].toInt());
 
-            addPolyLine->addPoint(coord1); //Set points
-            addPolyLine->addPoint(coord2); //Set points
+            newPolly->addPoint(pt1);
+            newPolly->addPoint(pt2);
 
-            if(coordList.size() > 4)//Check to see if more points
+            if(coordList.size() > 4)
             {
                 QPoint coord3(coordList[4].toInt(), coordList[5].toInt());
-                addPolyLine->addPoint(coord3); //Set points
+                newPolly->addPoint(coord3); //Set points
 
                 if(coordList.size() > 6)//If more points
                 {
                     QPoint coord4(coordList[6].toInt(), coordList[7].toInt());
-                    addPolyLine->addPoint(coord4); //Set points
+                    newPolly->addPoint(coord4); //Set points
 
                     if(coordList.size() > 8)//If more points
                     {
                         QPoint coord5(coordList[8].toInt(), coordList[9].toInt());
-                        addPolyLine->addPoint(coord5); //Set points
+                        newPolly->addPoint(coord5); //Set points
 
                         if(coordList.size() > 10)//If more points
                         {
                             QPoint coord6(coordList[10].toInt(), coordList[11].toInt());
-                            addPolyLine->addPoint(coord6); //Set points
+                            newPolly->addPoint(coord6); //Set points
 
 
                         }
                     }
                 }
-            }//ENd Coordinates
+            }
 
 
             //Store Pen color
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            polylinePen.setColor(strToQTColor(penColorStr));
+            polylinePen.setColor(getColor(penColorStr));
 
             //Store Pen Width;
             fileIn >> garbage;
@@ -356,33 +347,33 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString penStyleStr;
             fileIn >> penStyleStr;
-            polylinePen.setStyle(strToQTPenStyle(penStyleStr));
+            polylinePen.setStyle(getPenStyle(penStyleStr));
 
             //Store Pen Cap Style
             fileIn >> garbage;
             QString penCapStyleStr;
             fileIn >> penCapStyleStr;
-            polylinePen.setCapStyle(strToQTCapStyle(penCapStyleStr));
+            polylinePen.setCapStyle(getPenCapStyle(penCapStyleStr));
 
             //Store Pen Join Style
             fileIn >> garbage;
             QString penJoinStyleStr;
             fileIn >> penJoinStyleStr;
-            polylinePen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
+            polylinePen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
-            addPolyLine->setPen(polylinePen);
-            addPolyLine->setId(shapeIDNum);
-            addPolyLine->setShape(ShapeType::PolylineType);
-            addPolyLine->addNumPoints(coordList.size()/2);
-            shapeAdd(addPolyLine); //Adding shape
+            newPolly->setPen(polylinePen);
+            newPolly->setID(id);
+            newPolly->setShape(Shape::ShapeType::Polyline);
+            newPolly->addNumPoints(coordList.size()/2);
+            addShape(newPolly); //Adding shape
 
             break;
         }//END Polyline type
 
               //Polygon
-        case ShapeType::PolygonType:
+        case Shape::ShapeType::Polygon:
         {
-            Polygon *addPolygon = new Polygon(this, 0);
+            Polygon *poliGonGin = new Polygon(this, 0);
             QPen polygonPen;
             QBrush polygonBrush;
 
@@ -397,38 +388,39 @@ void Canvas::readShapeFile()
             QPoint coord1(coordList[0].toInt(), coordList[1].toInt());
             QPoint coord2(coordList[2].toInt(), coordList[3].toInt());
 
-            addPolygon->addPoint(coord1); //Set points
-            addPolygon->addPoint(coord2); //Set points
+            //Qui-gon-gin (star wars episode I)
+            poliGonGin->addVertex(coord1); //Set points
+            poliGonGin->addVertex(coord2); //Set points
 
             if(coordList.size() > 4)//Check to see if more points
             {
                 QPoint coord3(coordList[4].toInt(), coordList[5].toInt());
-                addPolygon->addPoint(coord3); //Set points
+                poliGonGin->addVertex(coord3); //Set points
 
                 if(coordList.size() > 6)//If more points
                 {
                     QPoint coord4(coordList[6].toInt(), coordList[7].toInt());
-                    addPolygon->addPoint(coord4); //Set points
+                    poliGonGin->addVertex(coord4); //Set points
 
                     if(coordList.size() > 8)//If more points
                     {
                         QPoint coord5(coordList[8].toInt(), coordList[9].toInt());
-                        addPolygon->addPoint(coord5); //Set points
+                        poliGonGin->addVertex(coord5); //Set points
 
                         if(coordList.size() > 10)//If more points
                         {
                             QPoint coord6(coordList[10].toInt(), coordList[11].toInt());
-                            addPolygon->addPoint(coord6); //Set points
+                            poliGonGin->addVertex(coord6); //Set points
 
                             if(coordList.size() > 12)//If more points
                             {
                                 QPoint coord7(coordList[12].toInt(), coordList[13].toInt());
-                                addPolygon->addPoint(coord7); //Set points
+                                poliGonGin->addVertex(coord7); //Set points
 
                                 if(coordList.size() > 14)//If more points
                                 {
                                     QPoint coord8(coordList[14].toInt(), coordList[15].toInt());
-                                    addPolygon->addPoint(coord8); //Set points
+                                    poliGonGin->addVertex(coord8); //Set points
 
 
                                 }
@@ -442,7 +434,7 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            polygonPen.setColor(strToQTColor(penColorStr));
+            polygonPen.setColor(getColor(penColorStr));
 
             //Store Pen Width;
             fileIn >> garbage;
@@ -454,45 +446,44 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString penStyleStr;
             fileIn >> penStyleStr;
-            polygonPen.setStyle(strToQTPenStyle(penStyleStr));
+            polygonPen.setStyle(getPenStyle(penStyleStr));
 
             //Store Pen Cap Style
             fileIn >> garbage;
             QString penCapStyleStr;
             fileIn >> penCapStyleStr;
-            polygonPen.setCapStyle(strToQTCapStyle(penCapStyleStr));
+            polygonPen.setCapStyle(getPenCapStyle(penCapStyleStr));
 
             //Store Pen Join Style
             fileIn >> garbage;
             QString penJoinStyleStr;
             fileIn >> penJoinStyleStr;
-            polygonPen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
+            polygonPen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
             //Store Brush Color
             fileIn >> garbage;
             QString brushColorStr;
             fileIn >> brushColorStr;
-            polygonBrush.setColor(strToQTColor(brushColorStr));
+            polygonBrush.setColor(getBrushStyle(brushColorStr));
 
             //Store BrushStyle
             fileIn >> garbage;
             QString brushStyleStr;
             fileIn >> brushStyleStr;
-            polygonBrush.setStyle(strToQTBushStyle(brushStyleStr));
+            polygonBrush.setStyle(getBrushStyle(brushStyleStr));
 
-            addPolygon->setPen(polygonPen);
-            addPolygon->setBrush(polygonBrush);
-            addPolygon->setId(shapeIDNum);
-            addPolygon->setShape(ShapeType::PolygonType);
-            addPolygon->addNumPoints(coordList.size()/2);
-            shapeAdd(addPolygon); //Adding shape
-            break;
-        }//END Polygontype
-           //Rectangle
-        case ShapeType::RectangleType:
+            poliGonGin->setPen(polygonPen);
+            poliGonGin->setBrush(polygonBrush);
+            poliGonGin->setID(id);
+            poliGonGin->setShape(Shape::ShapeType::Polygon);
+            poliGonGin->setNumVertices(coordList.size()/2);
+            addShape(poliGonGin); //Adding shape
+        }
+        break;
+        case Shape::ShapeType::Rectangle:
         {
-            Rectangle *addRect = new Rectangle(this, 0);
-            QPen rectPen;
+            Rectangle *RECTIFYYY = new Rectangle(this, 0);
+            QPen   rectPen;
             QBrush rectBrush;
 
             //Store shape dimensions
@@ -504,14 +495,14 @@ void Canvas::readShapeFile()
             coordStr = fileIn.readLine();
             coordList = coordStr.split(',');
             QPoint center(coordList[0].toInt(), coordList[1].toInt());
-            addRect->setPosition(center);
-            addRect->setDimensions(coordList[3].toInt(), coordList[2].toInt());
+            RECTIFYYY->setLocation(center);
+            RECTIFYYY->setDimensions(coordList[3].toInt(), coordList[2].toInt());
 
             //Store Pen color
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            rectPen.setColor(strToQTColor(penColorStr));
+            rectPen.setColor(getColor(penColorStr));
 
             //Store Pen Width;
             fileIn >> garbage;
@@ -523,109 +514,40 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString penStyleStr;
             fileIn >> penStyleStr;
-            rectPen.setStyle(strToQTPenStyle(penStyleStr));
+            rectPen.setStyle(getPenStyle(penStyleStr));
 
             //Store Pen Cap Style
             fileIn >> garbage;
             QString penCapStyleStr;
             fileIn >> penCapStyleStr;
-            rectPen.setCapStyle(strToQTCapStyle(penCapStyleStr));
+            rectPen.setCapStyle(getPenCapStyle(penCapStyleStr));
 
             //Store Pen Join Style
             fileIn >> garbage;
             QString penJoinStyleStr;
             fileIn >> penJoinStyleStr;
-            rectPen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
+            rectPen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
             //Store Brush Color
             fileIn >> garbage;
             QString brushColorStr;
             fileIn >> brushColorStr;
-            rectBrush.setColor(strToQTColor(brushColorStr));
+            rectBrush.setColor(getColor(brushColorStr));
 
             //Store BrushStyle
             fileIn >> garbage;
             QString brushStyleStr;
             fileIn >> brushStyleStr;
-            rectBrush.setStyle(strToQTBushStyle(brushStyleStr));
+            rectBrush.setStyle(getBrushStyle(brushStyleStr));
 
-            addRect->setPen(rectPen);
-            addRect->setBrush(rectBrush);
-            addRect->setId(shapeIDNum);
-            addRect->setShape(ShapeType::RectangleType);
-            shapeAdd(addRect); //Adding shape
-            break;
-        } //End RecType
-            //Square
-        case ShapeType::SquareType:
-        {
-            Rectangle *addSquare = new Rectangle(this, 0);
-            QPen sqrPen;
-            QBrush sqrBrush;
-
-            //Store shape dimensions
-            QString coordStr;
-            QStringList coordList;
-
-            fileIn >> garbage;
-
-            coordStr = fileIn.readLine();
-            coordList = coordStr.split(',');
-            QPoint center(coordList[0].toInt(), coordList[1].toInt());
-            addSquare->setPosition(center);
-            addSquare->setDimensions(coordList[2].toInt(), coordList[2].toInt()); //Same length and width
-
-            //Store Pen color
-            fileIn >> garbage;
-            QString penColorStr;
-            fileIn >> penColorStr;
-            sqrPen.setColor(strToQTColor(penColorStr));
-
-            //Store Pen Width;
-            fileIn >> garbage;
-            int penWidth;
-            fileIn >> penWidth;
-            sqrPen.setWidth(penWidth);
-
-            //Store Pen Style
-            fileIn >> garbage;
-            QString penStyleStr;
-            fileIn >> penStyleStr;
-            sqrPen.setStyle(strToQTPenStyle(penStyleStr));
-
-            //Store Pen Cap Style
-            fileIn >> garbage;
-            QString penCapStyleStr;
-            fileIn >> penCapStyleStr;
-            sqrPen.setCapStyle(strToQTCapStyle(penCapStyleStr));
-
-            //Store Pen Join Style
-            fileIn >> garbage;
-            QString penJoinStyleStr;
-            fileIn >> penJoinStyleStr;
-            sqrPen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
-
-            //Store Brush Color
-            fileIn >> garbage;
-            QString brushColorStr;
-            fileIn >> brushColorStr;
-            sqrBrush.setColor(strToQTColor(brushColorStr));
-
-            //Store BrushStyle
-            fileIn >> garbage;
-            QString brushStyleStr;
-            fileIn >> brushStyleStr;
-            sqrBrush.setStyle(strToQTBushStyle(brushStyleStr));
-
-            addSquare->setPen(sqrPen);
-            addSquare->setBrush(sqrBrush);
-            addSquare->setId(shapeIDNum);
-            addSquare->setShape(ShapeType::RectangleType);
-            shapeAdd(addSquare); //Adding shape
-            break;
-        }//End Square Type
-            //Ellipse
-        case ShapeType::EllipseType:
+            RECTIFYYY->setPen(rectPen);
+            RECTIFYYY->setBrush(rectBrush);
+            RECTIFYYY->setID(id);
+            RECTIFYYY->setShape(Shape::ShapeType::Rectangle);
+            addShape(RECTIFYYY);
+        }
+        break;
+        case Shape::ShapeType::Ellipse:
         {
             Ellipse *addEllipse = new Ellipse(this, 0);
             QPen ellipsePen;
@@ -640,14 +562,14 @@ void Canvas::readShapeFile()
             coordStr = fileIn.readLine();
             coordList = coordStr.split(',');
             QPoint center(coordList[0].toInt(), coordList[1].toInt());
-            addEllipse->setPosition(center);
+            addEllipse->setLocation(center);
             addEllipse->setDimensions(coordList[2].toInt(), coordList[3].toInt()); //Same length and width
 
             //Store Pen color
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            ellipsePen.setColor(strToQTColor(penColorStr));
+            ellipsePen.setColor(getColor(penColorStr));
 
             //Store Pen Width;
             fileIn >> garbage;
@@ -659,111 +581,42 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString penStyleStr;
             fileIn >> penStyleStr;
-            ellipsePen.setStyle(strToQTPenStyle(penStyleStr));
+            ellipsePen.setStyle(getPenStyle(penStyleStr));
 
             //Store Pen Cap Style
             fileIn >> garbage;
             QString penCapStyleStr;
             fileIn >> penCapStyleStr;
-            ellipsePen.setCapStyle(strToQTCapStyle(penCapStyleStr));
+            ellipsePen.setCapStyle(getPenCapStyle(penCapStyleStr));
 
             //Store Pen Join Style
             fileIn >> garbage;
             QString penJoinStyleStr;
             fileIn >> penJoinStyleStr;
-            ellipsePen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
+            ellipsePen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
             //Store Brush Color
             fileIn >> garbage;
             QString brushColorStr;
             fileIn >> brushColorStr;
-            ellipseBrush.setColor(strToQTColor(brushColorStr));
+            ellipseBrush.setColor(getColor(brushColorStr));
 
             //Store BrushStyle
             fileIn >> garbage;
             QString brushStyleStr;
             fileIn >> brushStyleStr;
-            ellipseBrush.setStyle(strToQTBushStyle(brushStyleStr));
+            ellipseBrush.setStyle(getBrushStyle(brushStyleStr));
 
             addEllipse->setPen(ellipsePen);
             addEllipse->setBrush(ellipseBrush);
-            addEllipse->setId(shapeIDNum);
-            addEllipse->setShape(ShapeType::EllipseType);
-            shapeAdd(addEllipse); //Adding shape
-            break;
-        }//End EllipseType
-            //Circle
-        case ShapeType::CircleType:
+            addEllipse->setID(id);
+            addEllipse->setShape(Shape::ShapeType::Ellipse);
+            addShape(addEllipse);
+        }
+        break;
+        case Shape::ShapeType::Text:
         {
-            Ellipse *addCircle = new Ellipse(this, 0);
-            QPen circPen;
-            QBrush circBrush;
-
-            //Store shape dimensions
-            QString coordStr;
-            QStringList coordList;
-
-            fileIn >> garbage;
-
-            coordStr = fileIn.readLine();
-            coordList = coordStr.split(',');
-            QPoint center(coordList[0].toInt(), coordList[1].toInt());
-            addCircle->setPosition(center);
-            addCircle->setDimensions(coordList[2].toInt(), coordList[2].toInt()); //Same length and width
-
-            //Store Pen color
-            fileIn >> garbage;
-            QString penColorStr;
-            fileIn >> penColorStr;
-            circPen.setColor(strToQTColor(penColorStr));
-
-            //Store Pen Width;
-            fileIn >> garbage;
-            int penWidth;
-            fileIn >> penWidth;
-            circPen.setWidth(penWidth);
-
-            //Store Pen Style
-            fileIn >> garbage;
-            QString penStyleStr;
-            fileIn >> penStyleStr;
-            circPen.setStyle(strToQTPenStyle(penStyleStr));
-
-            //Store Pen Cap Style
-            fileIn >> garbage;
-            QString penCapStyleStr;
-            fileIn >> penCapStyleStr;
-            circPen.setCapStyle(strToQTCapStyle(penCapStyleStr));
-
-            //Store Pen Join Style
-            fileIn >> garbage;
-            QString penJoinStyleStr;
-            fileIn >> penJoinStyleStr;
-            circPen.setJoinStyle(strToQTPenJoinStyle(penJoinStyleStr));
-
-            //Store Brush Color
-            fileIn >> garbage;
-            QString brushColorStr;
-            fileIn >> brushColorStr;
-            circBrush.setColor(strToQTColor(brushColorStr));
-
-            //Store BrushStyle
-            fileIn >> garbage;
-            QString brushStyleStr;
-            fileIn >> brushStyleStr;
-            circBrush.setStyle(strToQTBushStyle(brushStyleStr));
-
-            addCircle->setPen(circPen);
-            addCircle->setBrush(circBrush);
-            addCircle->setId(shapeIDNum);
-            addCircle->setShape(ShapeType::EllipseType);
-            shapeAdd(addCircle); //Adding shape
-            break;
-        }//End CircleType
-            //Text
-        case ShapeType::TextType:
-        {
-            Text *addText = new Text(this, 0);
+            Text *letsGetTexty = new Text(this, 0);
             QPen textPen;
             QFont textFont;
 
@@ -776,26 +629,26 @@ void Canvas::readShapeFile()
             coordStr = fileIn.readLine();
             coordList = coordStr.split(',');
             QPoint center(coordList[0].toInt(), coordList[1].toInt());
-            addText->setPosition(center);
-            addText->setDimensions(coordList[2].toInt(), coordList[3].toInt()); //Same length and width
+            letsGetTexty->setLocation(center);
+            letsGetTexty->setDimensions(coordList[2].toInt(), coordList[3].toInt()); //Same length and width
 
             //Store text
             fileIn >> garbage;
             QString textStr;
             textStr = fileIn.readLine();
-            addText->setText(textStr);
+            letsGetTexty->setText(textStr);
 
             //Store Pen color
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            textPen.setColor(strToQTColor(penColorStr));
+            textPen.setColor(getColor(penColorStr));
 
             //Store Alignment
             fileIn >> garbage;
             QString alignStr;
             fileIn >> alignStr;
-            addText->setAlignment(strToQTAlignment(alignStr));
+            letsGetTexty->setFlag(getFlag(alignStr));
 
             //Store point size
             fileIn >> garbage;
@@ -813,289 +666,262 @@ void Canvas::readShapeFile()
             fileIn >> garbage;
             QString textFontStyleStr;
             fileIn >> textFontStyleStr;
-            textFont.setStyle(strToQTTextStyle(textFontStyleStr));
+            textFont.setStyle(getFontStyle(textFontStyleStr));
 
             //Store Font weight
             fileIn >> garbage;
             QString textFontWeightStr;
             fileIn >> textFontWeightStr;
-            textFont.setWeight(strToQTTextWeight(textFontWeightStr));
+            textFont.setWeight(getFontWeight(textFontWeightStr));
 
-            addText->setPen(textPen);
-            addText->setFont(textFont);
-            addText->setId(shapeIDNum);
-            addText->setShape(ShapeType::TextType);
-            shapeAdd(addText); //Adding shape
-
+            letsGetTexty->setPen(textPen);
+            letsGetTexty->setFont(textFont);
+            letsGetTexty->setID(id);
+            letsGetTexty->setShape(Shape::ShapeType::Text);
+            addShape(letsGetTexty); //Adding shape
+        }
             break;
-        }//End TextType
-        default: {qDebug("error reading file");}
-        }//End Switch shapeType
-        ignoreNewline = fileIn.readLine();//Removes empty line
-    }//EndWhile !atEnd
+        default: qDebug("Couldn't read the input file");
+        }
+
+        ignoreNewline = fileIn.readLine();
+    }
     myFile.close();
-
-*/
 }
 
-Shape::ShapeType Canvas::stringToShapeType(QString shapeTypeStr)
+int RenderArea::getNumShapes()
 {
-    Shape::ShapeType shapeTypeEnum;
+    return numShapes;
+}
 
-    if(shapeTypeStr.compare("Line") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Line;
-    }
-    else if(shapeTypeStr.compare("Polyline") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Polyline;
-    }
-    else if(shapeTypeStr.compare("Polygon") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Polygon;
-    }
-    else if(shapeTypeStr.compare("Rectangle") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Rectangle;
-    }/*
-    else if(shapeTypeStr.compare("Square") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Square;
-    }*/
-    else if(shapeTypeStr.compare("Ellipse") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Ellipse;
-    }/*
-    else if(shapeTypeStr.compare("Circle") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Circle;
-    }*/
-    else if(shapeTypeStr.compare("Text") == 0)//Equals 0 when equal
-    {
-        shapeTypeEnum = Shape::ShapeType::Text;
-    }
+Shape::ShapeType RenderArea::getShapeType(QString shapeStr)
+{
+    if(shapeStr == "Line")
+        return Shape::ShapeType::Line;
+    else if(shapeStr == "Polyline")
+        return Shape::ShapeType::Polyline;
+    else if(shapeStr == "Polygon")
+        return Shape::ShapeType::Polygon;
+    else if(shapeStr == "Rectangle")
+        return Shape::ShapeType::Rectangle;
+    else if(shapeStr == "Ellipse")
+        return Shape::ShapeType::Ellipse;
+    else if(shapeStr == "Text")
+        return Shape::ShapeType::Text;
     else
-    {
-        shapeTypeEnum = Shape::ShapeType::null;
-    }
+        return Shape::ShapeType::null;
 
-
-    return shapeTypeEnum;
 }
 
-Qt::GlobalColor Canvas::strToQTColor(QString strColorIn)
-{
-    if(strColorIn == "blue")
+Qt::GlobalColor RenderArea::getColor(QString colorStr)
+{    
+    if(colorStr == "blue")
         return Qt::blue;
-    else if(strColorIn == "red")
+    else if(colorStr == "red")
         return Qt::red;
-    else if(strColorIn == "green")
+    else if(colorStr == "green")
         return Qt::green;
-    else if(strColorIn == "yellow")
+    else if(colorStr == "yellow")
         return Qt::yellow;
-    else if(strColorIn == "black")
+    else if(colorStr == "black")
         return Qt::black;
-    else if(strColorIn == "white")
+    else if(colorStr == "white")
         return Qt::white;
-    else if(strColorIn == "cyan")
+    else if(colorStr == "cyan")
         return Qt::cyan;
-    else if(strColorIn == "magenta")
+    else if(colorStr == "magenta")
         return Qt::magenta;
     else
         return Qt::gray;
 }
 
-Qt::PenCapStyle Canvas::strToQTCapStyle(QString penCapStyleStrIn)
+Qt::PenCapStyle RenderArea::getPenCapStyle(QString capStr)
 {
-    if(penCapStyleStrIn == "FlatCap")
-        return Qt::FlatCap;
-    else if(penCapStyleStrIn == "SquareCap")
+
+    if(capStr == "SquareCap")
         return Qt::SquareCap;
+    else if(capStr == "FlatCap")
+        return Qt::FlatCap;
     else
         return Qt::RoundCap;
 }
 
-Qt::PenStyle Canvas::strToQTPenStyle(QString penStyleStrIn)
+Qt::PenStyle RenderArea::getPenStyle(QString penStr)
 {
-    if(penStyleStrIn == "NoPen")
+    if(penStr == "NoPen")
         return Qt::NoPen;
-    else if(penStyleStrIn == "SolidLine")
+    else if(penStr == "SolidLine")
         return Qt::SolidLine;
-    else if(penStyleStrIn == "DashLine")
+    else if(penStr == "DashLine")
         return Qt::DashLine;
-    else if(penStyleStrIn == "DotLine")
+    else if(penStr == "DotLine")
         return Qt::DotLine;
-    else if(penStyleStrIn == "DashDotLine")
+    else if(penStr == "DashDotLine")
         return Qt::DashDotLine;
     else
         return Qt::DashDotDotLine;
 }
 
-Qt::PenJoinStyle Canvas::strToQTPenJoinStyle(QString penJoinStyleStrIn)
+Qt::PenJoinStyle RenderArea::getPenJointStyle(QString penJointStr)
 {
-    if(penJoinStyleStrIn == "MiterJoin")
+    if(penJointStr == "MiterJoin")
         return Qt::MiterJoin;
-    else if(penJoinStyleStrIn == "BevelJoin")
+    else if(penJointStr == "BevelJoin")
         return Qt::BevelJoin;
     else
         return Qt::RoundJoin;
 }
 
-Qt::BrushStyle Canvas::strToQTBushStyle(QString brushStyleStr)
+Qt::BrushStyle RenderArea::getBrushStyle(QString brushStr)
 {
-    if(brushStyleStr == "SolidPattern")
+    if(brushStr == "SolidPattern")
         return Qt::SolidPattern;
-    else if(brushStyleStr == "HorPattern")
+    else if(brushStr == "HorPattern")
         return Qt::HorPattern;
-    else if(brushStyleStr == "VerPattern")
+    else if(brushStr == "VerPattern")
         return Qt::VerPattern;
     else
         return Qt::NoBrush;
 }
 
-Qt::AlignmentFlag Canvas::strToQTAlignment(QString alignStrIn)
+Qt::AlignmentFlag RenderArea::getFlag(QString flagStr)
 {
-    if(alignStrIn == "AlignLeft")
+    if(flagStr == "AlignLeft")
         return Qt::AlignLeft;
-    else if(alignStrIn == "AlignRight")
+    else if(flagStr == "AlignRight")
         return Qt::AlignRight;
-    else if(alignStrIn == "AlignTop")
+    else if(flagStr == "AlignTop")
         return Qt::AlignTop;
-    else if(alignStrIn == "AlignBottom")
+    else if(flagStr == "AlignBottom")
         return Qt::AlignBottom;
     else
         return Qt::AlignCenter;
 }
 
-QFont::Style Canvas::strToQTTextStyle(QString textFontStyleStrIn)
+QFont::Style RenderArea::getFontStyle(QString fontStyleStr)
 {
-    if(textFontStyleStrIn == "StyleNormal")
+    if(fontStyleStr == "StyleNormal")
         return QFont::StyleNormal;
-    else if(textFontStyleStrIn == "StyleItalic")
+    else if(fontStyleStr == "StyleItalic")
         return QFont::StyleItalic;
     else
         return QFont::StyleOblique;
 }
 
-QFont::Weight Canvas::strToQTTextWeight(QString textFontWeightStrIn)
+QFont::Weight RenderArea::getFontWeight(QString fontWeightStr)
 {
-    if(textFontWeightStrIn == "Thin")
+    if(fontWeightStr == "Thin")
         return QFont::Thin;
-    else if(textFontWeightStrIn == "Light")
+    else if(fontWeightStr == "Light")
         return QFont::Light;
-    else if(textFontWeightStrIn == "Normal")
+    else if(fontWeightStr == "Normal")
         return QFont::Normal;
     else
         return QFont::Bold;
 }
 
-/***************************************
- * QT to String
- *************************************/
-
-QString Canvas::QTColorToStr(QColor strColorIn)
+QString RenderArea::getStringColor(QColor color)
 {
-    if(strColorIn == Qt::blue)
+    if(color == Qt::blue)
         return "blue";
-    else if(strColorIn == Qt::red)
+    else if(color == Qt::red)
         return "red";
-    else if(strColorIn == Qt::green)
+    else if(color == Qt::green)
         return "green";
-    else if(strColorIn == Qt::yellow)
+    else if(color == Qt::yellow)
         return "yellow";
-    else if(strColorIn == Qt::black)
+    else if(color == Qt::black)
         return "black";
-    else if(strColorIn == Qt::white)
+    else if(color == Qt::white)
         return "white";
-    else if(strColorIn == Qt::cyan)
+    else if(color == Qt::cyan)
         return "cyan";
-    else if(strColorIn == Qt::magenta)
+    else if(color == Qt::magenta)
         return "magenta";
     else
         return "gray";
 }
 
 
-QString Canvas::QTCapStyleToStr(Qt::PenCapStyle penCapStyleStrIn)
+QString RenderArea::getStringPenCap(Qt::PenCapStyle penStyle)
 {
-    if(penCapStyleStrIn == Qt::FlatCap)
+    if(penStyle == Qt::FlatCap)
         return "FlatCap";
-    else if(penCapStyleStrIn == Qt::SquareCap)
+    else if(penStyle == Qt::SquareCap)
         return "SquareCap";
     else
         return "RoundCap";
 }
 
-QString   Canvas::QTPenStyleToStr(Qt::PenStyle penStyleStrIn)
+QString   RenderArea::getStringPenStyle(Qt::PenStyle penStyle)
 {
-    if(penStyleStrIn == Qt::NoPen)
+    if(penStyle == Qt::NoPen)
         return "NoPen";
-    else if(penStyleStrIn == Qt::SolidLine)
+    else if(penStyle == Qt::SolidLine)
         return "SolidLine";
-    else if(penStyleStrIn == Qt::DashLine)
+    else if(penStyle == Qt::DashLine)
         return "DashLine";
-    else if(penStyleStrIn == Qt::DotLine)
+    else if(penStyle == Qt::DotLine)
         return "DotLine";
-    else if(penStyleStrIn == Qt::DashDotLine)
+    else if(penStyle == Qt::DashDotLine)
         return "DashDotLine";
     else
         return "DashDotDotLine";
 }
 
-QString Canvas::QTPenJoinStyleToStr(Qt::PenJoinStyle penJoinStyleStrIn)
+QString RenderArea::getStringPenJointStyle(Qt::PenJoinStyle penJointStyle)
 {
-    if(penJoinStyleStrIn == Qt::MiterJoin)
+    if(penJointStyle == Qt::MiterJoin)
         return "MiterJoin";
-    else if(penJoinStyleStrIn == Qt::BevelJoin)
+    else if(penJointStyle == Qt::BevelJoin)
         return "BevelJoin";
     else
         return "RoundJoin";
 }
 
-QString Canvas::QTBushStyleToStr(Qt::BrushStyle brushStyleStr)
+QString RenderArea::getStringBrush(Qt::BrushStyle brush)
 {
-    if(brushStyleStr == Qt::SolidPattern)
+    if(brush == Qt::SolidPattern)
         return "SolidPattern";
-    else if(brushStyleStr == Qt::HorPattern)
+    else if(brush == Qt::HorPattern)
         return "HorPattern";
-    else if(brushStyleStr == Qt::VerPattern)
+    else if(brush == Qt::VerPattern)
         return "VerPattern";
     else
         return "NoBrush";
 }
 
-QString Canvas::QTAlignmentToStr(Qt::AlignmentFlag  alignStrIn)
+QString RenderArea::getStringFlag(Qt::AlignmentFlag  flag)
 {
-    if(alignStrIn == Qt::AlignLeft )
+    if(flag == Qt::AlignLeft )
         return "AlignLeft";
-    else if(alignStrIn == Qt::AlignRight)
+    else if(flag == Qt::AlignRight)
         return "AlignRight";
-    else if(alignStrIn == Qt::AlignTop)
+    else if(flag == Qt::AlignTop)
         return "AlignTop";
-    else if(alignStrIn == Qt::AlignBottom)
+    else if(flag == Qt::AlignBottom)
         return "AlignBottom";
     else
         return "AlignCenter";
 }
 
- QString Canvas::QTTextStyleToStr(QFont::Style textFontStyleStrIn)
+ QString RenderArea::getStringFontStyle(QFont::Style fontStyle)
 {
-    if(textFontStyleStrIn == QFont::StyleNormal)
+    if(fontStyle == QFont::StyleNormal)
         return "StyleNormal";
-    else if(textFontStyleStrIn == QFont::StyleItalic)
+    else if(fontStyle == QFont::StyleItalic)
         return "StyleItalic";
     else
         return "StyleOblique";
 }
 
-QString Canvas::QTTextWeightToStr(int textFontWeightStrIn)
+QString RenderArea::getStringFontWeight(int fontWeight)
 {
-
-    if(textFontWeightStrIn == 0)
+    if(fontWeight == 0)
         return "Thin";
-    else if(textFontWeightStrIn == 25)
+    else if(fontWeight == 25)
         return "Light";
-    else if(textFontWeightStrIn == 50)
+    else if(fontWeight == 50)
         return "Normal";
     else
         return "Bold";

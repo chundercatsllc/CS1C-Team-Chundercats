@@ -28,22 +28,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        ./ShapeClass/shape.cpp \
-    ShapeClass/shape.cpp \
-    canvas.cpp \
-    FileParser/driver.cpp
+        shape.cpp \
+        RenderArea.cpp
 
 
 
 HEADERS += \
         mainwindow.h \
-        ./containers/vectors.h \
-        ./ShapeClass/shape.h \
-        ./ShapeClass/line.h \
-    containers/AwesomeVector.h \
-    ../../ProjectFeelTheChunder/canvas.h \
-    canvas.h \
-    FileParser/parse.h
+        shape.h \
+        containers/AwesomeVector.h \
+        RenderArea.h \
+        shape.h
 
 
 FORMS += \

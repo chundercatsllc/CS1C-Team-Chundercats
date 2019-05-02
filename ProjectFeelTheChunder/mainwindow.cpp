@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "ShapeClass/shape.h"
+#include "shape.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
