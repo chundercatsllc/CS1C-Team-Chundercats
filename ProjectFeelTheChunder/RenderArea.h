@@ -7,7 +7,6 @@
 #include <QTextStream>
 #include "shape.h"
 #include "containers/AwesomeVector.h"
-#include "FileParser/parse.h"
 #include <QPaintEvent>
 #include <QWidget>
 #include <QMessageBox>
@@ -20,10 +19,6 @@
 class RenderArea : public QWidget
 {
     public:
-         /**
-         * @brief RenderArea default constructor
-         * @param parent
-         */
         RenderArea(QWidget *parent = nullptr);
 
         void paintEvent(QPaintEvent *event) override; //Paint event ovverride

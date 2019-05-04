@@ -215,8 +215,9 @@ void RenderArea::readShapeFile()
     }
 
     QTextStream fileIn(&myFile);
-    QString ignoreNewline;
-    ignoreNewline = fileIn.readLine();
+    QString     emptiness;
+    int         id  = -1;
+    emptiness = fileIn.readLine();
 
     while(!fileIn.atEnd())
     {
@@ -224,8 +225,6 @@ void RenderArea::readShapeFile()
         QPen    shapePen;
         QBrush  shapeBrush;
 
-
-        int id ;
         QString shapeTypeStr;
         Shape::ShapeType shapeType;
 
@@ -234,6 +233,7 @@ void RenderArea::readShapeFile()
 
         fileIn >> garbage;
         fileIn >> shapeTypeStr;
+        qDebug() << "start " << shapeTypeStr;
 
         shapeType = getShapeType(shapeTypeStr);
 
@@ -684,7 +684,7 @@ void RenderArea::readShapeFile()
         default: qDebug("Couldn't read the input file");
         }
 
-        ignoreNewline = fileIn.readLine();
+        emptiness = fileIn.readLine();
     }
     myFile.close();
 }

@@ -6,6 +6,8 @@
 #include <QString>
 #include <QPoint>
 #include <QPainter>
+#include <QtMath>
+#include <QDebug>
 #include "containers/AwesomeVector.h"
 
 class Shape : public QPainter{
@@ -19,7 +21,7 @@ public:
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
     virtual ~Shape(){}
 
-    const Shape& operator=(const Shape& other);
+   // const Shape& operator=(const Shape& other);
     void setShape(ShapeType);
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
     void setPen(Qt::GlobalColor);
@@ -53,7 +55,7 @@ class Polygon : public Shape
 {
 public:
     Polygon(QPaintDevice* dev = nullptr, int id = -1);
-    ~Polygon() override;
+    ~Polygon() override {}
 
     virtual void   draw(QPaintDevice *dev) override;
     virtual void   move(int x, int y, int vertex) override;
@@ -62,18 +64,18 @@ public:
 
     void setNumVertices(int numVertices);
     int  getNumVertices();
-    void addVertex(const QPointF& vertex);
-    AwesomeVector<QPointF>& getVertices();
+    void addVertex(const QPoint& vertex);
+    AwesomeVector<QPoint>& getVertices();
 private:
-    AwesomeVector<QPointF> vertVect;
-    QPointF vertsArray[DEFAULT_NUM_VERTS];
+    AwesomeVector<QPoint> vertVect;
+    QPoint vertsArray[DEFAULT_NUM_VERTS];
     int     numVerts;
 };
 
 class Line : public Shape{
 
 public:
-    Line(QPaintDevice* device = nullptr, int id = -1) : Shape(device, id, ShapeType::Line){}
+    Line(QPaintDevice* device = nullptr, int id = -1);
     ~Line() override {}
 
     void setPoints(const QPoint& x, const QPoint& y){line_begin = x; line_end = y;}
@@ -92,28 +94,28 @@ const int DEFAULT_NUM_PTS = 8;
 class Polyline : public Shape
 {
 public:
-     Polyline(QPaintDevice* device = nullptr, int id = -1) : Shape(device, id, Shape::ShapeType::Polyline) {}
+     Polyline(QPaintDevice* device = nullptr, int id = -1);
     ~Polyline()  override {}
 
-    void addPoint(const QPointF& pt);
+    void addPoint(const QPoint& pt);
 
     void addNumPoints(int num) {numPts = num;}
 
     virtual void draw(QPaintDevice *device) override;
 
-    void move(const int x, const int y, int pt) override;
+    void move(int x, int y, int vertex) override;
 
     double perimeter() override {return 0;}
 
     double area() override {return 0;}
 
-    AwesomeVector<QPointF>& getPoints() {return pts;}
+    AwesomeVector<QPoint>& getPoints() {return pts;}
 
     int getNumPoints() {return numPts;}
 private:
-    AwesomeVector<QPointF> pts;
+    AwesomeVector<QPoint> pts;
     int numPts;
-    QPointF pointsAr[DEFAULT_NUM_PTS];
+    QPoint pointsAr[DEFAULT_NUM_PTS];
 };
 
 class Text : public Shape
@@ -128,13 +130,20 @@ public:
     double perimeter() override;
 
     void setText(QString newText);
-    //void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
+//    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
+
     void setBoxWidth(int newBoxWidth);
     void setBoxHeight(int newBoxHeight);
     void setFlag(Qt::AlignmentFlag flag);
 
-    void setLocation(const QPoint& pt);
+    void setLocation(int x, int y);
+    void setLocation(QPoint pt);
     void setDimensions(int w, int h);
+
+    QFont& getFont();
+    Qt::AlignmentFlag getFlag();
+    QString getText();
+
 private:
     QString text;
     QFont   font;
@@ -155,9 +164,10 @@ public:
     double area() override;
     double perimeter() override;
 
-    void setLocation(const QPoint& loc);
+    void setLocation(int x, int y);
+    void setLocation(QPoint pt);
     void setDimensions(double w, double h);
-    void setAll(double w, double h, const QPoint & loc);
+    void setAll(double w, double h, int x, int y);
 
     double getWidth();
     double getHeight();
@@ -184,7 +194,8 @@ public:
     QPoint& getLocation();
 
     void setDimensions(double w, double h);
-    void setLocation(const QPoint& pt);
+    void setLocation(int x, int y);
+    void setLocation(QPoint pt);
 private:
     double width;
     double height;

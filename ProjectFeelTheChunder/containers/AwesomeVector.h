@@ -65,6 +65,7 @@ public:
 //	theVectorator<T> end();
 	int   search(const T&);
 	bool  chop(const T&);
+    void set(int index, const T& stuff);
 	void erase(int i);
 	void print();
 private:
@@ -104,6 +105,13 @@ void AwesomeVector<T>::copyV(const AwesomeVector<T> &other)
 	head	 = other.head;
 	butt	 = other.butt;
 }	
+
+template<typename T>
+void AwesomeVector<T>::set(int index, const T& stuff)
+{
+    if(index < capacity)
+        list[index] = stuff;
+}
 
 template<typename T>
 void AwesomeVector<T>::recapacitize()

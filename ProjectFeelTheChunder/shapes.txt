@@ -7,6 +7,7 @@ PenWidth: 2
 PenStyle: DashDotLine
 PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
+--END-SHAPE--
 
 ShapeId: 2
 ShapeType: Polyline
@@ -16,6 +17,7 @@ PenWidth: 6
 PenStyle: SolidLine
 PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
+--END-SHAPE--
 
 ShapeId: 3
 ShapeType: Polygon
@@ -27,6 +29,7 @@ PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
 BrushColor: yellow
 BrushStyle: SolidPattern
+--END-SHAPE--
 
 ShapeId: 4
 ShapeType: Rectangle
@@ -38,6 +41,7 @@ PenCapStyle: RoundCap
 PenJoinStyle: RoundJoin
 BrushColor: red
 BrushStyle: VerPattern
+--END-SHAPE--
 
 ShapeId: 5
 ShapeType: Square
@@ -49,6 +53,7 @@ PenCapStyle: RoundCap
 PenJoinStyle: RoundJoin
 BrushColor: blue
 BrushStyle: HorPattern
+--END-SHAPE--
 
 ShapeId: 6
 ShapeType: Ellipse
@@ -60,6 +65,7 @@ PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
 BrushColor: white
 BrushStyle: NoBrush
+--END-SHAPE--
 
 ShapeId: 7
 ShapeType: Circle
@@ -71,6 +77,7 @@ PenCapStyle: FlatCap
 PenJoinStyle: MiterJoin
 BrushColor: magenta
 BrushStyle: SolidPattern
+--END-SHAPE--
 
 ShapeId: 8
 ShapeType: Text
@@ -82,3 +89,6 @@ TextPointSize: 10
 TextFontFamily: Comic Sans MS
 TextFontStyle: FlatCap
 TextFontWeight: Normal
+--END-SHAPE--
+
+--END-FILE--
