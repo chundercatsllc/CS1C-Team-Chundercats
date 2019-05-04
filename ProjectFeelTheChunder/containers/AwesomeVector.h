@@ -153,15 +153,7 @@ const T& AwesomeVector<T>::operator[](int i)
 {
 	if(i >= 0 && i < capacity)
 		return list[i];
-}
-
-template<typename T>
-const AwesomeVector<T> & AwesomeVector<T>::operator=(const AwesomeVector<T> &other)
-{
-	if(this != &other)
-		copyV(other);
-	
-	return *this;
+	return list[0];
 }
 
 template<typename T>
