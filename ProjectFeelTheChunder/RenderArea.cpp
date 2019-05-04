@@ -215,9 +215,32 @@ void RenderArea::readShapeFile()
     }
 
     QTextStream fileIn(&myFile);
+    QStringList listfull;
+    QString listfill;
     QString     emptiness;
     int         id  = -1;
     emptiness = fileIn.readLine();
+    emptiness = "no longer";
+
+    /*
+    while(!fileIn.atEnd())
+    {
+        while(emptiness != "" )
+        {
+            emptiness = fileIn.readLine();
+            qDebug() << emptiness;
+            listfill.append(emptiness);
+        }
+
+        listfull = listfill.split(": ");
+        id = listfull.at(1).toInt();
+
+        qDebug() << id;
+        switch(id)
+        {}
+    }
+*/
+
 
     while(!fileIn.atEnd())
     {
@@ -241,7 +264,7 @@ void RenderArea::readShapeFile()
         {
         case Shape::ShapeType::Line:
         {
-            Line * newLine = new Line(this, 0);
+            Line * linebacker = new Line(this, id);
             QPen linePen;
 
             QString     coordStr;
@@ -253,7 +276,7 @@ void RenderArea::readShapeFile()
             coordList = coordStr.split(',');
             QPoint coord1(coordList[0].toInt(), coordList[1].toInt());
             QPoint coord2(coordList[2].toInt(), coordList[3].toInt());
-            newLine->setPoints(coord1, coord2);
+            linebacker->setPoints(coord1, coord2);
 
             fileIn >> garbage;
             QString penColorStr;
@@ -280,10 +303,10 @@ void RenderArea::readShapeFile()
             fileIn >> penJoinStyleStr;
             linePen.setJoinStyle(getPenJointStyle(penJoinStyleStr));
 
-            newLine->setPen(linePen);
-            newLine->setID(id);
-            newLine->setShape(Shape::ShapeType::Line);
-            addShape(newLine);
+            linebacker->setPen(linePen);
+            linebacker->setID(id);
+            linebacker->setShape(Shape::ShapeType::Line);
+            addShape(linebacker);
         }
         break;
         case Shape::ShapeType::Polyline:
