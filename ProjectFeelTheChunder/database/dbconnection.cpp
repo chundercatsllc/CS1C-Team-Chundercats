@@ -2,7 +2,7 @@
 
 dbConnection::dbConnection(){
    db = QSqlDatabase::addDatabase("QMYSQL");
-   db.setHostName("134.209.58.66");
+   db.setHostName("178.128.15.169");
    db.setUserName("snarf");
    db.setPassword("snarfsnarf");
    db.setDatabaseName("chundercats2Dmodeling");
@@ -40,8 +40,7 @@ QString * dbConnection::getShapeTypes(){
 bool dbConnection::createUser(QString user_name,QString password,QString admin_code){ //query needs fix, mysql syntax is limiting
     if(openConnection()){
         QSqlQuery query;
-        query.prepare("IF NOT EXISTS (SELECT id FROM Users WHERE user_name = :username)"
-        " INSERT INTO Users (user_type_id, user_name, password) VALUES ((SELECT id FROM User_Type WHERE user_type = :type), :username, :password);");
+        query.prepare("CALL create_user(:username,:password,:type);");
         query.bindValue(":username", user_name);
         query.bindValue(":password", password);
         if(admin_code == "chunderkitten"){
@@ -50,7 +49,6 @@ bool dbConnection::createUser(QString user_name,QString password,QString admin_c
             query.bindValue(":type","user");
         }
         query.exec();
-        qDebug() << query.lastError();
         if(query.numRowsAffected() > 0){
             return true;
         }
@@ -61,8 +59,7 @@ bool dbConnection::createUser(QString user_name,QString password,QString admin_c
 QString dbConnection::userLogin(QString user_name,QString password){
     if(openConnection()){
         QSqlQuery query;
-        query.prepare("SELECT IF(EXISTS(SELECT id FROM Users WHERE (user_name = :user_name AND password = :password)),"
-                      "(SELECT user_type FROM User_Type WHERE id = (SELECT user_type_id FROM Users WHERE user_name = :user_name)),'failed') AS user_type;");
+        query.prepare("CALL user_login(:user_name,:password);");
         query.bindValue(":user_name",user_name);
         query.bindValue(":password",password);
         query.exec();
