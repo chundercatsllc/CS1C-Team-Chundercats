@@ -164,7 +164,7 @@ public:
 
     //!setNumVertices function sets the nummber of vertices for the polygon
     /*!
-    numVerts is set equal to numVertices
+    The class member variable numVerts is set equal to numVertices
     \param numVertices is of type int
     */
     void setNumVertices(int numVertices);
@@ -194,49 +194,139 @@ private:
     int     numVerts;
 };
 
+
+
+//!Line Class: Public Inheritance from Shape Class
 class Line : public Shape{
 
 public:
+
+    //!Line Class Constructor
+    /*!Line Class constructor takes in two parameters
+    \param *device is a pointer of type QPaintDevice, initialized to nullptr to avoid conflicts
+    \param id is of type int
+    */
     Line(QPaintDevice* device = nullptr, int id = -1);
+
+    //!Line Class Destructor
     ~Line() override {}
 
+    //!setPoints function for Line
+    /*!setPoints function allows the line to be set with given starting and ending points
+    The class member variables line_begin and line_end are set to parameters x,y
+    \param x is a constant reference of type QPoint
+    \param y is a constant reference of type QPoint
+    */
     void setPoints(const QPoint& x, const QPoint& y){line_begin = x; line_end = y;}
 
+    //!move function to move a line
+    /*!move function overrides the virtual move from abstract base class Shape. Function does not return any type.
+    \param x is of type constant int
+    \param y is of type constant int
+    \param vert is of type int
+    */
     virtual void move(const int x, const int y, int vert) override;
+
+    //!draw function to draw a line
+    /*!draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type.
+    \param *device is a pointer of type QPaintDevice
+    */
     virtual void draw(QPaintDevice* device) override;
+
+    //!perimeter function to calculate perimeter of a line
+    /*!perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double.
+    No parameters are passed into perimeter, line does not have perimeter so the function is defined only by "return 0".
+    Function definition must be defined as return 0, else line class will be recognized as an abstract class.
+    */
     virtual double perimeter() override {return 0;}
+
+    //!area function to calculate area of a line
+    /*!area function overrides the virtual area function of abstract base class shape. Function returns a double.
+    No parameters are passed into area, line does not have area so the function is defined only by "return 0".
+    Function definition must be defined as return 0, else line class will be recognized as an abstract class.
+    */
     virtual double area() override {return 0;}
 
 private:
+
+    //!line_begin is of type QPoint, used to set beginning of line
     QPoint line_begin;
+
+    //!line_end is of type QPoint, used to set end of line
     QPoint line_end;
 };
 
+
+//!Polyline Class: Public Inheritance from Shape Class
 const int DEFAULT_NUM_PTS = 8;
 class Polyline : public Shape
 {
 public:
-     Polyline(QPaintDevice* device = nullptr, int id = -1);
+
+    //!Polyline Class constructor
+    /*!Polyline Class constructor takes in two arguments
+    \param *device is a pointer of type QPaintDevice, initialized to nullptr to avoid conflict
+    \param id is of type int
+    */
+    Polyline(QPaintDevice* device = nullptr, int id = -1);
+
+    //!Polyline Class destructor
     ~Polyline()  override {}
 
+
+    //!addPoint function to add points to a polyline
+    /*!addPoint takes in at most one argument
+    \param pt is a constant reference of type QPoint
+    */
     void addPoint(const QPoint& pt);
 
+    //!addNumPoints function to set class member variable numPts, takes in an int
+    /*!\param is an int */
     void addNumPoints(int num) {numPts = num;}
 
+
+    //!draw function to draw a polyline
+    /*!draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type.
+    \param *device is a pointer of type QPaintDevice
+    */
     virtual void draw(QPaintDevice *device) override;
 
+    //!move function to move a polyline
+    /*!move function overrides the virtual move from abstract base class Shape. Function does not return any type.
+    \param x is of type int
+    \param y is of type int
+    \param vertex is of type int
+    */
     void move(int x, int y, int vertex) override;
 
+    //!perimeter function to calculate perimeter of a polyline
+    /*!perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double.
+    No parameters are passed into perimeter, polyline does not have perimeter so the function is defined only by "return 0".
+    Function definition must be defined as return 0, else line class will be recognized as an abstract class.
+    */
     double perimeter() override {return 0;}
 
+    //!area function to calculate area of a polyline
+    /*!area function overrides the virtual area function of abstract base class shape. Function returns a double.
+    No parameters are passed into area, polyline does not have area so the function is defined only by "return 0".
+    Function definition must be defined as return 0, else line class will be recognized as an abstract class.
+    */
     double area() override {return 0;}
+
 
     AwesomeVector<QPoint>& getPoints() {return pts;}
 
+    //!getNumPoints returns the number of points within polyline
     int getNumPoints() {return numPts;}
+
 private:
+
     AwesomeVector<QPoint> pts;
+
+    //!numPts is of type int
     int numPts;
+
+    //!pointsAr is an array of type QPoint, stores the points of polyline
     QPoint pointsAr[DEFAULT_NUM_PTS];
 };
 
