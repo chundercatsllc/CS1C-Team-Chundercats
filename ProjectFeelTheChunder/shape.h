@@ -43,7 +43,7 @@ public:
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
 
     //!Shape Class Destructor
-    /*!Deallocates any memory stored in the heap. */
+    /*!Deallocates any dynamic memory, shape class is an abstract base class that uses virtual functions, therefore shape destructor must be virtual. */
     virtual ~Shape(){}
 
     //!setShape takes in a ShapeType argument
@@ -330,26 +330,94 @@ private:
     QPoint pointsAr[DEFAULT_NUM_PTS];
 };
 
+
+
+//!Text Class: Public Inheritance From Shape Class
 class Text : public Shape
 {
 public:
-     Text(QPaintDevice* dev = nullptr, int id = -1);
+
+    //!Text Class Constructor
+    /*!Text Class constructor takes in 2 arguments
+    \param *dev is a pointer of type QPaintDevice, initialized to nullptr to avoid conflict.
+    \param id is of type int
+    */
+    Text(QPaintDevice* dev = nullptr, int id = -1);
+
+    //Text Class Destructor
     ~Text() override {}
 
+
+    //!draw function to draw a text
+    /*!draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type.
+    \param *dev is a pointer of type QPaintDevice
+    */
     void draw(QPaintDevice *dev)      override;
+
+     //!move function to move a text
+    /*!move function overrides the virtual move from abstract base class Shape. Function does not return any type.
+    \param x is of type int
+    \param y is of type int
+    \param junk is of type int
+    */
     void move(int x, int y, int junk) override;
+
+
+    //!area function to calculate area of a text
+    /*!area function overrides the virtual area function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double area()      override;
+
+    //!perimeter function to calculate permiter of a text
+    /*!perimeter function overrides the virtual perimter function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double perimeter() override;
 
-    void setText(QString newText);
-//    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
 
+    //!setText function to set the font of the text
+    /*!setText requires a QString parameter
+    \param newText is of type QString
+    */
+    void setText(QString newText);
+
+    //!setBoxWidth function
+    /*!setBoxWidth sets class member variable boxWidth to parameter newBoxWidth.
+    \param newBoxWidth is of type int
+    */
     void setBoxWidth(int newBoxWidth);
+
+    //!setBoxHeight function
+    /*setBoxHeigt sets class member variable boxHeight to parameter newBoxHeight.
+    \param newBoxHeight is of type int
+    */
     void setBoxHeight(int newBoxHeight);
+
+    //!setFlag function
+    /*setFlag function sets the Qt attribute AlignmentFLag to flag
+    /param flag is of type Qt::AlignmentFlag
+    */
     void setFlag(Qt::AlignmentFlag flag);
 
+    //!setLocation function for text
+    /*!setLocation function requires two arguments. Takes the two arguments and makes a coordinate pair consisting of these values.
+    \param x is of type int
+    \param y is of type int
+    */
     void setLocation(int x, int y);
+
+    //!SetLocation function for text
+    /*!setLocation function requires a single parameter. The class memeber variable location is set to the QPoint parameter passed in.
+    \param pt is of type QPoint
+    */
     void setLocation(QPoint pt);
+
+    //!setDimensions function for text
+    /*!setDimensions function requires two parameters. The class member variables boxWidth and boxHeight are set from these parameters.
+    \param w is of type int
+    \param h is of type int
+    */
     void setDimensions(int w, int h);
 
     QFont& getFont();
@@ -357,60 +425,199 @@ public:
     QString getText();
 
 private:
+
+    //!text is of type QString. QString provides a unicode character string
     QString text;
+
+    //!font is of type QFont. QFont specifies a font used for drawing text.
     QFont   font;
+
     Qt::    AlignmentFlag flag;
+
+    //!boxWidth is of type int
     int     boxWidth;
+
+    //!boxHeight is of type int
     int     boxHeight;
+
+    //!location of type QPoint
     QPoint location;
 };
 
+
+//!Rectangle Class: Public Inheritance from Shape Class
 class Rectangle : public Shape
 {
 public:
+
+    //!Rectangle Class Constructor
+    /*!Rectangle Class constructor takes in two arguments.
+    \param *device is a pointer of type QPaintDevice, initialized to nullptr to avoid conflict
+    \param id is of type int
+    */
     Rectangle(QPaintDevice *device = nullptr, int id = -1);
+
+    //!Rectangle Class Destructor
     ~Rectangle() override {}
 
+    //!draw function to draw a rectangle
+    /*!draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type.
+    \param *device is a pointer of type QPaintDevice
+    */
     void draw(QPaintDevice *device) override;
+
+    //!move function to move a rectangle
+    /*!move function overrides the virtual move from abstract base class Shape. Function does not return any type.
+    \param x is of type int
+    \param y is of type int
+    \param junk is of type int
+    */
     void move(int x, int y, int junk) override;
+
+    //!area function to calculate area of rectangle
+    /*!area function overrides the virtual area function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double area() override;
+
+    //!perimeter function to calculate perimeter of rectangle
+    /*!perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double perimeter() override;
 
+    //!setLocation function for rectangle
+    /*!setLocation function requires two arguments. Takes the two arguments and makes a coordinate pair (QPoint) consisting of these values.
+    \param x is of type int
+    \param y is of type int
+    */
     void setLocation(int x, int y);
+
+    //!setLocation function for rectangle
+    /*!setLocation function requires a single parameter. The class memeber variable location is set to the QPoint parameter passed in.
+    \param pt is of type QPoint
+    */
     void setLocation(QPoint pt);
+
+    //!setDimensions function for rectangle
+    /*!setDimensions function requires two parameters. The class member variables width and height are set from these parameters.
+    \param w is of type double
+    \param h is of type double
+    */
     void setDimensions(double w, double h);
+
+    //setAll function for rectangle
+    /*!setAll function requires four parameters. The class member functions width, height, location are set from these arguments. In this function, the setLocation and setDimension functions are being called.
+    \param w is of type double
+    \param h is of type double
+    \param x is of type int
+    \param y is of type int
+    */
     void setAll(double w, double h, int x, int y);
 
+    //!getWidth function for rectangle class, function returns a double width
     double getWidth();
+
+    //!getHeight function for rectangle class, function returns a double height
     double getHeight();
+
+    //!getLocation function for rectangle class, function returns a QPoint location
     QPoint& getLocation();
+
 private:
+
+    //!width is of type double
     double width;
+
+    //!height is of type double
     double height;
+
+    //!location is of type QPoint
     QPoint location;
 };
 
+
+
+//!Ellipse Class: Public Inheritance from Shape Class
 class Ellipse :public Shape
 {
 public:
+
+    //!Ellipse Class constructor
+    /*!Ellipse constructor requires two parameters.
+    \param *device is a pointer of type QPaintDevice, initialized to nullptr to avoid conflict
+    \param id is of type int
+    */
     Ellipse(QPaintDevice* device = nullptr, int id = -1);
+
+    //!Ellipse Class destructor
     ~Ellipse() override {}
 
+
+    //!move function to move an ellipse
+    /*!move function overrides the virtual move from abstract base class Shape. Function does not return any type.
+    \param x is of type int
+    \param y is of type int
+    \param na is of type int
+    */
     void move(int x, int y, int na) override;
+
+    //!draw function to draw an ellipse
+    /*!draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type.
+    \param *device is a pointer of type QPaintDevice
+    */
     void draw(QPaintDevice* device) override;
+
+    //!area function to calculate area of ellipse
+    /*!area function overrides the virtual area function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double area()      override;
+
+    //!perimeter function to calculate perimeter of ellipse
+    /*!perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double.
+    No parameters are passed into area.
+    */
     double perimeter() override;
 
+    //!getWidth function for ellipse class, function returns a double width
     double getWidth();
+
+    //!getHeight function for ellipse class, function returns a double height
     double getHeight();
+
+    //!getLocation function for ellipse class, function returns a QPoint location
     QPoint& getLocation();
 
+    //!setDimensions function for ellipse
+    /*!setDimensions function requires two parameters. The class member variables width and height are set from these parameters.
+    \param w is of type double
+    \param h is of type double
+    */
     void setDimensions(double w, double h);
+
+    //!setLocation function for ellipse
+    /*!setLocation function requires two arguments. Takes the two arguments and makes a coordinate pair (QPoint) consisting of these values.
+    \param x is of type int
+    \param y is of type int
+    */
     void setLocation(int x, int y);
+
+    //!setLocation function for ellipse
+    /*!setLocation function requires a single parameter. The class memeber variable location is set to the QPoint parameter passed in.
+    \param pt is of type QPoint
+    */
     void setLocation(QPoint pt);
+
 private:
+
+    //!width is of type double
     double width;
+
+    //!height is of type double
     double height;
+
+    //!location is of type QPoint
     QPoint location;
 };
 
