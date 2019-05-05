@@ -10,18 +10,42 @@
 #include <QDebug>
 #include "containers/AwesomeVector.h"
 
+
+//!Shape Class inheriting QPainter Class.
+
+/*!The Shape Class has public inheritance from the QPainter class. The QPainter Class contains various methods that allows any classes inheriting from the it have drawing attributes and other functionality. The Shape class is an abstract data type as the functions void move, void draw, double perimeter, and double area are all pure virtual functions.
+*/
+
+
 class Shape : public QPainter{
 public:
+
+    //!QPainter Object
     QPainter painter;
+
+    //!QPen Object
+    /*!QPen is a distinct class. */
     QPen     pen;
+
+    //!QBrush Object
+    /*!QBrush is a distinct class. */
     QBrush   brush;
 
+    //!Enumeration of ShapeType classes
     enum class ShapeType{null,Line,Polyline,Polygon,Rectangle,Ellipse,Text};
 
+    //!Shape Class constructor takes in 3 arguments.
+    /*!
+    \param *device is a pointer to an object of type QPaintDevice
+    \param ID is an int
+    \param shapey is of an enum type ShapeType
+    */
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
+
+    //!Shape Class Destructor
+    /*!Deallocates any memory stored in the heap. */
     virtual ~Shape(){}
 
-   // const Shape& operator=(const Shape& other);
     void setShape(ShapeType);
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
     void setPen(Qt::GlobalColor);
