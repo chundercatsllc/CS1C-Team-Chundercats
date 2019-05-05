@@ -28,16 +28,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        ./ShapeClass/line.cpp \
-        ./ShapeClass/shape.cpp \
+        shape.cpp \
+        RenderArea.cpp
 
 
 
 HEADERS += \
         mainwindow.h \
-        ./containers/vectors.h \
-        ./ShapeClass/shape.h \
-        ./ShapeClass/line.h \
+        shape.h \
+        containers/AwesomeVector.h \
+        RenderArea.h \
+        shape.h
 
 
 FORMS += \
@@ -47,3 +48,9 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    siccpixandstuff.qrc
+
+DISTFILES += \
+    FileParser/shapes.txt

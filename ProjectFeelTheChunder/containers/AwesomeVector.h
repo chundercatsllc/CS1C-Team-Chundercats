@@ -61,8 +61,11 @@ public:
 	void push_back(const T&);
 	const T& front();
 	const T& back();
+//	theVectorator<T> begin();
+//	theVectorator<T> end();
 	int   search(const T&);
 	bool  chop(const T&);
+    void set(int index, const T& stuff);
 	void erase(int i);
 	void print();
 private:
@@ -78,6 +81,13 @@ private:
 
 /**************************************************************************/
 
+/*
+template <typename T>
+theVectorator<T> AwesomeVector<T>::begin()
+{
+	theVectorator<T> temp(
+	return 
+                */
 template<typename T>
 void AwesomeVector<T>::copyV(const AwesomeVector<T> &other)
 {
@@ -95,6 +105,13 @@ void AwesomeVector<T>::copyV(const AwesomeVector<T> &other)
 	head	 = other.head;
 	butt	 = other.butt;
 }	
+
+template<typename T>
+void AwesomeVector<T>::set(int index, const T& stuff)
+{
+    if(index < capacity)
+        list[index] = stuff;
+}
 
 template<typename T>
 void AwesomeVector<T>::recapacitize()
@@ -196,6 +213,7 @@ bool AwesomeVector<T>::isEmpty()
 template<typename T>
 void AwesomeVector<T>::push_back(const T& item)
 {
+
 	size++;
 	if(size == capacity)
 		recapacitize();
@@ -236,6 +254,7 @@ bool AwesomeVector<T>::chop(const T& chosenOne)
 	return false;
 }
 
+
 template <typename T>
 void AwesomeVector<T>::erase(int i){
 	if(i >= 0 && i < capacity){
@@ -251,7 +270,7 @@ void AwesomeVector<T>::erase(int i){
 				butt--;
 				size--;
 			}else{
-				cout << "Element at specified index contains no info...\n";
+                qDebug() << "Element at specified index contains no info...\n";
 			}
 		}else if(head > butt){
 			if(i > butt && i >= head){
@@ -265,7 +284,7 @@ void AwesomeVector<T>::erase(int i){
 				butt--;
 				size--;
 			}else{
-				cout << "Element at specified index contains no info..\n";
+                qDebug() << "Element at specified index contains no info..\n";
 			}
 		}else if (head == butt){
 			if(i == head){
@@ -274,12 +293,12 @@ void AwesomeVector<T>::erase(int i){
 				butt = 0;
 			}
 		}else if(isEmpty()){
-			cout << "Cannot delete from an empty vector...\n";
+            qDebug() << "Cannot delete from an empty vector...\n";
 		}else{ 
-			cout << "ERROR: head and butt are in disarray\n";
+            qDebug() << "ERROR: head and butt are in disarray\n";
 		}
 	}else{
-		cout << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
+        qDebug() << "Your index sucks. It needs to be between 0 - " << capacity - 1 << endl;
 	}
 }
 
@@ -308,5 +327,96 @@ void AwesomeVector<T>::print()
 	
 	cout << endl;
 }
+
+/********************ITERATOR CLASS***********************************/
+/*
+template <typename T>
+class theVectorator
+{
+public:
+   theVectorator();
+     //Default constructor
+     //Postcondition: current = nullptr;
+
+   theVectorator(int i);
+     //Constructor with a parameter.
+     //Postcondition: current = ptr;
+
+   T operator*();
+     //Function to overload the dereferencing operator *.
+     //Postcondition: Returns the info contained in the node.
+
+   theVectorator<T> operator++();    
+     //Overload the pre-increment operator.
+     //Postcondition: The iterator is advanced to the next 
+     //               node.
+	 
+	theVectorator<T> operator--();
+
+   bool operator==(const theVectorator<T>& right) const; 
+     //Overload the equality operator.
+     //Postcondition: Returns true if this iterator is equal to 
+     //               the iterator specified by right, 
+     //               otherwise it returns the value false.
+
+   bool operator!=(const theVectorator<T>& right) const; 
+     //Overload the not equal to operator.
+     //Postcondition: Returns true if this iterator is not  
+     //               equal to the iterator specified by  
+     //               right; otherwise it returns the value 
+     //               false.
+
+private:
+   T *current; //pointer to point to the current 
+                            //node in the linked list
+};
+
+template <typename T>
+theVectorator<T>::theVectorator()
+{
+    current = nullptr;
+}
+
+template <typename T>
+theVectorator<T>::theVectorator(const AwesomeVector<T> & vec)
+{
+    current = 
+}
+
+template <typename T>
+T theVectorator<T>::operator*()
+{
+    return current->info;
+}
+
+template <typename T>
+theVectorator<T> theVectorator<T>::operator++()   
+{
+    current = current->next;
+
+    return *this;
+}
+
+template <typename T>
+theVectorator<T> theVectorator<T>::operator--()   
+{
+    current = current->back;
+
+    return *this;
+}
+
+template <typename T>
+bool theVectorator<T>::operator==
+               (const theVectorator<T>& right) const
+{
+    return (current == right.current);
+}
+
+template <typename T>
+bool theVectorator<T>::operator!=
+                 (const theVectorator<T>& right) const
+{    return (current != right.current);
+}
+*/
 
 #endif
