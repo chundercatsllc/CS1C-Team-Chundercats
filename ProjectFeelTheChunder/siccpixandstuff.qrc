@@ -12,6 +12,7 @@
         <file>icon8.png</file>
         <file>trumpIt.png</file>
         <file>email.png</file>
+        <file>heckyeah.gif</file>
     </qresource>
     <qresource prefix="/stuff">
         <file>shapes.txt</file>
