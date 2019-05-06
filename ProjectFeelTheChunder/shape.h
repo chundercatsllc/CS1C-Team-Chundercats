@@ -1,6 +1,6 @@
 #ifndef SHAPE_H
 #define SHAPE_H
-Valaji
+
 #include <QObject>
 #include <QPaintDevice>
 #include <QString>
