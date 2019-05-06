@@ -13,26 +13,57 @@
 #include <QCoreApplication>
 #include <QDir>
 
-/**
- * @brief The RenderArea class - this pr
- */
+
+
+//!RenderArea Class: Public Inheritance from QWidget
+/*!RenderArea is inheriting from QWidget, thus has all the functionalities of QWidget plus additional functions and variables that allow rendering of shapes defined by the shape class heirarchy.*/
 class RenderArea : public QWidget
 {
     public:
+
+        //!RenderArea Class Constutor
+        /*!RenderArea Constructor takes in one paramater of type QWidget*, initilaized to nullptr to avoid conflict.
+        QWidget is the base class for all user-interface objects
+        \param *parent is of type QWidget
+        */
         RenderArea(QWidget *parent = nullptr);
 
-        void paintEvent(QPaintEvent *event) override; //Paint event ovverride
+        //!paintEvent function for RenderArea
+        /*!paintEvent function overrides a virtual paintEvent within QWidget, takes in a QPaintEvent pointer.
+        \param *event is of type QPaintEvent
+        */
+        void paintEvent(QPaintEvent *event) override;
+
+        //!sizeHint function for RenderArea
+        /*!sizeHint function sets the size of the 2-D "canvas" upon which the shapes will be rendered. sizeHint uses QSize(int, int) to set the size of the "canvas".
+        No parameters required.
+        */
         QSize sizeHint() const override;
+
+        //!minimumSizeHint function for RenderArea
+        /*!See sizeHint */
         QSize minimumSizeHint() const override;
+
 
         const AwesomeVector<Shape*>& getShapes();
 
+        //!addShape function for RenderArea
+        /*!addShape adds a shape to the end of the class vector ShapeMagazine. addShape requires one parameter
+        \param shapeIn* is a pointer of type Shape, nothing is being returned
+        */
         void addShape(Shape* shapeIn);
 
+        //!getSize function for RenderArea
+        /*!getSize returns the current size of the vector ShapeMagazine.
+        No parameters are required, and int value is returned
+        */
         int getSize();
+
+        //!getNumShapes function for RenderArea
         int getNumShapes();
 
-        void chopShape(int indexRemove);//Shape remove
+        //!
+        void chopShape(int indexRemove);
         void moveShape(int indexMove, int coordMove, int x, int y); //Move shape
 
 
