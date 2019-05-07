@@ -1,6 +1,7 @@
 #ifndef AWESOMEVECTOR_H
 #define AWESOMEVECTOR_H
 #include <iostream>
+#include <QDebug>
 
 using namespace std;
 

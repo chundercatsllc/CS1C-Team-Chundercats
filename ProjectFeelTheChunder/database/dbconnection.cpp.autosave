@@ -82,31 +82,34 @@ Shape* dbConnection::createShapeObject(QString shapeType,int id){
     if(shapeType == "Line"){
         shape = new Line();
         shape->setID(id);
-    }/*else if(shapeType == ){
+        
+    }else if(shapeType == ){
+        shape = new Polyline();
+        shape->setID(id);
 
     }else if(shapeType == ){
+        shape = new Polygon();
+        shape->setID(id);
 
     }else if(shapeType == ){
+        shape = new Rectangle();
+        shape->setID(id);
 
     }else if(shapeType == ){
+        shape = new Ellipse();
+        shape->setID(id);
 
     }else if(shapeType == ){
+        shape = new Text();
+        shape->setID(id);
 
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }*/
+    }
 
     return shape;
 }
 
 const AwesomeVector<Shape*>& dbConnection::getShapes(){
     AwesomeVector<Shape*> shapes;
-    Shape::ShapeType test = Shape::ShapeType::Line;
-    if(test == Shape::ShapeType::Line){
-        qDebug() << "LINE!";
-    }
     if(openConnection()){
         QSqlQuery query("CALL get_shapes;");
         query.exec();

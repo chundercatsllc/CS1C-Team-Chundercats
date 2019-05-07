@@ -23,22 +23,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
 CONFIG += c++11
+
+INCLUDEPATH += ./containers \
+                ./database \
+
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
         shape.cpp \
-        RenderArea.cpp
-
-
+        RenderArea.cpp \
+        ./database/dbconnection.cpp \
 
 HEADERS += \
         mainwindow.h \
         shape.h \
         containers/AwesomeVector.h \
         RenderArea.h \
-        shape.h
+        shape.h \
+        ./database/dbconnection.h \
 
 
 FORMS += \
