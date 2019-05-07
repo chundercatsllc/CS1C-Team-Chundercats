@@ -13,7 +13,7 @@ class dbConnection{
 public:
     dbConnection();
     QString * getShapeTypes();
-    bool createUser(QString,QString,QString admin_code = "blank");
+    QString createUser(QString,QString,QString admin_code = "blank");
     QString userLogin(QString,QString);
     const AwesomeVector<Shape*>& getShapes();
 private:

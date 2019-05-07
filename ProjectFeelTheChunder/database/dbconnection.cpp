@@ -25,7 +25,6 @@ QString * dbConnection::getShapeTypes(){
         QSqlQuery query("SELECT shape FROM Shape_Type;");
         query.exec();
         shapes = new QString[query.size()];
-        qDebug() << query.size();
         int shape = query.record().indexOf("shape");
         int i = 0;
         while (query.next()) {
@@ -37,7 +36,8 @@ QString * dbConnection::getShapeTypes(){
     return shapes;
 }
 
-bool dbConnection::createUser(QString user_name,QString password,QString admin_code){
+QString dbConnection::createUser(QString user_name,QString password,QString admin_code){
+    QString returnVal;
     if(openConnection()){
         QSqlQuery query;
         query.prepare("CALL create_user(:username,:password,:type);");
@@ -49,11 +49,14 @@ bool dbConnection::createUser(QString user_name,QString password,QString admin_c
             query.bindValue(":type","user");
         }
         query.exec();
-        if(query.numRowsAffected() > 0){
-            return true;
+        int message = query.record().indexOf("message");
+        while(query.next()){
+            returnVal = query.value(message).toString();
         }
+    }else{
+        returnVal = "There was a connection problem";
     }
-    return false;
+    return returnVal;
 }
 
 QString dbConnection::userLogin(QString user_name,QString password){
@@ -81,22 +84,17 @@ Shape* dbConnection::createShapeObject(QString shapeType,int id){
 
     if(shapeType == "Line"){
         shape = new Line();
-        shape->setID(id);
-    }/*else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }else if(shapeType == ){
-
-    }*/
+    }else if(shapeType == "Polyline"){
+        shape = new Polyline();
+    }else if(shapeType == "Polygon"){
+        shape = new Polygon();
+    }else if(shapeType == "Rectangle"){
+        shape = new Rectangle();
+    }else if(shapeType == "Ellipse"){
+        shape = new Ellipse();
+    }else if(shapeType == "Text"){
+        shape = new Text();
+    }
 
     return shape;
 }
@@ -140,6 +138,18 @@ const AwesomeVector<Shape*>& dbConnection::getShapes(){
             shape_type = query.value(shape_type_index).toString();
             shape_id = query.value(id_index).toInt();
             //Shape * ashape = createShapeObject(shape_type,shape_id);
+            i++;
+        }
+        QSqlQuery queryTwo("SELECT * FROM Poly_Dimensions;");
+        queryTwo.exec();
+        int poly_shape_id_index = queryTwo.record().indexOf("shape_id");
+        while(queryTwo.next()){
+            int poly_shape_id = queryTwo.value(poly_shape_id_index).toInt();
+            for(int j=0;j<shapes.sizeOf();j++){
+                if(poly_shape_id == shapes[i]->getID()){
+
+                }
+            }
         }
         closeConnection();
     }

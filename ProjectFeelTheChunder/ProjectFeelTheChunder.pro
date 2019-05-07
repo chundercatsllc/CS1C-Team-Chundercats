@@ -36,6 +36,7 @@ SOURCES += \
         shape.cpp \
         RenderArea.cpp \
         ./database/dbconnection.cpp \
+    create_user.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,10 +45,12 @@ HEADERS += \
         RenderArea.h \
         shape.h \
         ./database/dbconnection.h \
+    create_user.h
 
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    create_user.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
