@@ -9,17 +9,13 @@ MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
 {
-
-    ui->setupUi(this);
-    //setWindowIcon(QIcon(":/pix/icon.png"));
-
-    //AwesomeVector<Shape *> shapeMagazine;
 	ui->setupUi(this);
     QMovie *movie = new QMovie(":/pix/heckyeah.gif");
     QLabel *processLabel = new QLabel(ui->KANYE);
     processLabel->setMovie(movie);
     movie->start();
 
+    QMediaPlayer * playa = new QMediaPlayer();
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +25,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_add_shape_button_3_clicked()
 {
-    Shape *thingymabob;
     ui->menuStack->addWidget(ui->add_page);
     QComboBox * shapeTypeCombo   = new QComboBox(ui->shapeType_box);
     QComboBox * penColorCombo    = new QComboBox(ui->pen_color_box);
@@ -57,11 +52,11 @@ void MainWindow::on_add_shape_button_3_clicked()
     shapeTypeCombo->addItem("gray");
 
     shapeTypeCombo->setView(colorList);
-    Shape::ShapeType shape = getShapeType();
+    Shape::ShapeType shape    = getShapeType();
     Qt::GlobalColor  penColor = getPenColor();
     Qt::PenStyle     penStyle = getPenStyle();
     Qt::PenCapStyle  penCapStyle = getPenCapStyle();
-    int penWidth   = getPenWidth();
+    int penWidth                 = getPenWidth();
     Qt::PenJoinStyle penJtStyle = getPenJoinStyle();
     Qt::GlobalColor  brushColor = getBrushColor();
     Qt::BrushStyle   brushStyle = getBrushStyle();
@@ -80,6 +75,67 @@ void MainWindow::on_add_shape_button_3_clicked()
         } break;
         case Shape::ShapeType::Polyline:
         {
+            ui->add_stack->addWidget(ui->add_polyline_page);
+            ui->menuStack->setCurrentWidget(ui->add_page);
+            ui->add_stack->setCurrentWidget(ui->add_polyline_page);
+
+            while(!on_build_it_final_button_clicked() && !on_cancel_add_shape_final_clicked())
+            {} // waiter
+
+            if(addify)
+            {
+                int numVerts = ui->spinBox_polyline_numverts->value();
+                Polyline * thingymabob = new Polyline(ui->target, ui->target->getSize());
+                setShapeNonsense(thingymabob, Shape::ShapeType::Polyline, ui->target->getSize(), penColor, penWidth, penStyle, penCapStyle, penJtStyle, brushColor, brushStyle);
+                thingymabob->addNumPoints(numVerts);
+
+                switch(numVerts)
+                {
+                case 8:
+                {
+                    QPoint *pt8 = new QPoint(ui->lineEdit_add_pl_x8->text().toInt(), ui->lineEdit_add_pl_y8->text().toInt());
+                    thingymabob->addPoint(*pt8);
+                }
+                case 7:
+                {
+                    QPoint *pt7 = new QPoint(ui->lineEdit_add_pl_x7->text().toInt(), ui->lineEdit_add_pl_y7->text().toInt());
+                    thingymabob->addPoint(*pt7);
+                }
+                case 6:
+                {
+                    QPoint *pt6 = new QPoint(ui->lineEdit_add_pl_x6->text().toInt(), ui->lineEdit_add_pl_y6->text().toInt());
+                    thingymabob->addPoint(*pt6);
+                }
+                case 5:
+                {
+                    QPoint *pt5 = new QPoint(ui->lineEdit_add_pl_x5->text().toInt(), ui->lineEdit_add_pl_y5->text().toInt());
+                    thingymabob->addPoint(*pt5);
+                }
+                case 4:
+                {
+                    QPoint *pt4 = new QPoint(ui->lineEdit_add_pl_x4->text().toInt(), ui->lineEdit_add_pl_y4->text().toInt());
+                    thingymabob->addPoint(*pt4);
+                }
+                case 3:
+                {
+                    QPoint *pt3 = new QPoint(ui->lineEdit_add_pl_x3->text().toInt(), ui->lineEdit_add_pl_y3->text().toInt());
+                    thingymabob->addPoint(*pt3);
+                }
+                case 2:
+                {
+                    QPoint *pt2 = new QPoint(ui->lineEdit_add_pl_x2->text().toInt(), ui->lineEdit_add_pl_y2->text().toInt());
+                    thingymabob->addPoint(*pt2);
+                }
+                }//end switch
+                QPoint *pt1 = new QPoint(ui->lineEdit_add_pl_x1->text().toInt(), ui->lineEdit_add_pl_y1->text().toInt());
+                thingymabob->addPoint(*pt1);
+                ui->target->addShape(thingymabob);
+            }
+            else
+            {
+                ui->menuStack->setCurrentWidget(ui->start_page);
+            }
+            qDebug() << "pollyline added";
 
         } break;
         case Shape::ShapeType::Text:
@@ -97,6 +153,14 @@ void MainWindow::on_add_shape_button_3_clicked()
         default: {}
     }
 
+}
+
+void MainWindow::setShapeNonsense(Shape* shape, Shape::ShapeType type, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs)
+{
+    shape->setShape(type);
+    shape->setBrush(bc,bs);
+    shape->setPen(pc, pw, ps, pcs, pjs);
+    shape->setID(id);
 }
 
 Shape::ShapeType MainWindow::getShapeType()
@@ -329,4 +393,17 @@ QString MainWindow::getFontFamily()
 void MainWindow::on_start_add_button_clicked()
 {
     ui->menuStack->setCurrentWidget(ui->add_page);
+
+}
+
+bool MainWindow::on_build_it_final_button_clicked()
+{
+    addify = true;
+    return true;
+}
+
+bool MainWindow::on_cancel_add_shape_final_clicked()
+{
+    addify = false;
+    return true;
 }

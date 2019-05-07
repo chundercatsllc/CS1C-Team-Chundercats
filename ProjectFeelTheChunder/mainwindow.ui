@@ -73,7 +73,7 @@ border-bottom-color: rgb(0, 0, 0);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="start_page">
      <widget class="QLabel" name="admin_title_label">
@@ -933,7 +933,7 @@ border-bottom-color: rgb(0, 0, 0);
        <string>Build it!</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="cancel_button_2">
+     <widget class="QPushButton" name="cancel_add_shape_final">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1536,6 +1536,40 @@ border-bottom-color: rgb(0, 0, 0);
          <string notr="true">background-color: rgb(255, 242, 219);</string>
         </property>
        </widget>
+       <zorder>label_5</zorder>
+       <zorder>spinBox_polyline_numverts</zorder>
+       <zorder>lineEdit_add_pl_x1</zorder>
+       <zorder>lineEdit_add_pl_y1</zorder>
+       <zorder>lineEdit_add_pl_x2</zorder>
+       <zorder>lineEdit_add_pl_y2</zorder>
+       <zorder>lineEdit_add_pl_y3</zorder>
+       <zorder>lineEdit_add_pl_x3</zorder>
+       <zorder>lineEdit_add_pl_y4</zorder>
+       <zorder>lineEdit_add_pl_x4</zorder>
+       <zorder>lineEdit_add_pl_x5</zorder>
+       <zorder>lineEdit_add_pl_y5</zorder>
+       <zorder>lineEdit_add_pl_y6</zorder>
+       <zorder>lineEdit_add_pl_x6</zorder>
+       <zorder>lineEdit_add_pl_y7</zorder>
+       <zorder>lineEdit_add_pl_x7</zorder>
+       <zorder>lineEdit_add_pl_y8</zorder>
+       <zorder>label</zorder>
+       <zorder>label_2</zorder>
+       <zorder>label_9</zorder>
+       <zorder>label_10</zorder>
+       <zorder>label_11</zorder>
+       <zorder>label_12</zorder>
+       <zorder>label_13</zorder>
+       <zorder>label_15</zorder>
+       <zorder>label_16</zorder>
+       <zorder>label_17</zorder>
+       <zorder>label_18</zorder>
+       <zorder>label_19</zorder>
+       <zorder>label_20</zorder>
+       <zorder>label_21</zorder>
+       <zorder>label_22</zorder>
+       <zorder>lineEdit_add_pl_x8</zorder>
+       <zorder>label_14</zorder>
       </widget>
      </widget>
     </widget>

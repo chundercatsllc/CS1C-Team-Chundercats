@@ -44,16 +44,22 @@ class MainWindow : public QMainWindow
 
         int getPenWidth();
 
+        void setShapeNonsense(Shape * shape, Shape::ShapeType, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs);
+
 private slots:
 
         void on_add_shape_button_3_clicked();
 
         void on_start_add_button_clicked();
 
+        bool on_build_it_final_button_clicked();
+
+        bool on_cancel_add_shape_final_clicked();
+
 private:
 		Ui::MainWindow *ui;
         bool meddleable{false};
-
+        bool addify{false};
 };
 
 #endif // MAINWINDOW_H

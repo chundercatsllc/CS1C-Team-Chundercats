@@ -25,6 +25,7 @@ void RenderArea::addShape(Shape* shapeIn)
 {
     ShapeMagazine.push_back(shapeIn);
     numShapes++;
+    shapeIn->draw(this);
 }
 
 void RenderArea::chopShape(int i)
