@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 #include <QMovie>
 #include <QListView>
+#include <QMediaPlayer>
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -26,24 +27,25 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-
-}
-
-void MainWindow::on_KANYE_linkActivated(const QString &link)
-{
-    QMovie *movie        = new QMovie(":/pix/heckyeah.gif");
-    QLabel *processLabel = new QLabel(this);
-    processLabel->setMovie(movie);
-    movie->start();
-}
-
 void MainWindow::on_add_shape_button_3_clicked()
 {
+    Shape *thingymabob;
     ui->menuStack->addWidget(ui->add_page);
-    QComboBox * shapeTypeCombo = new QComboBox(ui->shapeType_box);
-    QListView * colorList = new QListView(shapeTypeCombo);
+    QComboBox * shapeTypeCombo   = new QComboBox(ui->shapeType_box);
+    QComboBox * penColorCombo    = new QComboBox(ui->pen_color_box);
+    QComboBox * penStyleCombo    = new QComboBox(ui->pen_style_box);
+    QComboBox * penCapStyleCombo = new QComboBox(ui->pen_cap_style_box);
+    QSpinBox  * penWidthCombo    = new QSpinBox(ui->spinBox_setPenWidth);
+    QComboBox * penJtStyleCombo  = new QComboBox(ui->pen_join_style_box);
+    QComboBox * brushColorCombo  = new QComboBox(ui->brush_color_box);
+    QComboBox * brushStyleCombo  = new QComboBox(ui->brush_style_box);
+    QListView * colorList       = new QListView(shapeTypeCombo);
+    QListView * penColorList    = new QListView(penColorCombo);
+    QListView * penStyleList    = new QListView(penStyleCombo);
+    QListView * penCapStyleList = new QListView(penCapStyleCombo);
+    QListView * penJtStyleList  = new QListView(penJtStyleCombo);
+    QListView * brushColorLisr  = new QListView(brushColorCombo);
+    QListView * brushStyleList  = new QListView(brushStyleCombo);
     shapeTypeCombo->addItem("white");
     shapeTypeCombo->addItem("black");
     shapeTypeCombo->addItem("red");
@@ -55,8 +57,45 @@ void MainWindow::on_add_shape_button_3_clicked()
     shapeTypeCombo->addItem("gray");
 
     shapeTypeCombo->setView(colorList);
-
     Shape::ShapeType shape = getShapeType();
+    Qt::GlobalColor  penColor = getPenColor();
+    Qt::PenStyle     penStyle = getPenStyle();
+    Qt::PenCapStyle  penCapStyle = getPenCapStyle();
+    int penWidth   = getPenWidth();
+    Qt::PenJoinStyle penJtStyle = getPenJoinStyle();
+    Qt::GlobalColor  brushColor = getBrushColor();
+    Qt::BrushStyle   brushStyle = getBrushStyle();
+
+
+    switch(shape)
+    {
+        case Shape::ShapeType::Line:
+        {
+
+
+        } break;
+        case Shape::ShapeType::Polygon:
+        {
+
+        } break;
+        case Shape::ShapeType::Polyline:
+        {
+
+        } break;
+        case Shape::ShapeType::Text:
+        {
+
+        } break;
+        case Shape::ShapeType::Rectangle:
+        {
+
+        } break;
+        case Shape::ShapeType::Ellipse:
+        {
+
+        } break;
+        default: {}
+    }
 
 }
 
@@ -175,7 +214,7 @@ Qt::GlobalColor MainWindow::getBrushColor()
         break;}
     case 8: {return Qt::gray;
         break;}
-    default: {return Qt:: blue;}
+    default: {return Qt::blue;}
     }
 }
 
@@ -286,3 +325,8 @@ QString MainWindow::getFontFamily()
     }
 }
 */
+
+void MainWindow::on_start_add_button_clicked()
+{
+    ui->menuStack->setCurrentWidget(ui->add_page);
+}

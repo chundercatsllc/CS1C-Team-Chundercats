@@ -13,6 +13,7 @@
         <file>trumpIt.png</file>
         <file>email.png</file>
         <file>heckyeah.gif</file>
+        <file>voice_of_kanye.mp3</file>
     </qresource>
     <qresource prefix="/stuff">
         <file>shapes.txt</file>

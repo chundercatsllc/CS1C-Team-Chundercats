@@ -45,11 +45,10 @@ class MainWindow : public QMainWindow
         int getPenWidth();
 
 private slots:
-        void on_pushButton_clicked();
-
-        void on_KANYE_linkActivated(const QString &link);
 
         void on_add_shape_button_3_clicked();
+
+        void on_start_add_button_clicked();
 
 private:
 		Ui::MainWindow *ui;
