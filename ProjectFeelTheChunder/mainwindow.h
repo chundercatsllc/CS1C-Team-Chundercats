@@ -48,8 +48,6 @@ class MainWindow : public QMainWindow
 
 private slots:
 
-        void on_add_shape_button_3_clicked();
-
         void on_start_add_button_clicked();
 
         bool on_build_it_final_button_clicked();

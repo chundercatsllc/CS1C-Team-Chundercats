@@ -23,9 +23,10 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
-void MainWindow::on_add_shape_button_3_clicked()
+void MainWindow::on_start_add_button_clicked()
 {
     ui->menuStack->addWidget(ui->add_page);
+    ui->menuStack->setCurrentWidget(ui->add_page);
     QComboBox * shapeTypeCombo   = new QComboBox(ui->shapeType_box);
     QComboBox * penColorCombo    = new QComboBox(ui->pen_color_box);
     QComboBox * penStyleCombo    = new QComboBox(ui->pen_style_box);
@@ -390,11 +391,6 @@ QString MainWindow::getFontFamily()
 }
 */
 
-void MainWindow::on_start_add_button_clicked()
-{
-    ui->menuStack->setCurrentWidget(ui->add_page);
-
-}
 
 bool MainWindow::on_build_it_final_button_clicked()
 {
