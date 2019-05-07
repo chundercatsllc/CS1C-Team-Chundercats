@@ -252,6 +252,12 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Shape</string>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
@@ -270,6 +276,12 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Pen Style</string>
       </property>
       <property name="currentIndex">
        <number>-1</number>
@@ -290,6 +302,12 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Pen Color</string>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
@@ -309,6 +327,12 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>PenCap Style</string>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
@@ -327,6 +351,12 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Pen Join Style</string>
       </property>
       <property name="currentIndex">
        <number>-1</number>
@@ -407,6 +437,12 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
       </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Brush Style:</string>
+      </property>
       <property name="currentIndex">
        <number>-1</number>
       </property>
@@ -425,6 +461,12 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+      <property name="currentText">
+       <string>Brush Color</string>
       </property>
       <property name="currentIndex">
        <number>-1</number>
@@ -866,7 +908,7 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="add_final_page">
      <widget class="QLabel" name="KANYE1_11">
       <property name="geometry">
        <rect>

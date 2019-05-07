@@ -202,5 +202,10 @@ private:
     QPoint location;
 };
 
-
+const QString STstringAR[]  = {"Line", "Polyline", "Polygon", "Rectangle", "Ellipse", "Text", "null"};
+const QString CstringAR[]   = {"White", "Black", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "Gray"};
+const QString PSstringAR[]  = {"Solid Line", "Dash Line", "Dot Line", "Dash Dot Line", "Dash Dot Dot Line", "No Pen"};
+const QString PCSstringAR[] = {"Square Cap", "Flat Cap", "Round Cap"};
+const QString PJSstringAR[] = {"Bevel Join", "Miter Join", "Round Join"};
+const QString BSstringAR[]  = {"No Brush", "Solid Pattern", "Horizontal Pattern", "Vertical Pattern"};
 #endif // SHAPE_H

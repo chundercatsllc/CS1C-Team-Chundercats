@@ -35,7 +35,6 @@ class RenderArea : public QWidget
         void chopShape(int indexRemove);//Shape remove
         void moveShape(int indexMove, int coordMove, int x, int y); //Move shape
 
-
    //     void writeShapeFile(); //Writing to shape File
 
    private:
