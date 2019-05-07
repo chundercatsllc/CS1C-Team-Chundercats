@@ -13,7 +13,7 @@
 
 //!Shape Class: Public Inheritance from QPainter Class.
 
-/*!The Shape Class has public inheritance from the QPainter class. The QPainter Class contains various methods that allows any classes inheriting from the it have drawing attributes and other functionality. The Shape class is an abstract data type as the functions void move, void draw, double perimeter, and double area are all pure virtual functions.
+/*!The Shape Class is the base abstract data type for the 2-D Modeling shape hierarchy. The Shape class is an abstract data type as the functions void move, void draw, double perimeter, and double area are all pure virtual functions. The Shape Class has public inheritance from the QPainter class. The QPainter Class contains various methods that allows any classes inheriting from the it have drawing attributes and other functionality. The QPainter performs low level painting on widgets and other paint devices.
 */
 
 
@@ -21,22 +21,24 @@ class Shape : public QPainter{
 public:
 
     //!QPainter Object
+    /*!QPainter is a distinct class that performs low-level paintings on widgets and other paint devices. */
     QPainter painter;
 
     //!QPen Object
-    /*!QPen is a distinct class. */
+    /*!QPen is a distinct class that defines how QPainter should draw line and outlines of shapes. */
     QPen     pen;
 
     //!QBrush Object
-    /*!QBrush is a distinct class. */
+    /*!QBrush is a distinct class that defines the fill pattern of shapes drawn by QPainter. */
     QBrush   brush;
 
     //!Enumeration of ShapeType classes
+    /*!This enumeration is used when reading to and from a shape file. */
     enum class ShapeType{null,Line,Polyline,Polygon,Rectangle,Ellipse,Text};
 
     //!Shape Class constructor takes in 3 arguments.
     /*!
-    \param *device is a pointer to an object of type QPaintDevice
+    \param *device is a pointer to an object of type QPaintDevice, initialized to nullptr to avoid conflict.
     \param ID is an int
     \param shapey is of an enum type ShapeType
     */
@@ -47,14 +49,22 @@ public:
     virtual ~Shape(){}
 
     //!setShape takes in a ShapeType argument
-    /*
-    The passed in argument must be of ShapeType. setShape sets shape to the ShapeType argument.
+    /* The passed in argument must be of ShapeType. setShape sets shape to the ShapeType argument.
     */
     void setShape(ShapeType);
 
-    //!setBrush takes two
+    //!setBrush takes in two Qt type parameters.
+    /*!setBrush function takes in built-in Qt::GlobalColor and Qt:BrushStyle and sets brush equal to QBrush(gc, bs).*/
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
+
+    //!setPen takes in two Qt type parameters.
+    /*!setPen function takes in built-in Qt::GlobalColor and sets brush equal to QPen(gc).*/
     void setPen(Qt::GlobalColor);
+
+    //!Alternative setPen takes in four Qt type parameters and one int parameter.
+    /*!Alternative setPen takes in built-in Qt::GlobaColor, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, and int width.
+    Sets pen equal to QPen(gc, width, ps, pcs, pjs).
+    */
     void setPen(Qt::GlobalColor, int width, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
 
     //!setBrush takes in a QBrush variable and sets brush to brsh
@@ -116,8 +126,8 @@ private:
 
 const int DEFAULT_NUM_VERTS = 8;
 
-//!Polygon Class: Public Inheritance from Shape Class
 
+//!Polygon Class: Public Inheritance from Shape Class
 class Polygon : public Shape
 {
 public:
@@ -257,8 +267,10 @@ private:
 };
 
 
-//!Polyline Class: Public Inheritance from Shape Class
+
 const int DEFAULT_NUM_PTS = 8;
+
+//!Polyline Class: Public Inheritance from Shape Class
 class Polyline : public Shape
 {
 public:
