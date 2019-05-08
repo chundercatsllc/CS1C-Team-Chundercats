@@ -39,7 +39,7 @@ public:
     //!Shape Class constructor takes in 3 arguments.
     /*!
     \param *device is a pointer to an object of type QPaintDevice, initialized to nullptr to avoid conflict.
-    \param ID is an int
+    \param ID is a variable of type int that gives a shape a unique identification.
     \param shapey is of an enum type ShapeType
     */
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
@@ -49,42 +49,56 @@ public:
     virtual ~Shape(){}
 
     //!setShape takes in a ShapeType argument
-    /* The passed in argument must be of ShapeType. setShape sets shape to the ShapeType argument.
+    /*!The passed in argument must be of ShapeType. setShape sets shape to the ShapeType argument.
+    The passed in argument must be of ShapeType. setShape sets shape to the ShapeType argument being passed in.
+    ShapeType is an enum containing multiple types of shapes.
     */
     void setShape(ShapeType);
 
-    //!setBrush takes in two Qt type parameters.
-    /*!setBrush function takes in built-in Qt::GlobalColor and Qt:BrushStyle and sets brush equal to QBrush(gc, bs).*/
+    //!setBrush takes in two Qt type parameters and sets it equal to member variable object shape.
+    /*!setBrush function takes in built-in Qt::GlobalColor and Qt::BrushStyle, which are Qt namespaces, and sets brush equal to QBrush(gc, bs).
+    QBrush(gc, bs) calls the constructor of QBrush which is a built-in class that defines the fill pattern for shapes.
+    */
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
 
-    //!setPen takes in two Qt type parameters.
-    /*!setPen function takes in built-in Qt::GlobalColor and sets brush equal to QPen(gc).*/
+    //!setPen takes in two built-in Qt namespaces.
+    /*!setPen function takes in built-in Qt::GlobalColor and sets brush equal to QPen(gc).
+    QPen(gc) calls the constructor of QPen which is a built-in class that defines the lines and outlines of the shapes.
+    */
     void setPen(Qt::GlobalColor);
 
-    //!Alternative setPen takes in four Qt type parameters and one int parameter.
-    /*!Alternative setPen takes in built-in Qt::GlobaColor, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, and int width.
-    Sets pen equal to QPen(gc, width, ps, pcs, pjs).
+    //!Alternative setPen sets pen equal to four Qt type parameters and one int parameter.
+    /*!Alternative setPen takes in built-in Qt::GlobaColor, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, and int width and sets pen equal to QPen(gc, width, ps, pcs, pjs).
+    QPen(gc, width, ps, pcs, pjs) calls the constructor of QPen which is a built-in class that defines the lines and outlines of the shapes.
     */
     void setPen(Qt::GlobalColor, int width, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle);
 
     //!setBrush takes in a QBrush variable and sets brush to brsh
-    /* \param brsh */
+    /* \param brsh is of type QBrush */
     void setBrush(QBrush brsh){brush = brsh;}
 
     //!setPen takes in a QPen variable and sets pen to pn
-    /* \param pn */
+    /* \param pn is of type QPen */
     void setPen(QPen pn)      {pen   = pn;}
 
     //!setID takes in a int ID and sets id to ID
-    /* \param ID */
+    /* \param ID  is of type int */
     void setID(int ID)        {id    = ID;}
 
-
+    //!getShape returns shape object.
     ShapeType     getShape() const {return shape;}
+
+    //!getBrush returns brush object.
     const QBrush &getBrush() const {return brush;}
+
+    //!getPen returns pen object.
     const QPen   &getPen()   const {return pen;}
+
+    //!getID returns id variable.
     int           getID()    const {return id;}
 
+    //!setDefaultStyle sets pen and brush member objects to a "default setting" provided by Qt namespaces.
+    /*!Qt::GlobalColor and Qt::BrushStyle are used to set pen and brush.  */
     void setDefaultStyle();
 
     //!Pure Virtual move function
@@ -97,7 +111,7 @@ public:
 
     //!Pure Virtual draw function
     /*!
-    \param *device is of type QPaintDevice
+    \param *device is a pointer of type QPaintDevice
     */
     virtual void draw(QPaintDevice *device) = 0;
 
@@ -111,7 +125,7 @@ public:
 
 protected:
 
-
+    //!getPainter returns member object painter.
     QPainter &getQPainter();
 
 private:
@@ -190,11 +204,12 @@ public:
     */
     void addVertex(const QPoint& vertex);
 
-
+    //!function to return points to make shapes.
     AwesomeVector<QPoint>& getVertices();
 
 private:
 
+    //!vector of type QPoint which holds vertices to make polygon.
     AwesomeVector<QPoint> vertVect;
 
     //!Array of type QPoint, contains number of vertices for polygon
@@ -326,6 +341,7 @@ public:
     double area() override {return 0;}
 
 
+    //!function to return points to make shapes.
     AwesomeVector<QPoint>& getPoints() {return pts;}
 
     //!getNumPoints returns the number of points within polyline
@@ -333,9 +349,10 @@ public:
 
 private:
 
+   //!Vector to hold points of type QPoint to make shape.
     AwesomeVector<QPoint> pts;
 
-    //!numPts is of type int
+    //!numPts is of type int and tells us how many points the shape contains.
     int numPts;
 
     //!pointsAr is an array of type QPoint, stores the points of polyline
@@ -432,8 +449,13 @@ public:
     */
     void setDimensions(int w, int h);
 
+    //!getFont function returns the font of the text.
     QFont& getFont();
+
+    //!getFlag function returns the horizontal or vertical flag.
     Qt::AlignmentFlag getFlag();
+
+    //!getText returns the text object which provides a unicode character string.
     QString getText();
 
 private:
@@ -444,6 +466,8 @@ private:
     //!font is of type QFont. QFont specifies a font used for drawing text.
     QFont   font;
 
+    //!flag is of type AlignmentFlag
+    /*!AlignmentFlag is an enum contains horizontal and vertical flags that can be combined to produce the required effect. */
     Qt::    AlignmentFlag flag;
 
     //!boxWidth is of type int
