@@ -119,11 +119,11 @@ Vectors<T>::Vectors(const Vectors <T> &other)
 {
 	//if(this != &other)
 	//{
-		array = other.array;
+        array    = other.array;
 		capacity = other.capacity;
-		size = other.size;
-		front = other.front;
-		end = other.end;
+        size     = other.size;
+        front    = other.front;
+        end      = other.end;
 	//}
 }
 
