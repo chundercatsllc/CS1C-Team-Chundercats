@@ -31,6 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
     comboTrickPenJoinStyles(ui->pen_join_style_box);
     comboTrickBushStyle(ui->brush_style_box);
     comboTrickColors(ui->brush_color_box);
+    comboTrickFlag(ui->text_align_box);
+    comboTrickFontFam(ui->text_font_box);
+    comboTrickFontWeight(ui->text_weight_box);
+    comboTrickColors(ui->text_color_box);
+    comboTrickFontStyle(ui->text_style_box);
 
     ui->menuStack->setCurrentWidget(ui->start_page);
     QMovie *movie = new QMovie(":/pix/heckyeah.gif");
@@ -62,7 +67,6 @@ void MainWindow::on_start_add_button_clicked()
 void MainWindow::on_start_edit_button_clicked()
 {
     ui->menuStack->setCurrentWidget(ui->edit_page);
-
 }
 
 void MainWindow::setShapeNonsense(Shape* shape, Shape::ShapeType type, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs)
@@ -74,15 +78,15 @@ void MainWindow::setShapeNonsense(Shape* shape, Shape::ShapeType type, int id, Q
 }
 void MainWindow::comboTrickColors(QComboBox *combo)
 {
-    combo->addItem("white");
-    combo->addItem("black");
-    combo->addItem("red");
-    combo->addItem("green");
-    combo->addItem("blue");
-    combo->addItem("cyan");
-    combo->addItem("magenta");
-    combo->addItem("yellow");
-    combo->addItem("gray");
+    combo->addItem("White");
+    combo->addItem("Black");
+    combo->addItem("Red");
+    combo->addItem("Green");
+    combo->addItem("Blue");
+    combo->addItem("Cyan");
+    combo->addItem("Magenta");
+    combo->addItem("Yellow");
+    combo->addItem("Gray");
 }
 
 void MainWindow::comboTrickShapes(QComboBox *combo)
@@ -125,6 +129,41 @@ void MainWindow::comboTrickBushStyle(QComboBox *combo)
     combo->addItem("Vertical Pattern");
     combo->addItem("Horizontal Pattern");
     combo->addItem("No Brush");
+}
+
+void MainWindow::comboTrickFlag(QComboBox *combo)
+{
+    combo->addItem("Align Left");
+    combo->addItem("Align Right");
+    combo->addItem("Align H Center");
+    combo->addItem("Align Justify");
+    combo->addItem("Align Top");
+    combo->addItem("Align Bottom");
+    combo->addItem("Align V Center");
+    combo->addItem("Align Center");
+}
+
+void MainWindow::comboTrickFontFam(QComboBox *combo)
+{
+    combo->addItem("Comic Sans");
+    combo->addItem("Courier");
+    combo->addItem("Helvetica");
+    combo->addItem("Times");
+}
+
+void MainWindow::comboTrickFontWeight(QComboBox *combo)
+{
+    combo->addItem("Thin");
+    combo->addItem("Light");
+    combo->addItem("Normal");
+    combo->addItem("Bold");
+}
+
+void MainWindow::comboTrickFontStyle(QComboBox *combo)
+{
+    combo->addItem("Normal");
+    combo->addItem("Italic");
+    combo->addItem("Oblique");
 }
 
 void MainWindow::getShapeType()
@@ -210,9 +249,9 @@ void MainWindow::getPenJoinStyle()
 {
     switch(ui->pen_join_style_box->currentIndex())
     {
-    case 0: {The_penJoinStyle = Qt::BevelJoin;
+    case 0: {The_penJoinStyle = Qt::MiterJoin;
         break;}
-    case 1: {The_penJoinStyle = Qt::MiterJoin;
+    case 1: {The_penJoinStyle = Qt::BevelJoin;
         break;}
     case 2: {The_penJoinStyle = Qt::RoundJoin;
         break;}
@@ -224,21 +263,21 @@ void MainWindow::getBrushColor()
 {
     switch(ui->brush_color_box->currentIndex())
     {
-    case 0: {The_brushColor = Qt::blue;
+    case 0: {The_brushColor = Qt::white;
         break;}
-    case 1: {The_brushColor = Qt::red;
+    case 1: {The_brushColor = Qt::black;
         break;}
-    case 2: {The_brushColor = Qt::green;
+    case 2: {The_brushColor = Qt::red;
         break;}
-    case 3: {The_brushColor = Qt::yellow;
+    case 3: {The_brushColor = Qt::green;
         break;}
-    case 4: {The_brushColor = Qt::black;
+    case 4: {The_brushColor = Qt::blue;
         break;}
-    case 5: {The_brushColor = Qt::white;
+    case 5: {The_brushColor = Qt::cyan;
         break;}
-    case 6: {The_brushColor = Qt::cyan;
+    case 6: {The_brushColor = Qt::magenta;
         break;}
-    case 7: {The_brushColor = Qt::magenta;
+    case 7: {The_brushColor = Qt::yellow;
         break;}
     case 8: {The_brushColor = Qt::gray;
         break;}
@@ -261,10 +300,10 @@ void MainWindow::getBrushStyle()
     default: {The_brushStyle = Qt::NoBrush;}
     }
 }
-/*
+
 Qt::AlignmentFlag MainWindow::getAlign()
 {
-    switch(ui->alignment_box->currentIndex())
+    switch(ui->text_align_box->currentIndex())
     {
     case 0: {return Qt::AlignLeft;
         break;}
@@ -284,21 +323,21 @@ Qt::GlobalColor MainWindow::getTextColor()
 {
     switch(ui->text_color_box->currentIndex())
     {
-    case 0: {return Qt::blue;
+    case 0: {return Qt::white;
         break;}
-    case 1: {return Qt::red;
+    case 1: {return Qt::black;
         break;}
-    case 2: {return Qt::green;
+    case 2: {return Qt::red;
         break;}
-    case 3: {return Qt::yellow;
+    case 3: {return Qt::green;
         break;}
-    case 4: {return Qt::black;
+    case 4: {return Qt::blue;
         break;}
-    case 5: {return Qt::white;
+    case 5: {return Qt::cyan;
         break;}
-    case 6: {return Qt::cyan;
+    case 6: {return Qt::magenta;
         break;}
-    case 7: {return Qt::magenta;
+    case 7: {return Qt::yellow;
         break;}
     case 8: {return Qt::gray;
         break;}
@@ -308,7 +347,7 @@ Qt::GlobalColor MainWindow::getTextColor()
 
 QFont::Weight MainWindow::getTextWeight()
 {
-    switch(ui->font_weight_box->currentIndex())
+    switch(ui->text_weight_box->currentIndex())
     {
     case 0: {return QFont::Thin;
         break;}
@@ -324,7 +363,7 @@ QFont::Weight MainWindow::getTextWeight()
 
 QFont::Style MainWindow::getTextStyle()
 {
-    switch(ui->font_style_box->currentIndex())
+    switch(ui->text_style_box->currentIndex())
     {
     case 0: {return QFont::StyleNormal;
         break;}
@@ -338,7 +377,7 @@ QFont::Style MainWindow::getTextStyle()
 
 QString MainWindow::getFontFamily()
 {
-    switch(ui->font_family_box->currentIndex())
+    switch(ui->text_font_box->currentIndex())
     {
     case 0: {return "Comic Sans MS";
         break;}
@@ -351,7 +390,7 @@ QString MainWindow::getFontFamily()
     default: {return "Times";}
     }
 }
-*/
+
 void MainWindow::on_build_it_final_button_clicked()
 {
     debugPrintShapeInfo();

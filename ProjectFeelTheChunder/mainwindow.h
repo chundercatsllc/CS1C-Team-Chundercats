@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListView>
 #include <QComboBox>
+#include "RenderArea.h"
 #include "shape.h"
 
 namespace Ui {
@@ -34,15 +35,15 @@ class MainWindow : public QMainWindow
 
         void getBrushStyle();
 
-        void getAlign();
+        Qt::AlignmentFlag getAlign();
 
-        void getTextColor();
+        Qt::GlobalColor getTextColor();
 
-        void getTextWeight();
+        QFont::Weight getTextWeight();
 
-        void getTextStyle();
+        QFont::Style getTextStyle();
 
-        void getFontFamily();
+        QString getFontFamily();
 
         void getPenWidth();
 
@@ -57,6 +58,7 @@ class MainWindow : public QMainWindow
         void comboTrickFlag(QComboBox *combo);
         void comboTrickFontStyle(QComboBox *combo);
         void comboTrickFontFam(QComboBox *combo);
+        void comboTrickFontWeight(QComboBox *combo);
 
         void debugPrintShapeInfo();
 private slots:
@@ -80,7 +82,7 @@ private slots:
         void on_start_delete_button_clicked();
 
 private:
-		Ui::MainWindow *ui;
+        Ui::MainWindow *ui;
         bool meddleable{false};
 
         Shape::ShapeType The_shapeType{Shape::ShapeType::Rectangle};
@@ -91,6 +93,8 @@ private:
         Qt::GlobalColor  The_brushColor{Qt::GlobalColor::blue};
         Qt::BrushStyle   The_brushStyle{Qt::BrushStyle::SolidPattern};
         int              The_penWidth{4};
+
+
 };
 
 #endif // MAINWINDOW_H
