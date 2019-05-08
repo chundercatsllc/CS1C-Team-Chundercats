@@ -1,12 +1,14 @@
 #include "create_user.h"
 #include "ui_create_user.h"
 #include "./database/dbconnection.h"
+#include <QMessageBox>
 
 create_user::create_user(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::create_user)
 {
     ui->setupUi(this);
+
 }
 
 create_user::~create_user()

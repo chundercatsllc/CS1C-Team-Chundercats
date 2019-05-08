@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //AwesomeVector<Shape *> shapeMagazine;
 
-	ui->setupUi(this);
+    //ui->setupUi(this);
 
 }
 
