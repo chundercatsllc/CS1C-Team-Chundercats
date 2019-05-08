@@ -48,7 +48,7 @@ class MainWindow : public QMainWindow
 
         void setShapeNonsense(Shape * shape, Shape::ShapeType, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs);
 
-        QComboBox * comboTrickColors(QComboBox * combo);
+        void comboTrickColors(QComboBox * combo);
         QComboBox * comboTrickShapes(QComboBox * combo);
         QComboBox * comboTrickPenStyles(QComboBox * combo);
         QComboBox * comboTrickPenCapStyles(QComboBox * combo);
@@ -92,8 +92,6 @@ private:
         Qt::GlobalColor  The_brushColor{Qt::GlobalColor::blue};
         Qt::BrushStyle   The_brushStyle{Qt::BrushStyle::SolidPattern};
         int              The_penWidth{4};
-
-
 };
 
 #endif // MAINWINDOW_H

@@ -73,7 +73,7 @@ border-bottom-color: rgb(0, 0, 0);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="start_page">
      <widget class="QLabel" name="admin_title_label">
@@ -296,7 +296,7 @@ border-bottom-color: rgb(0, 0, 0);
         <x>0</x>
         <y>170</y>
         <width>121</width>
-        <height>22</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -306,10 +306,13 @@ border-bottom-color: rgb(0, 0, 0);
        <bool>true</bool>
       </property>
       <property name="currentText">
-       <string>Pen Color</string>
+       <string/>
       </property>
       <property name="currentIndex">
        <number>-1</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToContents</enum>
       </property>
       <property name="modelColumn">
        <number>-1</number>
@@ -500,6 +503,19 @@ border-bottom-color: rgb(0, 0, 0);
        <number>20</number>
       </property>
      </widget>
+     <zorder>title_label</zorder>
+     <zorder>KANYE1_9</zorder>
+     <zorder>pen_style_box</zorder>
+     <zorder>pen_cap_style_box</zorder>
+     <zorder>pen_join_style_box</zorder>
+     <zorder>build_it_button</zorder>
+     <zorder>cancel_button</zorder>
+     <zorder>subtitle_label</zorder>
+     <zorder>brush_style_box</zorder>
+     <zorder>brush_color_box</zorder>
+     <zorder>spinBox_setPenWidth</zorder>
+     <zorder>shapeType_box</zorder>
+     <zorder>pen_color_box</zorder>
     </widget>
     <widget class="QWidget" name="edit_page">
      <widget class="QLabel" name="KANYE1_10">
@@ -1966,6 +1982,16 @@ border-bottom-color: rgb(0, 0, 0);
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>500</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
   </widget>
