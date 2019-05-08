@@ -49,23 +49,23 @@ class MainWindow : public QMainWindow
         void setShapeNonsense(Shape * shape, Shape::ShapeType, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs);
 
         void comboTrickColors(QComboBox * combo);
-        QComboBox * comboTrickShapes(QComboBox * combo);
-        QComboBox * comboTrickPenStyles(QComboBox * combo);
-        QComboBox * comboTrickPenCapStyles(QComboBox * combo);
-        QComboBox * comboTrickPenJoinStyles(QComboBox * combo);
-        QComboBox * comboTrickBushStyle(QComboBox *combo);
-        QComboBox * comboTrickFlag(QComboBox *combo);
-        QComboBox * comboTrickFontStyle(QComboBox *combo);
-        QComboBox * comboTrickFontFam(QComboBox *combo);
+        void comboTrickShapes(QComboBox * combo);
+        void comboTrickPenStyles(QComboBox * combo);
+        void comboTrickPenCapStyles(QComboBox * combo);
+        void comboTrickPenJoinStyles(QComboBox * combo);
+        void comboTrickBushStyle(QComboBox *combo);
+        void comboTrickFlag(QComboBox *combo);
+        void comboTrickFontStyle(QComboBox *combo);
+        void comboTrickFontFam(QComboBox *combo);
 
         void debugPrintShapeInfo();
 private slots:
 
         void on_start_add_button_clicked();
 
-        bool on_build_it_final_button_clicked();
+        void on_build_it_final_button_clicked();
 
-        bool on_cancel_add_shape_final_clicked();
+        void on_cancel_add_shape_final_clicked();
 
         void on_start_edit_button_clicked();
 
@@ -82,7 +82,6 @@ private slots:
 private:
 		Ui::MainWindow *ui;
         bool meddleable{false};
-        bool addify{false};
 
         Shape::ShapeType The_shapeType{Shape::ShapeType::Rectangle};
         Qt::GlobalColor  The_penColor{Qt::GlobalColor::blue};

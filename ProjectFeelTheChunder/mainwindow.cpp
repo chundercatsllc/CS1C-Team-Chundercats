@@ -9,6 +9,29 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+    ui->menuStack->addWidget(ui->add_final_page);
+    ui->menuStack->addWidget(ui->add_page);
+    ui->menuStack->addWidget(ui->edit_page);
+    ui->menuStack->addWidget(ui->delete_page);
+    ui->add_stack->addWidget(ui->add_polyline_page);
+    ui->add_stack->addWidget(ui->add_line_page);
+    ui->add_stack->addWidget(ui->add_polygon_page);
+    ui->add_stack->addWidget(ui->add_text_page);
+    ui->add_stack->addWidget(ui->add_rectangle_page);
+    ui->add_stack->addWidget(ui->add_ellipse_page);
+
+//    ui->start_add_button->setEnabled(false);
+//    ui->start_edit_button->setEnabled(false);
+//    ui->start_delete_button->setEnabled(false);
+
+    comboTrickShapes(ui->shapeType_box);
+    comboTrickColors(ui->pen_color_box);
+    comboTrickColors(ui->pen_style_box);
+    comboTrickPenStyles(ui->pen_cap_style_box);
+    comboTrickPenJoinStyles(ui->pen_join_style_box);
+    comboTrickBushStyle(ui->brush_style_box);
+    comboTrickColors(ui->brush_color_box);
+
     ui->menuStack->setCurrentWidget(ui->start_page);
     QMovie *movie = new QMovie(":/pix/heckyeah.gif");
     QLabel *processLabel = new QLabel(ui->KANYE);
@@ -25,68 +48,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_start_add_button_clicked()
 {
-    ui->menuStack->addWidget(ui->add_page);
+
     ui->menuStack->setCurrentWidget(ui->add_page);
-    QComboBox * shapeTypeCombo   = new QComboBox(ui->shapeType_box);
-    QComboBox * penColorCombo    = new QComboBox(ui->pen_color_box);
-    QComboBox * penStyleCombo    = new QComboBox(ui->pen_style_box);
-    QComboBox * penCapStyleCombo = new QComboBox(ui->pen_cap_style_box);
-    QSpinBox  * penWidthCombo    = new QSpinBox(ui->spinBox_setPenWidth);
-    QComboBox * penJtStyleCombo  = new QComboBox(ui->pen_join_style_box);
-    QComboBox * brushColorCombo  = new QComboBox(ui->brush_color_box);
-    QComboBox * brushStyleCombo  = new QComboBox(ui->brush_style_box);
-    QListView * shapeList       = new QListView(shapeTypeCombo);
-    QListView * penColorList    = new QListView(penColorCombo);
-    QListView * penStyleList    = new QListView(penStyleCombo);
-    QListView * penCapStyleList = new QListView(penCapStyleCombo);
-    QListView * penJtStyleList  = new QListView(penJtStyleCombo);
-    QListView * brushColorLisr  = new QListView(brushColorCombo);
-    QListView * brushStyleList  = new QListView(brushStyleCombo);
-   /* shapeList->setStyleSheet("QListView::item {                              \
-                                 border-bottom: 5px solid white; margin:3px; }  \
-                                 QListView::item:selected {                     \
-                                 border-bottom: 5px solid black; margin:3px;    \
-                                 color: black;                                  \
-                                }                                               \
-                                ");*/
-   // shapeTypeCombo = comboTrickShapes(ui->shapeType_box);
 
-    shapeTypeCombo->setView(shapeList);
-    shapeTypeCombo->show();
-
-    ui->comboBox->addItem("oofda");
-   // comboTrickColors(ui->pen_color_box);
-//    penColorCombo->setView(ui->pen_color_box);
-//    penColorCombo->show();
+    ui->shapeType_box->show();
     ui->pen_color_box->show();
-
-    penStyleCombo = comboTrickPenStyles(penStyleCombo);
-    penStyleCombo->setView(penStyleList);
-    penStyleCombo->show();
-
-    penCapStyleCombo = comboTrickPenCapStyles(penCapStyleCombo);
-    penCapStyleCombo->setView(penCapStyleList);
-    penCapStyleCombo->show();
-
-    penJtStyleCombo = comboTrickPenJoinStyles(penJtStyleCombo);
-    penJtStyleCombo->setView(penJtStyleList);
-    penJtStyleCombo->show();
-
-    brushStyleCombo = comboTrickBushStyle(brushStyleCombo);
-    brushStyleCombo->setView(brushColorLisr);
-    brushStyleCombo->show();
-
-    comboTrickColors(brushColorCombo);
-    brushColorCombo->setView(brushStyleList);
-    brushColorCombo->show();
-
-
-
+    ui->pen_style_box->show();
+    ui->pen_cap_style_box->show();
+    ui->pen_join_style_box->show();
+    ui->brush_style_box->show();
 }
 
 void MainWindow::on_start_edit_button_clicked()
 {
     ui->menuStack->setCurrentWidget(ui->edit_page);
+
 }
 
 void MainWindow::setShapeNonsense(Shape* shape, Shape::ShapeType type, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs)
@@ -96,7 +72,6 @@ void MainWindow::setShapeNonsense(Shape* shape, Shape::ShapeType type, int id, Q
     shape->setPen(pc, pw, ps, pcs, pjs);
     shape->setID(id);
 }
-
 void MainWindow::comboTrickColors(QComboBox *combo)
 {
     combo->addItem("white");
@@ -110,7 +85,7 @@ void MainWindow::comboTrickColors(QComboBox *combo)
     combo->addItem("gray");
 }
 
-QComboBox * MainWindow::comboTrickShapes(QComboBox *combo)
+void MainWindow::comboTrickShapes(QComboBox *combo)
 {
     combo->addItem("Line");
     combo->addItem("Polyline");
@@ -118,10 +93,9 @@ QComboBox * MainWindow::comboTrickShapes(QComboBox *combo)
     combo->addItem("Rectangle");
     combo->addItem("Ellipse");
     combo->addItem("Text");
-    return combo;
 }
 
-QComboBox * MainWindow::comboTrickPenStyles(QComboBox *combo)
+void MainWindow::comboTrickPenStyles(QComboBox *combo)
 {
     combo->addItem("Solid Line");
     combo->addItem("Dash Line");
@@ -129,32 +103,28 @@ QComboBox * MainWindow::comboTrickPenStyles(QComboBox *combo)
     combo->addItem("Dash Dot Line");
     combo->addItem("Dash Dot Dot Line");
     combo->addItem("No Pen");
-    return combo;
 }
 
-QComboBox * MainWindow::comboTrickPenCapStyles(QComboBox *combo)
+void MainWindow::comboTrickPenCapStyles(QComboBox *combo)
 {
     combo->addItem("Square Cap");
     combo->addItem("Flat Cap");
     combo->addItem("Round Cap");
-    return combo;
 }
 
-QComboBox * MainWindow::comboTrickPenJoinStyles(QComboBox *combo)
+void MainWindow::comboTrickPenJoinStyles(QComboBox *combo)
 {
     combo->addItem("Miter Join");
     combo->addItem("Bevel Join");
     combo->addItem("Round Join");
-    return combo;
 }
 
-QComboBox * MainWindow::comboTrickBushStyle(QComboBox *combo)
+void MainWindow::comboTrickBushStyle(QComboBox *combo)
 {
     combo->addItem("Solid Pattern");
     combo->addItem("Vertical Pattern");
     combo->addItem("Horizontal Pattern");
     combo->addItem("No Brush");
-    return combo;
 }
 
 void MainWindow::getShapeType()
@@ -291,7 +261,6 @@ void MainWindow::getBrushStyle()
     default: {The_brushStyle = Qt::NoBrush;}
     }
 }
-
 /*
 Qt::AlignmentFlag MainWindow::getAlign()
 {
@@ -383,25 +352,20 @@ QString MainWindow::getFontFamily()
     }
 }
 */
-
-
-bool MainWindow::on_build_it_final_button_clicked()
+void MainWindow::on_build_it_final_button_clicked()
 {
     debugPrintShapeInfo();
-    addify = true;
-    return true;
+    ui->menuStack->setCurrentWidget(ui->start_page);
 }
 
-bool MainWindow::on_cancel_add_shape_final_clicked()
+void MainWindow::on_cancel_add_shape_final_clicked()
 {
     ui->menuStack->setCurrentWidget(ui->start_page);
-    addify = false;
-    return true;
 }
 
 void MainWindow::debugPrintShapeInfo()
 {
-    qDebug() << "Shape: " << STstringAR[int(The_shapeType)];
+    qDebug() << STstringAR[int(The_shapeType)];
     qDebug() << CstringAR[int(The_penColor)];
     qDebug() << PSstringAR[int(The_penStyle)];
     qDebug() << PCSstringAR[int(The_penCap)];
@@ -412,7 +376,7 @@ void MainWindow::debugPrintShapeInfo()
 
 void MainWindow::on_build_it_button_clicked()
 {
-    ui->menuStack->addWidget(ui->add_final_page);
+
     ui->menuStack->setCurrentWidget(ui->add_final_page);
 
     getShapeType();
@@ -430,21 +394,78 @@ void MainWindow::on_build_it_button_clicked()
     {
         case Shape::ShapeType::Line:
         {
-        qDebug() << "case line";
+            ui->add_stack->setCurrentWidget(ui->add_line_page);
+            Line * thingymabob = new Line(ui->target, ui->target->getSize());
+
+            int x1 = ui->line_pt1_x_box->text().toInt();
+            int y1 = ui->line_pt1_y_box->text().toInt();
+            int x2 = ui->line_pt2_x_box->text().toInt();
+            int y2 = ui->line_pt2_y_y->text().toInt();
+
+            QPoint * pt1 = new QPoint(x1, y1);
+            QPoint * pt2 = new QPoint(x2, y2);
+            thingymabob->setPoints(*pt1, *pt2);
+            ui->target->addShape(thingymabob);
         } break;
         case Shape::ShapeType::Polygon:
         {
-            qDebug() << "case Polygon";
+            ui->add_stack->setCurrentWidget(ui->add_polygon_page);
+            int numVerts           = ui->spinBox_polyline_numverts->value();
+            Polygon * thingymabob = new Polygon(ui->target, ui->target->getSize());
+            setShapeNonsense(thingymabob, The_shapeType, ui->target->getSize(), The_penColor, The_penWidth, The_penStyle, The_penCap, The_penJoinStyle, The_brushColor, The_brushStyle);
+
+            thingymabob->setNumVertices(numVerts);
+
+            switch(numVerts)
+            {
+            case 8:
+            {
+                QPoint *pt8 = new QPoint(ui->lineEdit_add_pl_x8_2->text().toInt(), ui->lineEdit_add_pl_y8_2->text().toInt());
+                thingymabob->addVertex(*pt8);
+            }
+            case 7:
+            {
+                QPoint *pt7 = new QPoint(ui->lineEdit_add_pl_x7_2->text().toInt(), ui->lineEdit_add_pl_y7_2->text().toInt());
+                thingymabob->addVertex(*pt7);
+            }
+            case 6:
+            {
+                QPoint *pt6 = new QPoint(ui->lineEdit_add_pl_x6_2->text().toInt(), ui->lineEdit_add_pl_y6_2->text().toInt());
+                thingymabob->addVertex(*pt6);
+            }
+            case 5:
+            {
+                QPoint *pt5 = new QPoint(ui->lineEdit_add_pl_x5_2->text().toInt(), ui->lineEdit_add_pl_y5_2->text().toInt());
+                thingymabob->addVertex(*pt5);
+            }
+            case 4:
+            {
+                QPoint *pt4 = new QPoint(ui->lineEdit_add_pl_x4_2->text().toInt(), ui->lineEdit_add_pl_y4_2->text().toInt());
+                thingymabob->addVertex(*pt4);
+            }
+            case 3:
+            {
+                QPoint *pt3 = new QPoint(ui->lineEdit_add_pl_x3_2->text().toInt(), ui->lineEdit_add_pl_y3_2->text().toInt());
+                thingymabob->addVertex(*pt3);
+            }
+            }//end switch
+            QPoint *pt2 = new QPoint(ui->lineEdit_add_pl_x2_2->text().toInt(), ui->lineEdit_add_pl_y2_2->text().toInt());
+            thingymabob->addVertex(*pt2);
+            QPoint *pt1 = new QPoint(ui->lineEdit_add_pl_x1_2->text().toInt(), ui->lineEdit_add_pl_y1_2->text().toInt());
+            thingymabob->addVertex(*pt1);
+            ui->target->addShape(thingymabob);
+
+            qDebug() << "pollygon added";
+
         } break;
         case Shape::ShapeType::Polyline:
         {
-            ui->add_stack->addWidget(ui->add_polyline_page);
             ui->add_stack->setCurrentWidget(ui->add_polyline_page);
 
             int numVerts           = ui->spinBox_polyline_numverts->value();
             Polyline * thingymabob = new Polyline(ui->target, ui->target->getSize());
             setShapeNonsense(thingymabob, The_shapeType, ui->target->getSize(), The_penColor, The_penWidth, The_penStyle, The_penCap, The_penJoinStyle, The_brushColor, The_brushStyle);
-            debugPrintShapeInfo();
+
             thingymabob->addNumPoints(numVerts);
 
             switch(numVerts)
@@ -494,27 +515,45 @@ void MainWindow::on_build_it_button_clicked()
         } break;
         case Shape::ShapeType::Text:
         {
-        qDebug() << "case text";
+            ui->add_stack->setCurrentWidget(ui->add_text_page);
         } break;
         case Shape::ShapeType::Rectangle:
         {
-        qDebug() << "case rectangle";
+            Rectangle * thingymabob = new Rectangle(ui->target, ui->target->getSize());
+            ui->add_stack->setCurrentWidget(ui->add_rectangle_page);
+
+            int width  = ui->add_rect_width_box->text().toInt();
+            int height = ui->add_rect_length_box->text().toInt();
+
+            int x = ui->rect_x_box->text().toInt();
+            int y = ui->rect_y_box->text().toInt();
+
+            thingymabob->setAll(width, height, x, y);
+            ui->target->addShape(thingymabob);
         } break;
         case Shape::ShapeType::Ellipse:
         {
-            qDebug() << "case ellipse";
+            Ellipse * thingymabob = new Ellipse(ui->target, ui->target->getSize());
+            ui->add_stack->setCurrentWidget(ui->add_ellipse_page);
+
+            int width  = ui->add_ellipse_width_box_2->text().toInt();
+            int length = ui->add_ellipse_length_box->text().toInt();
+
+            int x = ui->ellipse_x_box->text().toInt();
+            int y = ui->ellipse_y_box->text().toInt();
+
+            thingymabob->setDimensions(width, length);
+            thingymabob->setLocation(x,y);
+            ui->target->addShape(thingymabob);
         } break;
         default: {}
     }
 
-
-
-   // ui->menuStack->setCurrentWidget(ui->start_page);
 }
 
 void MainWindow::on_cancel_button_clicked()
 {
-    addify = false;
+
     ui->menuStack->setCurrentWidget(ui->start_page);
 }
 

@@ -166,15 +166,15 @@ public:
 
     void setLocation(int x, int y);
     void setLocation(QPoint pt);
-    void setDimensions(double w, double h);
-    void setAll(double w, double h, int x, int y);
+    void setDimensions(int w, int h);
+    void setAll(int w, int h, int x, int y);
 
-    double getWidth();
-    double getHeight();
+    int getWidth();
+    int getHeight();
     QPoint& getLocation();
 private:
-    double width;
-    double height;
+    int width;
+    int height;
     QPoint location;
 };
 
@@ -193,12 +193,12 @@ public:
     double getHeight();
     QPoint& getLocation();
 
-    void setDimensions(double w, double h);
+    void setDimensions(int w, int h);
     void setLocation(int x, int y);
     void setLocation(QPoint pt);
 private:
-    double width;
-    double height;
+    int width;
+    int height;
     QPoint location;
 };
 
