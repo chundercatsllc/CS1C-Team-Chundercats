@@ -883,9 +883,9 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>420</y>
+        <y>430</y>
         <width>121</width>
-        <height>51</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -917,7 +917,7 @@ border-bottom-color: rgb(0, 0, 0);
         <x>0</x>
         <y>120</y>
         <width>131</width>
-        <height>291</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1176,6 +1176,31 @@ border-bottom-color: rgb(0, 0, 0);
          <string notr="true">background-color: rgb(255, 242, 219);</string>
         </property>
        </widget>
+       <widget class="QSpinBox" name="text_font_size_spinbox">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>280</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 242, 219);</string>
+        </property>
+        <property name="suffix">
+         <string/>
+        </property>
+        <property name="prefix">
+         <string>Text Size: </string>
+        </property>
+        <property name="minimum">
+         <number>8</number>
+        </property>
+        <property name="maximum">
+         <number>30</number>
+        </property>
+       </widget>
        <zorder>label_6</zorder>
        <zorder>add_text_string_box</zorder>
        <zorder>text_font_box</zorder>
@@ -1191,6 +1216,7 @@ border-bottom-color: rgb(0, 0, 0);
        <zorder>label_101</zorder>
        <zorder>label_99</zorder>
        <zorder>label_100</zorder>
+       <zorder>text_font_size_spinbox</zorder>
       </widget>
       <widget class="QWidget" name="add_polygon_page">
        <widget class="QLineEdit" name="lineEdit_add_pl_x2_2">
@@ -3299,16 +3325,6 @@ border-bottom-color: rgb(0, 0, 0);
     </property>
     <property name="scaledContents">
      <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QWidget" name="target2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>470</y>
-      <width>381</width>
-      <height>261</height>
-     </rect>
     </property>
    </widget>
   </widget>

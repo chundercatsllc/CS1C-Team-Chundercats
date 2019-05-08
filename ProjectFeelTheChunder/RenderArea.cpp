@@ -223,26 +223,6 @@ void RenderArea::readShapeFile()
     emptiness = fileIn.readLine();
     emptiness = "no longer";
 
-    /*
-    while(!fileIn.atEnd())
-    {
-        while(emptiness != "" )
-        {
-            emptiness = fileIn.readLine();
-            qDebug() << emptiness;
-            listfill.append(emptiness);
-        }
-
-        listfull = listfill.split(": ");
-        id = listfull.at(1).toInt();
-
-        qDebug() << id;
-        switch(id)
-        {}
-    }
-*/
-
-
     while(!fileIn.atEnd())
     {
         QString garbage;
@@ -666,40 +646,39 @@ void RenderArea::readShapeFile()
             fileIn >> garbage;
             QString penColorStr;
             fileIn >> penColorStr;
-            textPen.setColor(getColor(penColorStr));
+            Qt::GlobalColor c = (getColor(penColorStr));
 
             //Store Alignment
             fileIn >> garbage;
             QString alignStr;
             fileIn >> alignStr;
-            letsGetTexty->setFlag(getFlag(alignStr));
+            Qt::AlignmentFlag f = (getFlag(alignStr));
 
             //Store point size
             fileIn >> garbage;
             int pointSize;
             fileIn >> pointSize;
-            textFont.setPointSize(pointSize);
 
             //Store family
             fileIn >> garbage;
             QString textFamilyStr;
             textFamilyStr = fileIn.readLine();
-            textFont.setFamily(textFamilyStr);
 
             //Store Font style
             fileIn >> garbage;
             QString textFontStyleStr;
             fileIn >> textFontStyleStr;
-            textFont.setStyle(getFontStyle(textFontStyleStr));
+            QFont::Style s = (getFontStyle(textFontStyleStr));
 
             //Store Font weight
             fileIn >> garbage;
             QString textFontWeightStr;
             fileIn >> textFontWeightStr;
-            textFont.setWeight(getFontWeight(textFontWeightStr));
+            QFont::Weight w = (getFontWeight(textFontWeightStr));
 
             letsGetTexty->setPen(textPen);
-            letsGetTexty->setFont(textFont);
+            letsGetTexty->setFont(textFamilyStr,s,pointSize,w,c);
+            letsGetTexty->setFlag(f);
             letsGetTexty->setID(id);
             letsGetTexty->setShape(Shape::ShapeType::Text);
             addShape(letsGetTexty); //Adding shape

@@ -248,7 +248,6 @@ void Text::setDimensions(int w, int h)
     boxHeight = h;
 }
 
-/*
 void Text::setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color)
 {
     font.setFamily(family);
@@ -257,7 +256,6 @@ void Text::setFont(QString family, QFont::Style style, int size, QFont::Weight w
     font.setWeight(weight);
     pen.setColor(color);
 }
-*/
 
 void Text::setLocation(int x, int y)
 {

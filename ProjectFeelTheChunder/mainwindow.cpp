@@ -145,7 +145,7 @@ void MainWindow::comboTrickFlag(QComboBox *combo)
 
 void MainWindow::comboTrickFontFam(QComboBox *combo)
 {
-    combo->addItem("Comic Sans");
+    combo->addItem("Comic Sans MS");
     combo->addItem("Courier");
     combo->addItem("Helvetica");
     combo->addItem("Times");
@@ -307,15 +307,23 @@ Qt::AlignmentFlag MainWindow::getAlign()
     {
     case 0: {return Qt::AlignLeft;
         break;}
-    case 1: {return Qt::AlignCenter;
+    case 1: {return Qt::AlignRight;
         break;}
-    case 2: {return Qt::AlignRight;
+    case 2: {return Qt::AlignHCenter;
         break;}
-    case 3: {return Qt::AlignTop;
+    case 3: {return Qt::AlignJustify;
         break;}
-    case 4: {return Qt::AlignBottom;
+    case 4: {return Qt::AlignTop;
         break;}
-    default: {return Qt::AlignLeft;}
+    case 5: {return Qt::AlignBottom;
+        break;}
+    case 6: {return Qt::AlignVCenter;
+        break;}
+    case 7: {return Qt::AlignTop;
+        break;}
+    case 8: {return Qt::AlignTop;
+        break;}
+    default: return Qt::AlignCenter;
     }
 }
 
@@ -377,63 +385,16 @@ QFont::Style MainWindow::getTextStyle()
 
 QString MainWindow::getFontFamily()
 {
-    switch(ui->text_font_box->currentIndex())
-    {
-    case 0: {return "Comic Sans MS";
-        break;}
-    case 1: {return "Courier";
-        break;}
-    case 2: {return "Helvetica";
-        break;}
-    case 3: {return "Times";
-        break;}
-    default: {return "Times";}
-    }
+   return ui->text_font_box->currentText();
 }
 
 void MainWindow::on_build_it_final_button_clicked()
 {
     debugPrintShapeInfo();
-    ui->menuStack->setCurrentWidget(ui->start_page);
-}
-
-void MainWindow::on_cancel_add_shape_final_clicked()
-{
-    ui->menuStack->setCurrentWidget(ui->start_page);
-}
-
-void MainWindow::debugPrintShapeInfo()
-{
-    qDebug() << STstringAR[int(The_shapeType)];
-    qDebug() << CstringAR[int(The_penColor)];
-    qDebug() << PSstringAR[int(The_penStyle)];
-    qDebug() << PCSstringAR[int(The_penCap)];
-    qDebug() << PJSstringAR[int(The_penJoinStyle)];
-    qDebug() << CstringAR[int(The_brushColor)];
-    qDebug() << BSstringAR[int(The_brushStyle)];
-}
-
-void MainWindow::on_build_it_button_clicked()
-{
-
-    ui->menuStack->setCurrentWidget(ui->add_final_page);
-
-    getShapeType();
-    getPenColor();
-    getPenStyle();
-    getPenCapStyle();
-    getPenWidth();
-    getPenJoinStyle();
-    getBrushColor();
-    getBrushStyle();
-
-    debugPrintShapeInfo();
-
     switch(The_shapeType)
     {
         case Shape::ShapeType::Line:
         {
-            ui->add_stack->setCurrentWidget(ui->add_line_page);
             Line * thingymabob = new Line(ui->target, ui->target->getSize());
 
             int x1 = ui->line_pt1_x_box->text().toInt();
@@ -448,7 +409,6 @@ void MainWindow::on_build_it_button_clicked()
         } break;
         case Shape::ShapeType::Polygon:
         {
-            ui->add_stack->setCurrentWidget(ui->add_polygon_page);
             int numVerts           = ui->spinBox_polyline_numverts->value();
             Polygon * thingymabob = new Polygon(ui->target, ui->target->getSize());
             setShapeNonsense(thingymabob, The_shapeType, ui->target->getSize(), The_penColor, The_penWidth, The_penStyle, The_penCap, The_penJoinStyle, The_brushColor, The_brushStyle);
@@ -499,8 +459,6 @@ void MainWindow::on_build_it_button_clicked()
         } break;
         case Shape::ShapeType::Polyline:
         {
-            ui->add_stack->setCurrentWidget(ui->add_polyline_page);
-
             int numVerts           = ui->spinBox_polyline_numverts->value();
             Polyline * thingymabob = new Polyline(ui->target, ui->target->getSize());
             setShapeNonsense(thingymabob, The_shapeType, ui->target->getSize(), The_penColor, The_penWidth, The_penStyle, The_penCap, The_penJoinStyle, The_brushColor, The_brushStyle);
@@ -554,12 +512,23 @@ void MainWindow::on_build_it_button_clicked()
         } break;
         case Shape::ShapeType::Text:
         {
-            ui->add_stack->setCurrentWidget(ui->add_text_page);
+            Text * thingymabob = new Text(ui->target, ui->target->getSize());
+            int length = ui->text_length_box->text().toInt();
+            int width  = ui->text_width_box->text().toInt();
+            QString text = ui->add_text_string_box->text();
+            int x = ui->text_x_box->text().toInt();
+            int y = ui->text__y_box->text().toInt();
+            int size = ui->text_font_size_spinbox->value();
+            thingymabob->setDimensions(width, length);
+            thingymabob->setLocation(x,y);
+            thingymabob->setFlag(getAlign());
+            thingymabob->setFont(getFontFamily(), getTextStyle(), size, getTextWeight(), getTextColor());
+            thingymabob->setText(text);
+            ui->target->addShape(thingymabob);
         } break;
         case Shape::ShapeType::Rectangle:
         {
             Rectangle * thingymabob = new Rectangle(ui->target, ui->target->getSize());
-            ui->add_stack->setCurrentWidget(ui->add_rectangle_page);
 
             int width  = ui->add_rect_width_box->text().toInt();
             int height = ui->add_rect_length_box->text().toInt();
@@ -573,7 +542,6 @@ void MainWindow::on_build_it_button_clicked()
         case Shape::ShapeType::Ellipse:
         {
             Ellipse * thingymabob = new Ellipse(ui->target, ui->target->getSize());
-            ui->add_stack->setCurrentWidget(ui->add_ellipse_page);
 
             int width  = ui->add_ellipse_width_box_2->text().toInt();
             int length = ui->add_ellipse_length_box->text().toInt();
@@ -585,7 +553,71 @@ void MainWindow::on_build_it_button_clicked()
             thingymabob->setLocation(x,y);
             ui->target->addShape(thingymabob);
         } break;
-        default: {}
+        default: {qDebug() << "Error finding shape type";}
+    }
+
+    ui->menuStack->setCurrentWidget(ui->start_page);
+}
+
+void MainWindow::on_cancel_add_shape_final_clicked()
+{
+    ui->menuStack->setCurrentWidget(ui->start_page);
+}
+
+void MainWindow::debugPrintShapeInfo()
+{
+    qDebug() << STstringAR[int(The_shapeType) - 1];
+    qDebug() << CstringAR[int(The_penColor) - 1];
+    qDebug() << PSstringAR[int(The_penStyle) - 1];
+    qDebug() << PCSstringAR[int(The_penCap) - 1];
+    qDebug() << PJSstringAR[int(The_penJoinStyle) - 1];
+    qDebug() << CstringAR[int(The_brushColor) - 1];
+    qDebug() << BSstringAR[int(The_brushStyle) - 1];
+}
+
+void MainWindow::on_build_it_button_clicked()
+{
+
+    ui->menuStack->setCurrentWidget(ui->add_final_page);
+
+    getShapeType();
+    getPenColor();
+    getPenStyle();
+    getPenCapStyle();
+    getPenWidth();
+    getPenJoinStyle();
+    getBrushColor();
+    getBrushStyle();
+
+    debugPrintShapeInfo();
+
+    switch(The_shapeType)
+    {
+        case Shape::ShapeType::Line:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_line_page);
+        } break;
+        case Shape::ShapeType::Polygon:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_polygon_page);
+        } break;
+        case Shape::ShapeType::Polyline:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_polyline_page);
+        } break;
+        case Shape::ShapeType::Text:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_text_page);
+        } break;
+        case Shape::ShapeType::Rectangle:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_rectangle_page);
+        } break;
+        case Shape::ShapeType::Ellipse:
+        {
+            ui->add_stack->setCurrentWidget(ui->add_ellipse_page);
+        } break;
+        default: {qDebug() << "Error finding shape type";}
     }
 
 }

@@ -130,7 +130,7 @@ public:
     double perimeter() override;
 
     void setText(QString newText);
-//    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
+    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
 
     void setBoxWidth(int newBoxWidth);
     void setBoxHeight(int newBoxHeight);
