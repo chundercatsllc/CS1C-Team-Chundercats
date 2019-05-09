@@ -32,6 +32,7 @@ void RenderArea::addShape(Shape* shapeIn)
 void RenderArea::chopShape(int i)
 {
     ShapeMagazine.erase(i);
+    this->update();
 }
 
 void RenderArea::moveShape(int index, int coord, int x, int y)

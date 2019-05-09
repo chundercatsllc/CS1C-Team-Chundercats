@@ -81,6 +81,8 @@ private slots:
 
         void on_start_delete_button_clicked();
 
+        void on_erase_it_button_clicked();
+
 private:
         Ui::MainWindow *ui;
         bool meddleable{false};

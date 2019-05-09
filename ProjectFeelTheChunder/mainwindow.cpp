@@ -642,3 +642,9 @@ void MainWindow::on_start_delete_button_clicked()
 {
     ui->menuStack->setCurrentWidget(ui->delete_page);
 }
+
+void MainWindow::on_erase_it_button_clicked()
+{
+    int id = ui->shape_id_delete_spin->value();
+    ui->target->chopShape(id);
+}

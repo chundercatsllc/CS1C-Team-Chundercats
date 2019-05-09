@@ -73,7 +73,7 @@ border-bottom-color: rgb(0, 0, 0);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="start_page">
      <widget class="QLabel" name="admin_title_label">
@@ -501,105 +501,7 @@ border-bottom-color: rgb(0, 0, 0);
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_cap_style_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>240</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="brush_color_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>300</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="pen_color_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>150</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="editable">
-       <bool>true</bool>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="pen_join_style_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>270</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="brush_style_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>330</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_setPenWidth_2">
+     <widget class="QSpinBox" name="pen_width_edit_spin">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -624,26 +526,7 @@ border-bottom-color: rgb(0, 0, 0);
        <number>20</number>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_style_box_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>180</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="modelColumn">
-       <number>-1</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_select_shapeID_edit">
+     <widget class="QSpinBox" name="select_shapeID_edit_spin">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -669,6 +552,84 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="value">
        <number>0</number>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="pen_color_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="pen_join_style_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>270</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="pen_style_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>180</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="pen_cap_style_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>240</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="brush_style_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>300</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="brush_color_edit_box">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>330</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
       </property>
      </widget>
     </widget>
@@ -743,7 +704,7 @@ border-bottom-color: rgb(0, 0, 0);
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>160</y>
+        <y>120</y>
         <width>121</width>
         <height>21</height>
        </rect>
@@ -799,11 +760,11 @@ border-bottom-color: rgb(0, 0, 0);
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBox_select_shapeID_delete">
+     <widget class="QSpinBox" name="shape_id_delete_spin">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>190</y>
+        <y>150</y>
         <width>121</width>
         <height>22</height>
        </rect>
