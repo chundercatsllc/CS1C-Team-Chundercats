@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>618</width>
-    <height>463</height>
+    <width>620</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>-1</x>
      <y>-1</y>
      <width>621</width>
-     <height>471</height>
+     <height>591</height>
     </rect>
    </property>
    <property name="widgetResizable">
@@ -34,31 +34,9 @@
       <x>0</x>
       <y>0</y>
       <width>619</width>
-      <height>469</height>
+      <height>589</height>
      </rect>
     </property>
-    <widget class="QLabel" name="epicness">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>71</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="siccpixandstuff.qrc">:/pix/obamanation.gif</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
@@ -102,7 +80,7 @@
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>100</y>
+       <y>90</y>
        <width>541</width>
        <height>71</height>
       </rect>
@@ -122,7 +100,7 @@ p, li { white-space: pre-wrap; }
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>80</y>
+       <y>70</y>
        <width>541</width>
        <height>21</height>
       </rect>
@@ -147,7 +125,7 @@ p, li { white-space: pre-wrap; }
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>170</y>
+       <y>160</y>
        <width>75</width>
        <height>23</height>
       </rect>
@@ -159,11 +137,22 @@ p, li { white-space: pre-wrap; }
       <string>Add</string>
      </property>
     </widget>
+    <widget class="QListView" name="view_testis">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>200</y>
+       <width>541</width>
+       <height>371</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 242, 219);</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="siccpixandstuff.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

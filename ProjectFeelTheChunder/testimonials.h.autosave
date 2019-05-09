@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::Testimonials *ui;
+    QList<QString> testimonialList;
 };
 
 #endif // TESTIMONIALS_H

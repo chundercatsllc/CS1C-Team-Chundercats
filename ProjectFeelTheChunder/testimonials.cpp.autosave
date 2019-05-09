@@ -17,6 +17,8 @@ void Testimonials::on_pushButton_clicked()
 {
     QString text = ui->add_testi_edit_box->toPlainText();
     qDebug() << text;
+    testimonialList.push_back(text);
+    
     QListWidget   *TheView = new QListWidget(ui->view_testis);
     QListWidgetItem *thing = new QListWidgetItem(text, TheView);
     TheView->addItem(thing);
