@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     testis = new Testimonials();
 
+
 }
 
 MainWindow::~MainWindow()

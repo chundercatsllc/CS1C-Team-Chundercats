@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QMovie>
 #include <QMediaPlayer>
+#include <QDebug>
 
 namespace Ui {
 class Testimonials;
