@@ -43,14 +43,14 @@ MainWindow::MainWindow(QWidget *parent) :
     comboTrickBushStyle(ui->brush_style_edit_box);
     comboTrickColors(ui->brush_color_edit_box);
 
-
     ui->menuStack->setCurrentWidget(ui->start_page);
     QMovie *movie = new QMovie(":/pix/heckyeah.gif");
     QLabel *processLabel = new QLabel(ui->KANYE);
     processLabel->setMovie(movie);
     movie->start();
 
-    QMediaPlayer * playa = new QMediaPlayer();
+    testis = new Testimonials();
+
 }
 
 MainWindow::~MainWindow()
@@ -667,5 +667,11 @@ void MainWindow::on_change_it_button_clicked()
     getBrushColor(ui->brush_color_edit_box);
     getBrushStyle(ui->brush_style_edit_box);
 
+/***********************************************/
+}
+
+void MainWindow::on_testimonial_button_clicked()
+{
+    testis->show();
 
 }

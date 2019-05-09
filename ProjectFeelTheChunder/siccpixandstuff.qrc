@@ -14,6 +14,7 @@
         <file>email.png</file>
         <file>heckyeah.gif</file>
         <file>voice_of_kanye.mp3</file>
+        <file>obamanation.gif</file>
     </qresource>
     <qresource prefix="/stuff">
         <file>shapes.txt</file>

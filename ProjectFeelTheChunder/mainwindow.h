@@ -7,6 +7,7 @@
 #include <QSpinBox>
 #include "RenderArea.h"
 #include "shape.h"
+#include "testimonials.h"
 
 namespace Ui {
 class MainWindow;
@@ -86,8 +87,11 @@ private slots:
 
         void on_change_it_button_clicked();
 
+        void on_testimonial_button_clicked();
+
 private:
         Ui::MainWindow *ui;
+        Testimonials * testis;
         bool meddleable{false};
 
         Shape::ShapeType The_shapeType{Shape::ShapeType::Rectangle};

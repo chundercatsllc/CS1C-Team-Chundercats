@@ -73,7 +73,7 @@ border-bottom-color: rgb(0, 0, 0);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="start_page">
      <widget class="QLabel" name="admin_title_label">
@@ -186,6 +186,22 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="scaledContents">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testimonial_button">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>Testimonials</string>
       </property>
      </widget>
     </widget>
@@ -3305,10 +3321,10 @@ border-bottom-color: rgb(0, 0, 0);
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionLogin"/>
-    <addaction name="actionContact_Us"/>
-    <addaction name="actionEnter_a_Testimonial"/>
-    <addaction name="actionOrder_some_nachos"/>
+    <addaction name="tab_Login"/>
+    <addaction name="tab_Contact_Us"/>
+    <addaction name="tab_Enter_a_Testimonial"/>
+    <addaction name="tab_Order_some_nachos"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -3321,22 +3337,22 @@ border-bottom-color: rgb(0, 0, 0);
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionLogin">
+  <action name="tab_Login">
    <property name="text">
     <string>Login</string>
    </property>
   </action>
-  <action name="actionContact_Us">
+  <action name="tab_Contact_Us">
    <property name="text">
     <string>Contact Us</string>
    </property>
   </action>
-  <action name="actionEnter_a_Testimonial">
+  <action name="tab_Enter_a_Testimonial">
    <property name="text">
     <string>Testimonials</string>
    </property>
   </action>
-  <action name="actionOrder_some_nachos">
+  <action name="tab_Order_some_nachos">
    <property name="text">
     <string>Order some nachos</string>
    </property>
