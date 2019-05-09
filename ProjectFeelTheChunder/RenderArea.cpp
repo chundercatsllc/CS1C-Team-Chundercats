@@ -25,7 +25,8 @@ void RenderArea::addShape(Shape* shapeIn)
 {
     ShapeMagazine.push_back(shapeIn);
     numShapes++;
-    shapeIn->draw(this);
+    //shapeIn->draw(this);
+    this->update();
 }
 
 void RenderArea::chopShape(int i)
@@ -60,7 +61,7 @@ void RenderArea::writeShapeFile()
 {
 
 
-    QFile myFile("C:/Users/Oscar/Desktop/OOF-saddleback-cs1c/img/shape.txt");
+    QFile myFile(":/stuff/shapes.txt");
 
     if(!myFile.open( QIODevice::WriteOnly | QIODevice::Text))
     {
