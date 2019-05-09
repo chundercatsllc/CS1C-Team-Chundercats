@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/pix">
         <file>icon.png</file>
+		<file>loader.gif</file>
     </qresource>
     <qresource prefix="/stuff">
         <file>shapes.txt</file>

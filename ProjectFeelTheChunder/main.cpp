@@ -2,17 +2,19 @@
 #include <QApplication>
 #include "./database/dbconnection.h"
 #include "create_user.h"
+#include <QDialog>
+#include "login.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-    MainWindow w;
-    //w.show();
-    create_user c;
-    c.show();
+    //MainWindow w;
+   // w.show();
+    //dbConnection db;
+    //db.restTest();
+    //QString response = db.getShapeTypes();
 
-//    dbConnection db;
+    //qDebug()<<response;
 
-//    db.getShapes();
 	return a.exec();
 }

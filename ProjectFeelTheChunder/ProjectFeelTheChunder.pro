@@ -6,8 +6,10 @@
 
 QT       += core gui
 QT       += sql
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 
 TARGET = ProjectFeelTheChunder
 TEMPLATE = app
@@ -36,7 +38,8 @@ SOURCES += \
         shape.cpp \
         RenderArea.cpp \
         ./database/dbconnection.cpp \
-    create_user.cpp
+        create_user.cpp \
+        login.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,7 +48,8 @@ HEADERS += \
         RenderArea.h \
         shape.h \
         ./database/dbconnection.h \
-    create_user.h
+        create_user.h \
+        login.h
 
 
 FORMS += \
