@@ -40,6 +40,7 @@ void RenderArea::moveShape(int index, int coord, int x, int y)
     for(int i = 0; i < ShapeMagazine.sizeOf(); i++)
         if(ShapeMagazine[i]->getID() == index){
             ShapeMagazine[i]->move(x,y,coord); break; }
+    this->update();
 }
 
 int RenderArea::getSize()

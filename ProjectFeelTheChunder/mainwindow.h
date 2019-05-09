@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListView>
 #include <QComboBox>
+#include <QSpinBox>
 #include "RenderArea.h"
 #include "shape.h"
 
@@ -21,31 +22,31 @@ class MainWindow : public QMainWindow
 
         void allowMeddling(bool YN) {meddleable = YN;}
 
-        void getShapeType();
+        void getShapeType(QComboBox * combo);
 
-        void getPenColor();
+        void getPenColor(QComboBox * combo);
 
-        void getPenStyle();
+        void getPenStyle(QComboBox * combo);
 
-        void getPenCapStyle();
+        void getPenCapStyle(QComboBox * combo);
 
-        void getPenJoinStyle();
+        void getPenJoinStyle(QComboBox * combo);
 
-        void getBrushColor();
+        void getBrushColor(QComboBox * combo);
 
-        void getBrushStyle();
+        void getBrushStyle(QComboBox * combo);
 
-        Qt::AlignmentFlag getAlign();
+        Qt::AlignmentFlag getAlign(QComboBox * combo);
 
-        Qt::GlobalColor getTextColor();
+        Qt::GlobalColor getTextColor(QComboBox * combo);
 
-        QFont::Weight getTextWeight();
+        QFont::Weight getTextWeight(QComboBox * combo);
 
-        QFont::Style getTextStyle();
+        QFont::Style getTextStyle(QComboBox * combo);
 
-        QString getFontFamily();
+        QString getFontFamily(QComboBox * combo);
 
-        void getPenWidth();
+        void getPenWidth(QSpinBox * spinster);
 
         void setShapeNonsense(Shape * shape, Shape::ShapeType, int id, Qt::GlobalColor pc, int pw, Qt::PenStyle ps, Qt::PenCapStyle pcs, Qt::PenJoinStyle pjs, Qt::GlobalColor bc, Qt::BrushStyle bs);
 
@@ -82,6 +83,8 @@ private slots:
         void on_start_delete_button_clicked();
 
         void on_erase_it_button_clicked();
+
+        void on_change_it_button_clicked();
 
 private:
         Ui::MainWindow *ui;

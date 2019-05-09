@@ -26,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     comboTrickShapes(ui->shapeType_box);
     comboTrickColors(ui->pen_color_box);
-    comboTrickColors(ui->pen_style_box);
-    comboTrickPenStyles(ui->pen_cap_style_box);
+    comboTrickPenStyles(ui->pen_style_box);
+    comboTrickPenCapStyles(ui->pen_cap_style_box);
     comboTrickPenJoinStyles(ui->pen_join_style_box);
     comboTrickBushStyle(ui->brush_style_box);
     comboTrickColors(ui->brush_color_box);
@@ -36,6 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
     comboTrickFontWeight(ui->text_weight_box);
     comboTrickColors(ui->text_color_box);
     comboTrickFontStyle(ui->text_style_box);
+    comboTrickColors(ui->pen_color_edit_box);
+    comboTrickPenStyles(ui->pen_style_edit_box);
+    comboTrickPenCapStyles(ui->pen_cap_style_edit_box);
+    comboTrickPenJoinStyles(ui->pen_join_style_edit_box);
+    comboTrickBushStyle(ui->brush_style_edit_box);
+    comboTrickColors(ui->brush_color_edit_box);
+
 
     ui->menuStack->setCurrentWidget(ui->start_page);
     QMovie *movie = new QMovie(":/pix/heckyeah.gif");
@@ -166,9 +173,9 @@ void MainWindow::comboTrickFontStyle(QComboBox *combo)
     combo->addItem("Oblique");
 }
 
-void MainWindow::getShapeType()
+void MainWindow::getShapeType(QComboBox * combo)
 {
-    switch(ui->shapeType_box->currentIndex())
+    switch(combo->currentIndex())
     {
         case 0: The_shapeType = Shape::ShapeType::Line; break;
         case 1: The_shapeType = Shape::ShapeType::Polyline; break;
@@ -180,9 +187,9 @@ void MainWindow::getShapeType()
     }
 }
 
-void MainWindow::getPenColor()
+void MainWindow::getPenColor(QComboBox * combo)
 {
-    switch(ui->pen_color_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {The_penColor = Qt::white;
         break;}
@@ -206,14 +213,14 @@ void MainWindow::getPenColor()
     }
 }
 
-void MainWindow::getPenWidth()
+void MainWindow::getPenWidth(QSpinBox * spinster)
 {
-    The_penWidth = ui->spinBox_setPenWidth->value();
+    The_penWidth = spinster->value();
 }
 
-void MainWindow::getPenStyle()
+void MainWindow::getPenStyle(QComboBox * combo)
 {
-    switch(ui->pen_style_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {The_penStyle = Qt::SolidLine;
         break;}
@@ -231,9 +238,9 @@ void MainWindow::getPenStyle()
     }
 }
 
-void MainWindow::getPenCapStyle()
+void MainWindow::getPenCapStyle(QComboBox * combo)
 {
-    switch (ui->pen_cap_style_box->currentIndex())
+    switch (combo->currentIndex())
     {
     case 0: {The_penCap = Qt::SquareCap;
         break;}
@@ -245,9 +252,9 @@ void MainWindow::getPenCapStyle()
     }
 }
 
-void MainWindow::getPenJoinStyle()
+void MainWindow::getPenJoinStyle(QComboBox * combo)
 {
-    switch(ui->pen_join_style_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {The_penJoinStyle = Qt::MiterJoin;
         break;}
@@ -259,9 +266,9 @@ void MainWindow::getPenJoinStyle()
     }
 }
 
-void MainWindow::getBrushColor()
+void MainWindow::getBrushColor(QComboBox * combo)
 {
-    switch(ui->brush_color_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {The_brushColor = Qt::white;
         break;}
@@ -285,9 +292,9 @@ void MainWindow::getBrushColor()
     }
 }
 
-void MainWindow::getBrushStyle()
+void MainWindow::getBrushStyle(QComboBox * combo)
 {
-    switch (ui->brush_style_box->currentIndex())
+    switch (combo->currentIndex())
     {
     case 0: {The_brushStyle = Qt::NoBrush;
         break;}
@@ -301,9 +308,9 @@ void MainWindow::getBrushStyle()
     }
 }
 
-Qt::AlignmentFlag MainWindow::getAlign()
+Qt::AlignmentFlag MainWindow::getAlign(QComboBox * combo)
 {
-    switch(ui->text_align_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {return Qt::AlignLeft;
         break;}
@@ -327,9 +334,9 @@ Qt::AlignmentFlag MainWindow::getAlign()
     }
 }
 
-Qt::GlobalColor MainWindow::getTextColor()
+Qt::GlobalColor MainWindow::getTextColor(QComboBox * combo)
 {
-    switch(ui->text_color_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {return Qt::white;
         break;}
@@ -353,9 +360,9 @@ Qt::GlobalColor MainWindow::getTextColor()
     }
 }
 
-QFont::Weight MainWindow::getTextWeight()
+QFont::Weight MainWindow::getTextWeight(QComboBox * combo)
 {
-    switch(ui->text_weight_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {return QFont::Thin;
         break;}
@@ -369,9 +376,9 @@ QFont::Weight MainWindow::getTextWeight()
     }
 }
 
-QFont::Style MainWindow::getTextStyle()
+QFont::Style MainWindow::getTextStyle(QComboBox * combo)
 {
-    switch(ui->text_style_box->currentIndex())
+    switch(combo->currentIndex())
     {
     case 0: {return QFont::StyleNormal;
         break;}
@@ -383,9 +390,9 @@ QFont::Style MainWindow::getTextStyle()
     }
 }
 
-QString MainWindow::getFontFamily()
+QString MainWindow::getFontFamily(QComboBox * combo)
 {
-   return ui->text_font_box->currentText();
+   return combo->currentText();
 }
 
 void MainWindow::on_build_it_final_button_clicked()
@@ -521,8 +528,8 @@ void MainWindow::on_build_it_final_button_clicked()
             int size = ui->text_font_size_spinbox->value();
             thingymabob->setDimensions(width, length);
             thingymabob->setLocation(x,y);
-            thingymabob->setFlag(getAlign());
-            thingymabob->setFont(getFontFamily(), getTextStyle(), size, getTextWeight(), getTextColor());
+            thingymabob->setFlag(getAlign(ui->text_align_box));
+            thingymabob->setFont(getFontFamily(ui->text_font_box), getTextStyle(ui->text_style_box), size, getTextWeight(ui->text_weight_box), getTextColor(ui->text_color_box));
             thingymabob->setText(text);
             ui->target->addShape(thingymabob);
         } break;
@@ -580,14 +587,14 @@ void MainWindow::on_build_it_button_clicked()
 
     ui->menuStack->setCurrentWidget(ui->add_final_page);
 
-    getShapeType();
-    getPenColor();
-    getPenStyle();
-    getPenCapStyle();
-    getPenWidth();
-    getPenJoinStyle();
-    getBrushColor();
-    getBrushStyle();
+    getShapeType(ui->shapeType_box);
+    getPenColor(ui->pen_color_box);
+    getPenStyle(ui->pen_style_box);
+    getPenCapStyle(ui->pen_cap_style_box);
+    getPenWidth(ui->spinBox_setPenWidth);
+    getPenJoinStyle(ui->pen_join_style_box);
+    getBrushColor(ui->brush_color_box);
+    getBrushStyle(ui->brush_style_box);
 
     debugPrintShapeInfo();
 
@@ -647,4 +654,18 @@ void MainWindow::on_erase_it_button_clicked()
 {
     int id = ui->shape_id_delete_spin->value();
     ui->target->chopShape(id);
+}
+
+void MainWindow::on_change_it_button_clicked()
+{
+    int id = ui->shapeID_edit_spin->value();
+    getPenColor(ui->pen_color_edit_box);
+    getPenStyle(ui->pen_style_edit_box);
+    getPenCapStyle(ui->pen_cap_style_edit_box);
+    getPenJoinStyle(ui->pen_join_style_edit_box);
+    getPenWidth(ui->pen_width_edit_spin);
+    getBrushColor(ui->brush_color_edit_box);
+    getBrushStyle(ui->brush_style_edit_box);
+
+
 }
