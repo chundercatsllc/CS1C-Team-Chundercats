@@ -17,13 +17,16 @@
    <iconset>
     <normaloff>thundercats.png</normaloff>thundercats.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>50</y>
-     <width>328</width>
-     <height>317</height>
+     <x>-3</x>
+     <y>6</y>
+     <width>431</width>
+     <height>371</height>
     </rect>
    </property>
    <property name="title">
@@ -60,6 +63,9 @@
       </item>
       <item>
        <widget class="QLabel" name="label_username">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>Username</string>
         </property>
@@ -100,8 +106,11 @@
       </item>
       <item>
        <widget class="QLabel" name="label_password">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
-         <string>Password</string>
+         <string> Password </string>
         </property>
        </widget>
       </item>
@@ -182,7 +191,30 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>421</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="siccpixandstuff.qrc">:/pix/andre.JPG</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>groupBox</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="siccpixandstuff.qrc"/>
+ </resources>
  <connections/>
 </ui>

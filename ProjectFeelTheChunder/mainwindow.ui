@@ -204,6 +204,22 @@ border-bottom-color: rgb(0, 0, 0);
        <string>Testimonials</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="login_button">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>290</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>Login</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="add_page">
      <widget class="QLabel" name="title_label">

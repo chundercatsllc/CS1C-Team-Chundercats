@@ -8,6 +8,8 @@
 #include "RenderArea.h"
 #include "shape.h"
 #include "testimonials.h"
+#include "contactus.h"
+#include "login.h"
 
 namespace Ui {
 class MainWindow;
@@ -89,9 +91,15 @@ private slots:
 
         void on_testimonial_button_clicked();
 
+        void on_thank_kanye_button_clicked();
+
+        void on_login_button_clicked();
+
 private:
         Ui::MainWindow *ui;
         Testimonials * testis;
+        contactUs * contactPage;
+        Login * loginPage;
         bool meddleable{false};
 
         Shape::ShapeType The_shapeType{Shape::ShapeType::Rectangle};
@@ -102,8 +110,6 @@ private:
         Qt::GlobalColor  The_brushColor{Qt::GlobalColor::blue};
         Qt::BrushStyle   The_brushStyle{Qt::BrushStyle::SolidPattern};
         int              The_penWidth{4};
-
-
 };
 
 #endif // MAINWINDOW_H

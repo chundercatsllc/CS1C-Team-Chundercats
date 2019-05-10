@@ -49,9 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     processLabel->setMovie(movie);
     movie->start();
 
-    testis = new Testimonials();
-
-
+    testis      = new Testimonials();
+    contactPage = new contactUs();
+    loginPage   = new Login();
 }
 
 MainWindow::~MainWindow()
@@ -675,4 +675,14 @@ void MainWindow::on_testimonial_button_clicked()
 {
     testis->show();
 
+}
+
+void MainWindow::on_thank_kanye_button_clicked()
+{
+    contactPage->show();
+}
+
+void MainWindow::on_login_button_clicked()
+{
+    loginPage->show();
 }

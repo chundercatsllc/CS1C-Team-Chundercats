@@ -31,7 +31,10 @@ SOURCES += \
         mainwindow.cpp \
         shape.cpp \
         RenderArea.cpp \
-    testimonials.cpp
+        dbconnection.cpp \
+    testimonials.cpp \
+    login.cpp \
+    contactus.cpp
 
 
 
@@ -41,12 +44,17 @@ HEADERS += \
         containers/AwesomeVector.h \
         RenderArea.h \
         shape.h \
-    testimonials.h
+        login.h \
+    dbconnection.h \
+    testimonials.h \
+    contactus.h
 
 
 FORMS += \
         mainwindow.ui \
-    testimonials.ui
+    testimonials.ui \
+    login.ui \
+    contactus.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -57,5 +65,4 @@ RESOURCES += \
     siccpixandstuff.qrc
 
 DISTFILES += \
-    FileParser/shapes.txt \
-    obamanation.gif
+    FileParser/shapes.txt
