@@ -21,7 +21,15 @@ public:
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
     virtual ~Shape(){}
 
-   // const Shape& operator=(const Shape& other);
+   const Shape& operator=(const Shape& other)
+    {
+        brush = other.brush;
+        pen = other.pen;
+        id = other.id;
+        shape = other.shape;
+        return *this;
+    }
+
     void setShape(ShapeType);
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
     void setPen(Qt::GlobalColor);

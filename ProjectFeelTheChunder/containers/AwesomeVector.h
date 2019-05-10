@@ -81,13 +81,6 @@ private:
 
 /**************************************************************************/
 
-/*
-template <typename T>
-theVectorator<T> AwesomeVector<T>::begin()
-{
-	theVectorator<T> temp(
-	return 
-                */
 template<typename T>
 void AwesomeVector<T>::copyV(const AwesomeVector<T> &other)
 {

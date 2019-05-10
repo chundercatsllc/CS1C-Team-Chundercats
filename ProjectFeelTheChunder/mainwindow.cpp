@@ -674,7 +674,6 @@ void MainWindow::on_change_it_button_clicked()
 void MainWindow::on_testimonial_button_clicked()
 {
     testis->show();
-
 }
 
 void MainWindow::on_thank_kanye_button_clicked()
