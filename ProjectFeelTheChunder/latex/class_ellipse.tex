@@ -1,0 +1,212 @@
+\section{Ellipse Class Reference}
+\label{class_ellipse}\index{Ellipse@{Ellipse}}
+
+
+\doxyref{Ellipse}{p.}{class_ellipse} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Ellipse\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_ellipse}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Ellipse} (Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Ellipse}{p.}{class_ellipse} Class constructor. \end{DoxyCompactList}\item 
+{\bf $\sim$\+Ellipse} () override\label{class_ellipse_af7b546b29a2f8ce3494f9d02143a621c}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Ellipse}{p.}{class_ellipse} Class destructor. \end{DoxyCompactList}\item 
+void {\bf move} (int x, int y, int na) override
+\begin{DoxyCompactList}\small\item\em move function to move an ellipse \end{DoxyCompactList}\item 
+void {\bf draw} (Q\+Paint\+Device $\ast$device) override
+\begin{DoxyCompactList}\small\item\em draw function to draw an ellipse \end{DoxyCompactList}\item 
+double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of ellipse \end{DoxyCompactList}\item 
+double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimeter function to calculate perimeter of ellipse \end{DoxyCompactList}\item 
+double {\bf get\+Width} ()\label{class_ellipse_a79b45a55a6dc182866659c00535bba5e}
+
+\begin{DoxyCompactList}\small\item\em get\+Width function for ellipse class, function returns a double width \end{DoxyCompactList}\item 
+double {\bf get\+Height} ()\label{class_ellipse_acd5005522d00f0e3235a2d4d931c0e39}
+
+\begin{DoxyCompactList}\small\item\em get\+Height function for ellipse class, function returns a double height \end{DoxyCompactList}\item 
+Q\+Point \& {\bf get\+Location} ()\label{class_ellipse_a39951db608b73cb66b250e2811680faf}
+
+\begin{DoxyCompactList}\small\item\em get\+Location function for ellipse class, function returns a Q\+Point location \end{DoxyCompactList}\item 
+void {\bf set\+Dimensions} (double w, double h)
+\begin{DoxyCompactList}\small\item\em set\+Dimensions function for ellipse \end{DoxyCompactList}\item 
+void {\bf set\+Location} (int x, int y)
+\begin{DoxyCompactList}\small\item\em set\+Location function for ellipse \end{DoxyCompactList}\item 
+void {\bf set\+Location} (Q\+Point pt)
+\begin{DoxyCompactList}\small\item\em set\+Location function for ellipse \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Ellipse}{p.}{class_ellipse} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Ellipse@{Ellipse}!Ellipse@{Ellipse}}
+\index{Ellipse@{Ellipse}!Ellipse@{Ellipse}}
+\subsubsection[{Ellipse(\+Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Ellipse\+::\+Ellipse (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_ellipse_af31f4f441414671f76c60b03516eb5d6}
+
+
+\doxyref{Ellipse}{p.}{class_ellipse} Class constructor. 
+
+\doxyref{Ellipse}{p.}{class_ellipse} constructor requires two parameters. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device, initialized to nullptr to avoid conflict \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Ellipse@{Ellipse}!area@{area}}
+\index{area@{area}!Ellipse@{Ellipse}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}double Ellipse\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_ellipse_abdcc9bf2ca75e53000eecd7fce16d1ea}
+
+
+area function to calculate area of ellipse 
+
+area function overrides the virtual area function of abstract base class shape. Function returns a double. No parameters are passed into area. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Ellipse@{Ellipse}!draw@{draw}}
+\index{draw@{draw}!Ellipse@{Ellipse}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$device) override}]{\setlength{\rightskip}{0pt plus 5cm}void Ellipse\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_ellipse_ae83718bf96925955fa48c14a4217c73c}
+
+
+draw function to draw an ellipse 
+
+draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Ellipse@{Ellipse}!move@{move}}
+\index{move@{move}!Ellipse@{Ellipse}}
+\subsubsection[{move(int x, int y, int na) override}]{\setlength{\rightskip}{0pt plus 5cm}void Ellipse\+::move (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{na}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_ellipse_a1929dda25f9dc816835e05c57937d34a}
+
+
+move function to move an ellipse 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+{\em na} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Ellipse@{Ellipse}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Ellipse@{Ellipse}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}double Ellipse\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_ellipse_abb2c4bca7f3c88c16a81f6ecb9d93e5c}
+
+
+perimeter function to calculate perimeter of ellipse 
+
+perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double. No parameters are passed into area. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+\index{Ellipse@{Ellipse}!set\+Dimensions@{set\+Dimensions}}
+\index{set\+Dimensions@{set\+Dimensions}!Ellipse@{Ellipse}}
+\subsubsection[{set\+Dimensions(double w, double h)}]{\setlength{\rightskip}{0pt plus 5cm}void Ellipse\+::set\+Dimensions (
+\begin{DoxyParamCaption}
+\item[{double}]{w, }
+\item[{double}]{h}
+\end{DoxyParamCaption}
+)}\label{class_ellipse_af3e06272b3d22f3249ff04288df1f6dd}
+
+
+set\+Dimensions function for ellipse 
+
+set\+Dimensions function requires two parameters. The class member variables width and height are set from these parameters. 
+\begin{DoxyParams}{Parameters}
+{\em w} & is of type double \\
+\hline
+{\em h} & is of type double \\
+\hline
+\end{DoxyParams}
+\index{Ellipse@{Ellipse}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Ellipse@{Ellipse}}
+\subsubsection[{set\+Location(int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}void Ellipse\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_ellipse_aa24fd99eedbfc4b45c2b2c2a11cd5759}
+
+
+set\+Location function for ellipse 
+
+set\+Location function requires two arguments. Takes the two arguments and makes a coordinate pair (Q\+Point) consisting of these values. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Ellipse@{Ellipse}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Ellipse@{Ellipse}}
+\subsubsection[{set\+Location(\+Q\+Point pt)}]{\setlength{\rightskip}{0pt plus 5cm}void Ellipse\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{Q\+Point}]{pt}
+\end{DoxyParamCaption}
+)}\label{class_ellipse_a4af4a28871b606d434fc62aee9f82c24}
+
+
+set\+Location function for ellipse 
+
+set\+Location function requires a single parameter. The class memeber variable location is set to the Q\+Point parameter passed in. 
+\begin{DoxyParams}{Parameters}
+{\em pt} & is of type Q\+Point \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

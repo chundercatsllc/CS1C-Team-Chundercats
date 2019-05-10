@@ -1,0 +1,251 @@
+\section{Text Class Reference}
+\label{class_text}\index{Text@{Text}}
+
+
+\doxyref{Text}{p.}{class_text} Class\+: Public Inheritance From \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Text\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_text}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Text} (Q\+Paint\+Device $\ast$dev=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Text}{p.}{class_text} Class Constructor. \end{DoxyCompactList}\item 
+void {\bf draw} (Q\+Paint\+Device $\ast$dev) override
+\begin{DoxyCompactList}\small\item\em draw function to draw a text \end{DoxyCompactList}\item 
+void {\bf move} (int x, int y, int junk) override
+\begin{DoxyCompactList}\small\item\em move function to move a text \end{DoxyCompactList}\item 
+double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of a text \end{DoxyCompactList}\item 
+double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimeter function to calculate permiter of a text \end{DoxyCompactList}\item 
+void {\bf set\+Text} (Q\+String new\+Text)
+\begin{DoxyCompactList}\small\item\em set\+Text function to set the font of the text \end{DoxyCompactList}\item 
+void {\bf set\+Box\+Width} (int new\+Box\+Width)
+\begin{DoxyCompactList}\small\item\em set\+Box\+Width function \end{DoxyCompactList}\item 
+void {\bf set\+Box\+Height} (int new\+Box\+Height)\label{class_text_a7ecc194467d74cecff8b0027cb3534f5}
+
+\begin{DoxyCompactList}\small\item\em set\+Box\+Height function \end{DoxyCompactList}\item 
+void {\bf set\+Flag} (Qt\+::\+Alignment\+Flag flag)\label{class_text_af96574d035d39aaec84660de28dd9116}
+
+\begin{DoxyCompactList}\small\item\em set\+Flag function \end{DoxyCompactList}\item 
+void {\bf set\+Location} (int x, int y)
+\begin{DoxyCompactList}\small\item\em set\+Location function for text \end{DoxyCompactList}\item 
+void {\bf set\+Location} (Q\+Point pt)
+\begin{DoxyCompactList}\small\item\em Set\+Location function for text. \end{DoxyCompactList}\item 
+void {\bf set\+Dimensions} (int w, int h)
+\begin{DoxyCompactList}\small\item\em set\+Dimensions function for text \end{DoxyCompactList}\item 
+Q\+Font \& {\bf get\+Font} ()\label{class_text_aceef51d21bc54b84d040db42e425acd1}
+
+\begin{DoxyCompactList}\small\item\em get\+Font function returns the font of the text. \end{DoxyCompactList}\item 
+Qt\+::\+Alignment\+Flag {\bf get\+Flag} ()\label{class_text_abc42bd7502e8441a041f50695880bc8c}
+
+\begin{DoxyCompactList}\small\item\em get\+Flag function returns the horizontal or vertical flag. \end{DoxyCompactList}\item 
+Q\+String {\bf get\+Text} ()\label{class_text_a0315e3d6a80d496496838330e018e7e8}
+
+\begin{DoxyCompactList}\small\item\em get\+Text returns the text object which provides a unicode character string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Text}{p.}{class_text} Class\+: Public Inheritance From \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text(\+Q\+Paint\+Device $\ast$dev=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Text\+::\+Text (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{dev = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_text_ae56225ea39562e2cc7b401b017d175b5}
+
+
+\doxyref{Text}{p.}{class_text} Class Constructor. 
+
+\doxyref{Text}{p.}{class_text} Class constructor takes in 2 arguments 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$dev} & is a pointer of type Q\+Paint\+Device, initialized to nullptr to avoid conflict. \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Text@{Text}!area@{area}}
+\index{area@{area}!Text@{Text}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}double Text\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_text_ab9d0f9643d33550828eb23e3a5436036}
+
+
+area function to calculate area of a text 
+
+area function overrides the virtual area function of abstract base class shape. Function returns a double. No parameters are passed into area. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Text@{Text}!draw@{draw}}
+\index{draw@{draw}!Text@{Text}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$dev) override}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{dev}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_text_a2401b42a363c41b8be6219eb1b14d08f}
+
+
+draw function to draw a text 
+
+draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$dev} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Text@{Text}!move@{move}}
+\index{move@{move}!Text@{Text}}
+\subsubsection[{move(int x, int y, int junk) override}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::move (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{junk}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_text_af684963e401cbbddab1c3b5032e733bc}
+
+
+move function to move a text 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+{\em junk} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Text@{Text}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Text@{Text}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}double Text\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_text_aba53a89dd7a2fae148a403a8c4d2e9b1}
+
+
+perimeter function to calculate permiter of a text 
+
+perimeter function overrides the virtual perimter function of abstract base class shape. Function returns a double. No parameters are passed into area. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+\index{Text@{Text}!set\+Box\+Width@{set\+Box\+Width}}
+\index{set\+Box\+Width@{set\+Box\+Width}!Text@{Text}}
+\subsubsection[{set\+Box\+Width(int new\+Box\+Width)}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::set\+Box\+Width (
+\begin{DoxyParamCaption}
+\item[{int}]{new\+Box\+Width}
+\end{DoxyParamCaption}
+)}\label{class_text_a83117073736a3c882180b46e9af22135}
+
+
+set\+Box\+Width function 
+
+set\+Box\+Width sets class member variable box\+Width to parameter new\+Box\+Width. 
+\begin{DoxyParams}{Parameters}
+{\em new\+Box\+Width} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Text@{Text}!set\+Dimensions@{set\+Dimensions}}
+\index{set\+Dimensions@{set\+Dimensions}!Text@{Text}}
+\subsubsection[{set\+Dimensions(int w, int h)}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::set\+Dimensions (
+\begin{DoxyParamCaption}
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)}\label{class_text_a4dfaf7c6694970dff0ff50f2205802da}
+
+
+set\+Dimensions function for text 
+
+set\+Dimensions function requires two parameters. The class member variables box\+Width and box\+Height are set from these parameters. 
+\begin{DoxyParams}{Parameters}
+{\em w} & is of type int \\
+\hline
+{\em h} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Text@{Text}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Text@{Text}}
+\subsubsection[{set\+Location(int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_text_a3d48c0d2794e52b4fa525d5d7e2ddf2f}
+
+
+set\+Location function for text 
+
+set\+Location function requires two arguments. Takes the two arguments and makes a coordinate pair consisting of these values. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Text@{Text}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Text@{Text}}
+\subsubsection[{set\+Location(\+Q\+Point pt)}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{Q\+Point}]{pt}
+\end{DoxyParamCaption}
+)}\label{class_text_a86d801852c8fe7d736915f2386b1134f}
+
+
+Set\+Location function for text. 
+
+set\+Location function requires a single parameter. The class memeber variable location is set to the Q\+Point parameter passed in. 
+\begin{DoxyParams}{Parameters}
+{\em pt} & is of type Q\+Point \\
+\hline
+\end{DoxyParams}
+\index{Text@{Text}!set\+Text@{set\+Text}}
+\index{set\+Text@{set\+Text}!Text@{Text}}
+\subsubsection[{set\+Text(\+Q\+String new\+Text)}]{\setlength{\rightskip}{0pt plus 5cm}void Text\+::set\+Text (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{new\+Text}
+\end{DoxyParamCaption}
+)}\label{class_text_a9e7c48bfb75a9c2ddf246dc0a7add7e4}
+
+
+set\+Text function to set the font of the text 
+
+set\+Text requires a Q\+String parameter 
+\begin{DoxyParams}{Parameters}
+{\em new\+Text} & is of type Q\+String \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

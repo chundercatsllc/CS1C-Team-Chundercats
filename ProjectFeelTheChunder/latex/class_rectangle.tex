@@ -1,0 +1,235 @@
+\section{Rectangle Class Reference}
+\label{class_rectangle}\index{Rectangle@{Rectangle}}
+
+
+\doxyref{Rectangle}{p.}{class_rectangle} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Rectangle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_rectangle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Rectangle} (Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Rectangle}{p.}{class_rectangle} Class Constructor. \end{DoxyCompactList}\item 
+{\bf $\sim$\+Rectangle} () override\label{class_rectangle_a6e3ed18583022b35e04c109345d1e7d6}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Rectangle}{p.}{class_rectangle} Class Destructor. \end{DoxyCompactList}\item 
+void {\bf draw} (Q\+Paint\+Device $\ast$device) override
+\begin{DoxyCompactList}\small\item\em draw function to draw a rectangle \end{DoxyCompactList}\item 
+void {\bf move} (int x, int y, int junk) override
+\begin{DoxyCompactList}\small\item\em move function to move a rectangle \end{DoxyCompactList}\item 
+double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of rectangle \end{DoxyCompactList}\item 
+double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimeter function to calculate perimeter of rectangle \end{DoxyCompactList}\item 
+void {\bf set\+Location} (int x, int y)
+\begin{DoxyCompactList}\small\item\em set\+Location function for rectangle \end{DoxyCompactList}\item 
+void {\bf set\+Location} (Q\+Point pt)
+\begin{DoxyCompactList}\small\item\em set\+Location function for rectangle \end{DoxyCompactList}\item 
+void {\bf set\+Dimensions} (double w, double h)
+\begin{DoxyCompactList}\small\item\em set\+Dimensions function for rectangle \end{DoxyCompactList}\item 
+void {\bf set\+All} (double w, double h, int x, int y)
+\item 
+double {\bf get\+Width} ()\label{class_rectangle_a9911b718370d9f9c987c1c5f85379b09}
+
+\begin{DoxyCompactList}\small\item\em get\+Width function for rectangle class, function returns a double width \end{DoxyCompactList}\item 
+double {\bf get\+Height} ()\label{class_rectangle_a78c23ebff32769d54b568536d76af7f8}
+
+\begin{DoxyCompactList}\small\item\em get\+Height function for rectangle class, function returns a double height \end{DoxyCompactList}\item 
+Q\+Point \& {\bf get\+Location} ()\label{class_rectangle_ad8582dd6add9118e20ab354d6f87bc91}
+
+\begin{DoxyCompactList}\small\item\em get\+Location function for rectangle class, function returns a Q\+Point location \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Rectangle}{p.}{class_rectangle} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Rectangle@{Rectangle}!Rectangle@{Rectangle}}
+\index{Rectangle@{Rectangle}!Rectangle@{Rectangle}}
+\subsubsection[{Rectangle(\+Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Rectangle\+::\+Rectangle (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_rectangle_a0deed87f87e92f3b48621ff91d7e544f}
+
+
+\doxyref{Rectangle}{p.}{class_rectangle} Class Constructor. 
+
+\doxyref{Rectangle}{p.}{class_rectangle} Class constructor takes in two arguments. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device, initialized to nullptr to avoid conflict \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Rectangle@{Rectangle}!area@{area}}
+\index{area@{area}!Rectangle@{Rectangle}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}double Rectangle\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_rectangle_a6b3912c47937ed46693249ad0b8081c9}
+
+
+area function to calculate area of rectangle 
+
+area function overrides the virtual area function of abstract base class shape. Function returns a double. No parameters are passed into area. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Rectangle@{Rectangle}!draw@{draw}}
+\index{draw@{draw}!Rectangle@{Rectangle}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$device) override}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_rectangle_aa7b84289ee0e504fd5dee6fe5aa7f425}
+
+
+draw function to draw a rectangle 
+
+draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Rectangle@{Rectangle}!move@{move}}
+\index{move@{move}!Rectangle@{Rectangle}}
+\subsubsection[{move(int x, int y, int junk) override}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::move (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{junk}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_rectangle_a6f689d4bcf53f18bd4325200259a9da3}
+
+
+move function to move a rectangle 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+{\em junk} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Rectangle@{Rectangle}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Rectangle@{Rectangle}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}double Rectangle\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_rectangle_a1672f74c28fa25703683f13d02e182a6}
+
+
+perimeter function to calculate perimeter of rectangle 
+
+perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double. No parameters are passed into perimeter. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+\index{Rectangle@{Rectangle}!set\+All@{set\+All}}
+\index{set\+All@{set\+All}!Rectangle@{Rectangle}}
+\subsubsection[{set\+All(double w, double h, int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::set\+All (
+\begin{DoxyParamCaption}
+\item[{double}]{w, }
+\item[{double}]{h, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_rectangle_a583a73ee34b4ce7b60459922dbb2094d}
+set\+All function requires four parameters. The class member functions width, height, location are set from these arguments. In this function, the set\+Location and set\+Dimension functions are being called. 
+\begin{DoxyParams}{Parameters}
+{\em w} & is of type double \\
+\hline
+{\em h} & is of type double \\
+\hline
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Rectangle@{Rectangle}!set\+Dimensions@{set\+Dimensions}}
+\index{set\+Dimensions@{set\+Dimensions}!Rectangle@{Rectangle}}
+\subsubsection[{set\+Dimensions(double w, double h)}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::set\+Dimensions (
+\begin{DoxyParamCaption}
+\item[{double}]{w, }
+\item[{double}]{h}
+\end{DoxyParamCaption}
+)}\label{class_rectangle_a10a5a88119f55914c1d9d68a7678d457}
+
+
+set\+Dimensions function for rectangle 
+
+set\+Dimensions function requires two parameters. The class member variables width and height are set from these parameters. 
+\begin{DoxyParams}{Parameters}
+{\em w} & is of type double \\
+\hline
+{\em h} & is of type double \\
+\hline
+\end{DoxyParams}
+\index{Rectangle@{Rectangle}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Rectangle@{Rectangle}}
+\subsubsection[{set\+Location(int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_rectangle_a6d2dd7280e01d1d3a044a852d0b42619}
+
+
+set\+Location function for rectangle 
+
+set\+Location function requires two arguments. Takes the two arguments and makes a coordinate pair (Q\+Point) consisting of these values. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Rectangle@{Rectangle}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Rectangle@{Rectangle}}
+\subsubsection[{set\+Location(\+Q\+Point pt)}]{\setlength{\rightskip}{0pt plus 5cm}void Rectangle\+::set\+Location (
+\begin{DoxyParamCaption}
+\item[{Q\+Point}]{pt}
+\end{DoxyParamCaption}
+)}\label{class_rectangle_a3e38c916a6685543e8a2196f25d6ebdc}
+
+
+set\+Location function for rectangle 
+
+set\+Location function requires a single parameter. The class memeber variable location is set to the Q\+Point parameter passed in. 
+\begin{DoxyParams}{Parameters}
+{\em pt} & is of type Q\+Point \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

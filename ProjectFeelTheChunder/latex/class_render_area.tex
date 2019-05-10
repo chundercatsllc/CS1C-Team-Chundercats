@@ -1,0 +1,165 @@
+\section{Render\+Area Class Reference}
+\label{class_render_area}\index{Render\+Area@{Render\+Area}}
+
+
+\doxyref{Render\+Area}{p.}{class_render_area} Class\+: Public Inheritance from Q\+Widget.  
+
+
+
+
+{\ttfamily \#include $<$Render\+Area.\+h$>$}
+
+Inheritance diagram for Render\+Area\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_render_area}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Render\+Area} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em \doxyref{Render\+Area}{p.}{class_render_area} Class Constutor. \end{DoxyCompactList}\item 
+void {\bf paint\+Event} (Q\+Paint\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em paint\+Event function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+Q\+Size {\bf size\+Hint} () const override
+\begin{DoxyCompactList}\small\item\em size\+Hint function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+Q\+Size {\bf minimum\+Size\+Hint} () const override
+\begin{DoxyCompactList}\small\item\em minimum\+Size\+Hint function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+const Awesome\+Vector$<$ {\bf Shape} $\ast$ $>$ \& {\bfseries get\+Shapes} ()\label{class_render_area_a02724ed9e0a5a14f845715be591bc9a5}
+
+\item 
+void {\bf add\+Shape} ({\bf Shape} $\ast$shape\+In)
+\begin{DoxyCompactList}\small\item\em add\+Shape function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+int {\bf get\+Size} ()
+\begin{DoxyCompactList}\small\item\em get\+Size function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+int {\bf get\+Num\+Shapes} ()\label{class_render_area_ab83495add26bd1613960ec46a49f9ea6}
+
+\begin{DoxyCompactList}\small\item\em get\+Num\+Shapes function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+void {\bf chop\+Shape} (int index\+Remove)\label{class_render_area_ab5846cdc9daaa9f83e7b4de78ba33be0}
+
+\begin{DoxyCompactList}\small\item\em chop\+Shape function for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\item 
+void {\bf move\+Shape} (int index\+Move, int coord\+Move, int x, int y)
+\begin{DoxyCompactList}\small\item\em move\+Shape fucntion for \doxyref{Render\+Area}{p.}{class_render_area} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\doxyref{Render\+Area}{p.}{class_render_area} Class\+: Public Inheritance from Q\+Widget. 
+
+\doxyref{Render\+Area}{p.}{class_render_area} is inheriting from Q\+Widget, thus has all the functionalities of Q\+Widget plus additional functions and variables that allow rendering of shapes defined by the shape class heirarchy. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Render\+Area@{Render\+Area}!Render\+Area@{Render\+Area}}
+\index{Render\+Area@{Render\+Area}!Render\+Area@{Render\+Area}}
+\subsubsection[{Render\+Area(\+Q\+Widget $\ast$parent=nullptr)}]{\setlength{\rightskip}{0pt plus 5cm}Render\+Area\+::\+Render\+Area (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)}\label{class_render_area_a6fa5a406003dc132605f8bc07763e946}
+
+
+\doxyref{Render\+Area}{p.}{class_render_area} Class Constutor. 
+
+\doxyref{Render\+Area}{p.}{class_render_area} Constructor takes in one paramater of type Q\+Widget$\ast$, initilaized to nullptr to avoid conflict. Q\+Widget is the base class for all user-\/interface objects 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$parent} & is of type Q\+Widget \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Render\+Area@{Render\+Area}!add\+Shape@{add\+Shape}}
+\index{add\+Shape@{add\+Shape}!Render\+Area@{Render\+Area}}
+\subsubsection[{add\+Shape(\+Shape $\ast$shape\+In)}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Area\+::add\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Shape} $\ast$}]{shape\+In}
+\end{DoxyParamCaption}
+)}\label{class_render_area_a7267206d6c6eeef44766fd4f2fd66046}
+
+
+add\+Shape function for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+add\+Shape adds a shape to the end of the class vector Shape\+Magazine. add\+Shape requires one parameter 
+\begin{DoxyParams}{Parameters}
+{\em shape\+In$\ast$} & is a pointer of type \doxyref{Shape}{p.}{class_shape}, nothing is being returned \\
+\hline
+\end{DoxyParams}
+\index{Render\+Area@{Render\+Area}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Render\+Area@{Render\+Area}}
+\subsubsection[{get\+Size()}]{\setlength{\rightskip}{0pt plus 5cm}int Render\+Area\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_render_area_a7d8692300a83a722094ff6ed5f29b627}
+
+
+get\+Size function for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+get\+Size returns the current size of the vector Shape\+Magazine. No parameters are required, and int value is returned \index{Render\+Area@{Render\+Area}!minimum\+Size\+Hint@{minimum\+Size\+Hint}}
+\index{minimum\+Size\+Hint@{minimum\+Size\+Hint}!Render\+Area@{Render\+Area}}
+\subsubsection[{minimum\+Size\+Hint() const override}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size Render\+Area\+::minimum\+Size\+Hint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}}\label{class_render_area_a323aaf2ce457d3a860bcac912ece7473}
+
+
+minimum\+Size\+Hint function for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+See size\+Hint \index{Render\+Area@{Render\+Area}!move\+Shape@{move\+Shape}}
+\index{move\+Shape@{move\+Shape}!Render\+Area@{Render\+Area}}
+\subsubsection[{move\+Shape(int index\+Move, int coord\+Move, int x, int y)}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Area\+::move\+Shape (
+\begin{DoxyParamCaption}
+\item[{int}]{index\+Move, }
+\item[{int}]{coord\+Move, }
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\label{class_render_area_abbf372edf98b6ea9952ab79e205ca3a2}
+
+
+move\+Shape fucntion for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+move\+Shape function finds the shape at the given index and moves it with the given input parameters. Moves the vertices of a given shape. 
+\begin{DoxyParams}{Parameters}
+{\em index\+Move} & is of type int \\
+\hline
+{\em coord\+Move} & is of type int \\
+\hline
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+\end{DoxyParams}
+\index{Render\+Area@{Render\+Area}!paint\+Event@{paint\+Event}}
+\index{paint\+Event@{paint\+Event}!Render\+Area@{Render\+Area}}
+\subsubsection[{paint\+Event(\+Q\+Paint\+Event $\ast$event) override}]{\setlength{\rightskip}{0pt plus 5cm}void Render\+Area\+::paint\+Event (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}}\label{class_render_area_ae9b5a1573f3b06590c717c7598ffaae4}
+
+
+paint\+Event function for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+paint\+Event function overrides a virtual paint\+Event within Q\+Widget, takes in a Q\+Paint\+Event pointer. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$event} & is of type Q\+Paint\+Event \\
+\hline
+\end{DoxyParams}
+\index{Render\+Area@{Render\+Area}!size\+Hint@{size\+Hint}}
+\index{size\+Hint@{size\+Hint}!Render\+Area@{Render\+Area}}
+\subsubsection[{size\+Hint() const override}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size Render\+Area\+::size\+Hint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}}\label{class_render_area_ac0b3e7195c5ba16eaa6590168db0f0cf}
+
+
+size\+Hint function for \doxyref{Render\+Area}{p.}{class_render_area} 
+
+size\+Hint function sets the size of the 2-\/D \char`\"{}canvas\char`\"{} upon which the shapes will be rendered. size\+Hint uses Q\+Size(int, int) to set the size of the \char`\"{}canvas\char`\"{}. No parameters required. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Render\+Area.\+h\end{DoxyCompactItemize}

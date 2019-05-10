@@ -1,0 +1,195 @@
+\section{Polygon Class Reference}
+\label{class_polygon}\index{Polygon@{Polygon}}
+
+
+\doxyref{Polygon}{p.}{class_polygon} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Polygon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_polygon}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Polygon} (Q\+Paint\+Device $\ast$dev=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Polygon}{p.}{class_polygon} Class constructor. \end{DoxyCompactList}\item 
+{\bf $\sim$\+Polygon} () override\label{class_polygon_ad289583dba86760f78296670c95b1eb7}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Polygon}{p.}{class_polygon} Class Destructor. \end{DoxyCompactList}\item 
+virtual void {\bf draw} (Q\+Paint\+Device $\ast$dev) override
+\begin{DoxyCompactList}\small\item\em draw function to draw a \doxyref{Polygon}{p.}{class_polygon} \end{DoxyCompactList}\item 
+virtual void {\bf move} (int x, int y, int vertex) override
+\begin{DoxyCompactList}\small\item\em move function to move a polygon \end{DoxyCompactList}\item 
+virtual double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of polygon \end{DoxyCompactList}\item 
+virtual double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimter function to calculate perimeter of polygon \end{DoxyCompactList}\item 
+void {\bf set\+Num\+Vertices} (int num\+Vertices)
+\begin{DoxyCompactList}\small\item\em set\+Num\+Vertices function sets the nummber of vertices for the polygon \end{DoxyCompactList}\item 
+int {\bf get\+Num\+Vertices} ()
+\begin{DoxyCompactList}\small\item\em get\+Num\+Vertices function returns the value of num\+Verts. \end{DoxyCompactList}\item 
+void {\bf add\+Vertex} (const Q\+Point \&vertex)
+\begin{DoxyCompactList}\small\item\em function to add a vertex to a polygon \end{DoxyCompactList}\item 
+Awesome\+Vector$<$ Q\+Point $>$ \& {\bf get\+Vertices} ()\label{class_polygon_ae64510c2f326153369493ac560639b43}
+
+\begin{DoxyCompactList}\small\item\em function to return points to make shapes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Polygon}{p.}{class_polygon} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\subsubsection[{Polygon(\+Q\+Paint\+Device $\ast$dev=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Polygon\+::\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{dev = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_polygon_acbbfa318bb3450651c7bfdd9848df1d1}
+
+
+\doxyref{Polygon}{p.}{class_polygon} Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$dev} & is a pointer of type Q\+Paint\+Device, intialized to nullptr to avoid conflicts \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Polygon@{Polygon}!add\+Vertex@{add\+Vertex}}
+\index{add\+Vertex@{add\+Vertex}!Polygon@{Polygon}}
+\subsubsection[{add\+Vertex(const Q\+Point \&vertex)}]{\setlength{\rightskip}{0pt plus 5cm}void Polygon\+::add\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const Q\+Point \&}]{vertex}
+\end{DoxyParamCaption}
+)}\label{class_polygon_a38a6c46772caecff4d9462017201209c}
+
+
+function to add a vertex to a polygon 
+
+add\+Vertex function requires one parameter, no type is returned by the function 
+\begin{DoxyParams}{Parameters}
+{\em vertex} & is constant reference of type Q\+Point [] \\
+\hline
+\end{DoxyParams}
+\index{Polygon@{Polygon}!area@{area}}
+\index{area@{area}!Polygon@{Polygon}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Polygon\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polygon_a648f54300ccf93f6e4f4acf6b96c5ee1}
+
+
+area function to calculate area of polygon 
+
+area function overrides the virtual area from abstract base class \doxyref{Shape}{p.}{class_shape}. Function returns a double. area function does not take in any parameters. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Polygon@{Polygon}!draw@{draw}}
+\index{draw@{draw}!Polygon@{Polygon}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$dev) override}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Polygon\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{dev}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polygon_a245db29f8ae3b480ab4322646bc76610}
+
+
+draw function to draw a \doxyref{Polygon}{p.}{class_polygon} 
+
+draw function overrides the virtual draw from abstract class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$dev} & is a pointer of type Q\+Paint\+Device. \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Polygon@{Polygon}!get\+Num\+Vertices@{get\+Num\+Vertices}}
+\index{get\+Num\+Vertices@{get\+Num\+Vertices}!Polygon@{Polygon}}
+\subsubsection[{get\+Num\+Vertices()}]{\setlength{\rightskip}{0pt plus 5cm}int Polygon\+::get\+Num\+Vertices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_polygon_a934ab08f8ac52f0ab522fa668da2c2dc}
+
+
+get\+Num\+Vertices function returns the value of num\+Verts. 
+
+No Parameters required, return type if of type int \index{Polygon@{Polygon}!move@{move}}
+\index{move@{move}!Polygon@{Polygon}}
+\subsubsection[{move(int x, int y, int vertex) override}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Polygon\+::move (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polygon_af322b762481b14fa3e977e59916af77b}
+
+
+move function to move a polygon 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+{\em vertex} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Polygon@{Polygon}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Polygon@{Polygon}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Polygon\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polygon_a20a7debc31cce7ae94c066d898a46561}
+
+
+perimter function to calculate perimeter of polygon 
+
+perimeter function overrides the virtual perimeter abstract base class \doxyref{Shape}{p.}{class_shape}. Function returns a double. perimeter function does not take in any parameters. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+\index{Polygon@{Polygon}!set\+Num\+Vertices@{set\+Num\+Vertices}}
+\index{set\+Num\+Vertices@{set\+Num\+Vertices}!Polygon@{Polygon}}
+\subsubsection[{set\+Num\+Vertices(int num\+Vertices)}]{\setlength{\rightskip}{0pt plus 5cm}void Polygon\+::set\+Num\+Vertices (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+Vertices}
+\end{DoxyParamCaption}
+)}\label{class_polygon_a0ab9c9ec47b65946a9789a38581879ff}
+
+
+set\+Num\+Vertices function sets the nummber of vertices for the polygon 
+
+The class member variable num\+Verts is set equal to num\+Vertices 
+\begin{DoxyParams}{Parameters}
+{\em num\+Vertices} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

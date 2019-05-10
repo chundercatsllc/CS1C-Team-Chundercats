@@ -1,0 +1,164 @@
+\section{Line Class Reference}
+\label{class_line}\index{Line@{Line}}
+
+
+\doxyref{Line}{p.}{class_line} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Line\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_line}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Line} (Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Line}{p.}{class_line} Class Constructor. \end{DoxyCompactList}\item 
+{\bf $\sim$\+Line} () override\label{class_line_af18447238883377a0071d2276a4ac0a5}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Line}{p.}{class_line} Class Destructor. \end{DoxyCompactList}\item 
+void {\bf set\+Points} (const Q\+Point \&x, const Q\+Point \&y)
+\begin{DoxyCompactList}\small\item\em set\+Points function for \doxyref{Line}{p.}{class_line} \end{DoxyCompactList}\item 
+virtual void {\bf move} (const int x, const int y, int vert) override
+\begin{DoxyCompactList}\small\item\em move function to move a line \end{DoxyCompactList}\item 
+virtual void {\bf draw} (Q\+Paint\+Device $\ast$device) override
+\begin{DoxyCompactList}\small\item\em draw function to draw a line \end{DoxyCompactList}\item 
+virtual double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimeter function to calculate perimeter of a line \end{DoxyCompactList}\item 
+virtual double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of a line \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Line}{p.}{class_line} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Line@{Line}!Line@{Line}}
+\index{Line@{Line}!Line@{Line}}
+\subsubsection[{Line(\+Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Line\+::\+Line (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_line_abfce044bd32535d51e49ed00d401aee0}
+
+
+\doxyref{Line}{p.}{class_line} Class Constructor. 
+
+\doxyref{Line}{p.}{class_line} Class constructor takes in two parameters 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device, initialized to nullptr to avoid conflicts \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Line@{Line}!area@{area}}
+\index{area@{area}!Line@{Line}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Line\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_line_a5989f939ab0025b09d0da1aee6421122}
+
+
+area function to calculate area of a line 
+
+area function overrides the virtual area function of abstract base class shape. Function returns a double. No parameters are passed into area, line does not have area so the function is defined only by \char`\"{}return 0\char`\"{}. Function definition must be defined as return 0, else line class will be recognized as an abstract class. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Line@{Line}!draw@{draw}}
+\index{draw@{draw}!Line@{Line}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$device) override}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Line\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_line_a3b191dfa5dd12e9be51ed225607696e5}
+
+
+draw function to draw a line 
+
+draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Line@{Line}!move@{move}}
+\index{move@{move}!Line@{Line}}
+\subsubsection[{move(const int x, const int y, int vert) override}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Line\+::move (
+\begin{DoxyParamCaption}
+\item[{const int}]{x, }
+\item[{const int}]{y, }
+\item[{int}]{vert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_line_abbae60ea00ae0759ede7b43b788c2028}
+
+
+move function to move a line 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type constant int \\
+\hline
+{\em y} & is of type constant int \\
+\hline
+{\em vert} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Line@{Line}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Line@{Line}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Line\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_line_ad1fa30c56b29c961f26885edcb2f8109}
+
+
+perimeter function to calculate perimeter of a line 
+
+perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double. No parameters are passed into perimeter, line does not have perimeter so the function is defined only by \char`\"{}return 0\char`\"{}. Function definition must be defined as return 0, else line class will be recognized as an abstract class. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+\index{Line@{Line}!set\+Points@{set\+Points}}
+\index{set\+Points@{set\+Points}!Line@{Line}}
+\subsubsection[{set\+Points(const Q\+Point \&x, const Q\+Point \&y)}]{\setlength{\rightskip}{0pt plus 5cm}void Line\+::set\+Points (
+\begin{DoxyParamCaption}
+\item[{const Q\+Point \&}]{x, }
+\item[{const Q\+Point \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_line_a1ff33e610802339eca8d9b421b32dd60}
+
+
+set\+Points function for \doxyref{Line}{p.}{class_line} 
+
+set\+Points function allows the line to be set with given starting and ending points The class member variables line\+\_\+begin and line\+\_\+end are set to parameters x,y 
+\begin{DoxyParams}{Parameters}
+{\em x} & is a constant reference of type Q\+Point \\
+\hline
+{\em y} & is a constant reference of type Q\+Point \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

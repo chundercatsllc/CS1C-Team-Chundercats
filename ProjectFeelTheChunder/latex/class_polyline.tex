@@ -1,0 +1,185 @@
+\section{Polyline Class Reference}
+\label{class_polyline}\index{Polyline@{Polyline}}
+
+
+\doxyref{Polyline}{p.}{class_polyline} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Polyline\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_polyline}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Polyline} (Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)
+\begin{DoxyCompactList}\small\item\em \doxyref{Polyline}{p.}{class_polyline} Class constructor. \end{DoxyCompactList}\item 
+{\bf $\sim$\+Polyline} () override\label{class_polyline_af77a79ed0a14a8334cfd92cd17063fec}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Polyline}{p.}{class_polyline} Class destructor. \end{DoxyCompactList}\item 
+void {\bf add\+Point} (const Q\+Point \&pt)
+\begin{DoxyCompactList}\small\item\em add\+Point function to add points to a polyline \end{DoxyCompactList}\item 
+void {\bf add\+Num\+Points} (int num)
+\begin{DoxyCompactList}\small\item\em add\+Num\+Points function to set class member variable num\+Pts, takes in an int \end{DoxyCompactList}\item 
+virtual void {\bf draw} (Q\+Paint\+Device $\ast$device) override
+\begin{DoxyCompactList}\small\item\em draw function to draw a polyline \end{DoxyCompactList}\item 
+void {\bf move} (int x, int y, int vertex) override
+\begin{DoxyCompactList}\small\item\em move function to move a polyline \end{DoxyCompactList}\item 
+double {\bf perimeter} () override
+\begin{DoxyCompactList}\small\item\em perimeter function to calculate perimeter of a polyline \end{DoxyCompactList}\item 
+double {\bf area} () override
+\begin{DoxyCompactList}\small\item\em area function to calculate area of a polyline \end{DoxyCompactList}\item 
+Awesome\+Vector$<$ Q\+Point $>$ \& {\bf get\+Points} ()\label{class_polyline_a4583e6c29cb39db29fdae796f7968632}
+
+\begin{DoxyCompactList}\small\item\em function to return points to make shapes. \end{DoxyCompactList}\item 
+int {\bf get\+Num\+Points} ()\label{class_polyline_a80b8c56a38d4dcf70ac9f3bd314aec2b}
+
+\begin{DoxyCompactList}\small\item\em get\+Num\+Points returns the number of points within polyline \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\doxyref{Polyline}{p.}{class_polyline} Class\+: Public Inheritance from \doxyref{Shape}{p.}{class_shape} Class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Polyline@{Polyline}!Polyline@{Polyline}}
+\index{Polyline@{Polyline}!Polyline@{Polyline}}
+\subsubsection[{Polyline(\+Q\+Paint\+Device $\ast$device=nullptr, int id=-\/1)}]{\setlength{\rightskip}{0pt plus 5cm}Polyline\+::\+Polyline (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device = {\ttfamily nullptr}, }
+\item[{int}]{id = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\label{class_polyline_a2587221692617dcbd2d8cf4e82d1857a}
+
+
+\doxyref{Polyline}{p.}{class_polyline} Class constructor. 
+
+\doxyref{Polyline}{p.}{class_polyline} Class constructor takes in two arguments 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device, initialized to nullptr to avoid conflict \\
+\hline
+{\em id} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Polyline@{Polyline}!add\+Num\+Points@{add\+Num\+Points}}
+\index{add\+Num\+Points@{add\+Num\+Points}!Polyline@{Polyline}}
+\subsubsection[{add\+Num\+Points(int num)}]{\setlength{\rightskip}{0pt plus 5cm}void Polyline\+::add\+Num\+Points (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_polyline_a947a2b96443f0759b047b27a805903c4}
+
+
+add\+Num\+Points function to set class member variable num\+Pts, takes in an int 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & an int \\
+\hline
+\end{DoxyParams}
+\index{Polyline@{Polyline}!add\+Point@{add\+Point}}
+\index{add\+Point@{add\+Point}!Polyline@{Polyline}}
+\subsubsection[{add\+Point(const Q\+Point \&pt)}]{\setlength{\rightskip}{0pt plus 5cm}void Polyline\+::add\+Point (
+\begin{DoxyParamCaption}
+\item[{const Q\+Point \&}]{pt}
+\end{DoxyParamCaption}
+)}\label{class_polyline_a0f72a85f41fcdbcf32f9029e7c717ff3}
+
+
+add\+Point function to add points to a polyline 
+
+add\+Point takes in at most one argument 
+\begin{DoxyParams}{Parameters}
+{\em pt} & is a constant reference of type Q\+Point \\
+\hline
+\end{DoxyParams}
+\index{Polyline@{Polyline}!area@{area}}
+\index{area@{area}!Polyline@{Polyline}}
+\subsubsection[{area() override}]{\setlength{\rightskip}{0pt plus 5cm}double Polyline\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polyline_a94f6c78fc78eaf2efd0d5221fd7b44dc}
+
+
+area function to calculate area of a polyline 
+
+area function overrides the virtual area function of abstract base class shape. Function returns a double. No parameters are passed into area, polyline does not have area so the function is defined only by \char`\"{}return 0\char`\"{}. Function definition must be defined as return 0, else line class will be recognized as an abstract class. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_aa3072fde001d5174f78fcc484c11870c}.
+
+\index{Polyline@{Polyline}!draw@{draw}}
+\index{draw@{draw}!Polyline@{Polyline}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$device) override}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Polyline\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polyline_a852420931a45f831deaff590c40b150c}
+
+
+draw function to draw a polyline 
+
+draw function overrides the virtual draw from abstract base class shape. Funtion does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}.
+
+\index{Polyline@{Polyline}!move@{move}}
+\index{move@{move}!Polyline@{Polyline}}
+\subsubsection[{move(int x, int y, int vertex) override}]{\setlength{\rightskip}{0pt plus 5cm}void Polyline\+::move (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polyline_a33cd81f76e084f77ffcd9304c879354e}
+
+
+move function to move a polyline 
+
+move function overrides the virtual move from abstract base class \doxyref{Shape}{p.}{class_shape}. Function does not return any type. 
+\begin{DoxyParams}{Parameters}
+{\em x} & is of type int \\
+\hline
+{\em y} & is of type int \\
+\hline
+{\em vertex} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}.
+
+\index{Polyline@{Polyline}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Polyline@{Polyline}}
+\subsubsection[{perimeter() override}]{\setlength{\rightskip}{0pt plus 5cm}double Polyline\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_polyline_a1c9bb62b882f1c97d6aaa40755dc8746}
+
+
+perimeter function to calculate perimeter of a polyline 
+
+perimeter function overrides the virtual perimeter function of abstract base class shape. Function returns a double. No parameters are passed into perimeter, polyline does not have perimeter so the function is defined only by \char`\"{}return 0\char`\"{}. Function definition must be defined as return 0, else line class will be recognized as an abstract class. 
+
+Implements {\bf Shape} \doxyref{}{p.}{class_shape_afb064edd78952da66801619338e8c5a3}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}

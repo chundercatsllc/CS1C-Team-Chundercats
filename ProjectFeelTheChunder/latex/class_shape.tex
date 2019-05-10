@@ -1,0 +1,311 @@
+\section{Shape Class Reference}
+\label{class_shape}\index{Shape@{Shape}}
+
+
+\doxyref{Shape}{p.}{class_shape} Class\+: Public Inheritance from Q\+Painter Class.  
+
+
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+Inheritance diagram for Shape\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_shape}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf Shape\+Type} \{ \\*
+{\bfseries null}, 
+{\bfseries Line}, 
+{\bfseries Polyline}, 
+{\bfseries Polygon}, 
+\\*
+{\bfseries Rectangle}, 
+{\bfseries Ellipse}, 
+{\bfseries Text}
+ \}\begin{DoxyCompactList}\small\item\em Enumeration of Shape\+Type classes. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf Shape} (Q\+Paint\+Device $\ast$device=nullptr, int ID=-\/1, {\bf Shape\+Type} shapey=Shape\+Type\+::null)
+\begin{DoxyCompactList}\small\item\em \doxyref{Shape}{p.}{class_shape} Class constructor takes in 3 arguments. \end{DoxyCompactList}\item 
+virtual {\bf $\sim$\+Shape} ()
+\begin{DoxyCompactList}\small\item\em \doxyref{Shape}{p.}{class_shape} Class Destructor. \end{DoxyCompactList}\item 
+void {\bf set\+Shape} ({\bf Shape\+Type})
+\begin{DoxyCompactList}\small\item\em set\+Shape takes in a Shape\+Type argument \end{DoxyCompactList}\item 
+void {\bf set\+Brush} (Qt\+::\+Global\+Color, Qt\+::\+Brush\+Style)
+\begin{DoxyCompactList}\small\item\em set\+Brush takes in two Qt type parameters and sets it equal to member variable object shape. \end{DoxyCompactList}\item 
+void {\bf set\+Pen} (Qt\+::\+Global\+Color)
+\begin{DoxyCompactList}\small\item\em set\+Pen takes in two built-\/in Qt namespaces. \end{DoxyCompactList}\item 
+void {\bf set\+Pen} (Qt\+::\+Global\+Color, int width, Qt\+::\+Pen\+Style, Qt\+::\+Pen\+Cap\+Style, Qt\+::\+Pen\+Join\+Style)
+\begin{DoxyCompactList}\small\item\em Alternative set\+Pen sets pen equal to four Qt type parameters and one int parameter. \end{DoxyCompactList}\item 
+void {\bf set\+Brush} (Q\+Brush brsh)\label{class_shape_a9902d301bf27dae6ffc4a81ff566bfa3}
+
+\begin{DoxyCompactList}\small\item\em set\+Brush takes in a Q\+Brush variable and sets brush to brsh \end{DoxyCompactList}\item 
+void {\bf set\+Pen} (Q\+Pen pn)\label{class_shape_a3cabd869e27b2662bf75b980d1795f32}
+
+\begin{DoxyCompactList}\small\item\em set\+Pen takes in a Q\+Pen variable and sets pen to pn \end{DoxyCompactList}\item 
+void {\bf set\+ID} (int ID)\label{class_shape_ab5f7a5775837a4c4d4187d901990c1c2}
+
+\begin{DoxyCompactList}\small\item\em set\+ID takes in a int ID and sets id to ID \end{DoxyCompactList}\item 
+{\bf Shape\+Type} {\bf get\+Shape} () const \label{class_shape_a0526a3459d426e12f5e754a628bb4bbe}
+
+\begin{DoxyCompactList}\small\item\em get\+Shape returns shape object. \end{DoxyCompactList}\item 
+const Q\+Brush \& {\bf get\+Brush} () const \label{class_shape_af20b7e861223131bc521b1bbd1c960b8}
+
+\begin{DoxyCompactList}\small\item\em get\+Brush returns brush object. \end{DoxyCompactList}\item 
+const Q\+Pen \& {\bf get\+Pen} () const \label{class_shape_af4543da5152297b5eaf0d160ecc977e1}
+
+\begin{DoxyCompactList}\small\item\em get\+Pen returns pen object. \end{DoxyCompactList}\item 
+int {\bf get\+ID} () const \label{class_shape_a75389ae79e394b5bd136888c67ae94ed}
+
+\begin{DoxyCompactList}\small\item\em get\+ID returns id variable. \end{DoxyCompactList}\item 
+void {\bf set\+Default\+Style} ()
+\begin{DoxyCompactList}\small\item\em set\+Default\+Style sets pen and brush member objects to a \char`\"{}default setting\char`\"{} provided by Qt namespaces. \end{DoxyCompactList}\item 
+virtual void {\bf move} (const int tX, const int tY, int pt\+Index)=0
+\begin{DoxyCompactList}\small\item\em Pure Virtual move function. \end{DoxyCompactList}\item 
+virtual void {\bf draw} (Q\+Paint\+Device $\ast$device)=0
+\begin{DoxyCompactList}\small\item\em Pure Virtual draw function. \end{DoxyCompactList}\item 
+virtual double {\bf perimeter} ()=0
+\begin{DoxyCompactList}\small\item\em Pure Virtual perimeter function. \end{DoxyCompactList}\item 
+virtual double {\bf area} ()=0
+\begin{DoxyCompactList}\small\item\em Pure Virtual area function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Painter {\bf painter}
+\begin{DoxyCompactList}\small\item\em Q\+Painter Object. \end{DoxyCompactList}\item 
+Q\+Pen {\bf pen}
+\begin{DoxyCompactList}\small\item\em Q\+Pen Object. \end{DoxyCompactList}\item 
+Q\+Brush {\bf brush}
+\begin{DoxyCompactList}\small\item\em Q\+Brush Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Painter \& {\bf get\+Q\+Painter} ()\label{class_shape_a8c73120ac285b4131e2075b15207feac}
+
+\begin{DoxyCompactList}\small\item\em get\+Painter returns member object painter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\doxyref{Shape}{p.}{class_shape} Class\+: Public Inheritance from Q\+Painter Class. 
+
+The \doxyref{Shape}{p.}{class_shape} Class is the base abstract data type for the 2-\/D Modeling shape hierarchy. The \doxyref{Shape}{p.}{class_shape} class is an abstract data type as the functions void move, void draw, double perimeter, and double area are all pure virtual functions. The \doxyref{Shape}{p.}{class_shape} Class has public inheritance from the Q\+Painter class. The Q\+Painter Class contains various methods that allows any classes inheriting from the it have drawing attributes and other functionality. The Q\+Painter performs low level painting on widgets and other paint devices. 
+
+\subsection{Member Enumeration Documentation}
+\index{Shape@{Shape}!Shape\+Type@{Shape\+Type}}
+\index{Shape\+Type@{Shape\+Type}!Shape@{Shape}}
+\subsubsection[{Shape\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Shape\+::\+Shape\+Type}\hspace{0.3cm}{\ttfamily [strong]}}\label{class_shape_a4cb9bc6c74b4184257003c83a8d8d39e}
+
+
+Enumeration of Shape\+Type classes. 
+
+This enumeration is used when reading to and from a shape file. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Shape@{Shape}!Shape@{Shape}}
+\index{Shape@{Shape}!Shape@{Shape}}
+\subsubsection[{Shape(\+Q\+Paint\+Device $\ast$device=nullptr, int I\+D=-\/1, Shape\+Type shapey=\+Shape\+Type\+::null)}]{\setlength{\rightskip}{0pt plus 5cm}Shape\+::\+Shape (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device = {\ttfamily nullptr}, }
+\item[{int}]{ID = {\ttfamily -\/1}, }
+\item[{{\bf Shape\+Type}}]{shapey = {\ttfamily ShapeType\+:\+:null}}
+\end{DoxyParamCaption}
+)}\label{class_shape_a68b33425752aa52e626fa90bde66c4ef}
+
+
+\doxyref{Shape}{p.}{class_shape} Class constructor takes in 3 arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer to an object of type Q\+Paint\+Device, initialized to nullptr to avoid conflict. \\
+\hline
+{\em ID} & is a variable of type int that gives a shape a unique identification. \\
+\hline
+{\em shapey} & is of an enum type Shape\+Type \\
+\hline
+\end{DoxyParams}
+\index{Shape@{Shape}!````~Shape@{$\sim$\+Shape}}
+\index{````~Shape@{$\sim$\+Shape}!Shape@{Shape}}
+\subsubsection[{$\sim$\+Shape()}]{\setlength{\rightskip}{0pt plus 5cm}virtual Shape\+::$\sim$\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_shape_ac3b9fc48965274893f25b18aa14ba665}
+
+
+\doxyref{Shape}{p.}{class_shape} Class Destructor. 
+
+Deallocates any dynamic memory, shape class is an abstract base class that uses virtual functions, therefore shape destructor must be virtual. 
+
+\subsection{Member Function Documentation}
+\index{Shape@{Shape}!area@{area}}
+\index{area@{area}!Shape@{Shape}}
+\subsubsection[{area()=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Shape\+::area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_shape_aa3072fde001d5174f78fcc484c11870c}
+
+
+Pure Virtual area function. 
+
+No default parameters 
+
+Implemented in {\bf Ellipse} \doxyref{}{p.}{class_ellipse_abdcc9bf2ca75e53000eecd7fce16d1ea}, {\bf Rectangle} \doxyref{}{p.}{class_rectangle_a6b3912c47937ed46693249ad0b8081c9}, {\bf Text} \doxyref{}{p.}{class_text_ab9d0f9643d33550828eb23e3a5436036}, {\bf Polyline} \doxyref{}{p.}{class_polyline_a94f6c78fc78eaf2efd0d5221fd7b44dc}, {\bf Line} \doxyref{}{p.}{class_line_a5989f939ab0025b09d0da1aee6421122}, and {\bf Polygon} \doxyref{}{p.}{class_polygon_a648f54300ccf93f6e4f4acf6b96c5ee1}.
+
+\index{Shape@{Shape}!draw@{draw}}
+\index{draw@{draw}!Shape@{Shape}}
+\subsubsection[{draw(\+Q\+Paint\+Device $\ast$device)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Shape\+::draw (
+\begin{DoxyParamCaption}
+\item[{Q\+Paint\+Device $\ast$}]{device}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_shape_ad2ab549a1b0cc0e23af8be1fd1b61a1b}
+
+
+Pure Virtual draw function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$device} & is a pointer of type Q\+Paint\+Device \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in {\bf Ellipse} \doxyref{}{p.}{class_ellipse_ae83718bf96925955fa48c14a4217c73c}, {\bf Rectangle} \doxyref{}{p.}{class_rectangle_aa7b84289ee0e504fd5dee6fe5aa7f425}, {\bf Text} \doxyref{}{p.}{class_text_a2401b42a363c41b8be6219eb1b14d08f}, {\bf Polyline} \doxyref{}{p.}{class_polyline_a852420931a45f831deaff590c40b150c}, {\bf Line} \doxyref{}{p.}{class_line_a3b191dfa5dd12e9be51ed225607696e5}, and {\bf Polygon} \doxyref{}{p.}{class_polygon_a245db29f8ae3b480ab4322646bc76610}.
+
+\index{Shape@{Shape}!move@{move}}
+\index{move@{move}!Shape@{Shape}}
+\subsubsection[{move(const int t\+X, const int t\+Y, int pt\+Index)=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Shape\+::move (
+\begin{DoxyParamCaption}
+\item[{const int}]{tX, }
+\item[{const int}]{tY, }
+\item[{int}]{pt\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_shape_a937ef09c5e1c5c640fdef7caf62ba8f2}
+
+
+Pure Virtual move function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tX} & is of type const int \\
+\hline
+{\em tY} & is of type const int \\
+\hline
+{\em pt\+Index} & is of type int \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in {\bf Ellipse} \doxyref{}{p.}{class_ellipse_a1929dda25f9dc816835e05c57937d34a}, {\bf Rectangle} \doxyref{}{p.}{class_rectangle_a6f689d4bcf53f18bd4325200259a9da3}, {\bf Text} \doxyref{}{p.}{class_text_af684963e401cbbddab1c3b5032e733bc}, {\bf Polyline} \doxyref{}{p.}{class_polyline_a33cd81f76e084f77ffcd9304c879354e}, {\bf Line} \doxyref{}{p.}{class_line_abbae60ea00ae0759ede7b43b788c2028}, and {\bf Polygon} \doxyref{}{p.}{class_polygon_af322b762481b14fa3e977e59916af77b}.
+
+\index{Shape@{Shape}!perimeter@{perimeter}}
+\index{perimeter@{perimeter}!Shape@{Shape}}
+\subsubsection[{perimeter()=0}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Shape\+::perimeter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{class_shape_afb064edd78952da66801619338e8c5a3}
+
+
+Pure Virtual perimeter function. 
+
+No default parameters 
+
+Implemented in {\bf Ellipse} \doxyref{}{p.}{class_ellipse_abb2c4bca7f3c88c16a81f6ecb9d93e5c}, {\bf Rectangle} \doxyref{}{p.}{class_rectangle_a1672f74c28fa25703683f13d02e182a6}, {\bf Text} \doxyref{}{p.}{class_text_aba53a89dd7a2fae148a403a8c4d2e9b1}, {\bf Polyline} \doxyref{}{p.}{class_polyline_a1c9bb62b882f1c97d6aaa40755dc8746}, {\bf Line} \doxyref{}{p.}{class_line_ad1fa30c56b29c961f26885edcb2f8109}, and {\bf Polygon} \doxyref{}{p.}{class_polygon_a20a7debc31cce7ae94c066d898a46561}.
+
+\index{Shape@{Shape}!set\+Brush@{set\+Brush}}
+\index{set\+Brush@{set\+Brush}!Shape@{Shape}}
+\subsubsection[{set\+Brush(\+Qt\+::\+Global\+Color, Qt\+::\+Brush\+Style)}]{\setlength{\rightskip}{0pt plus 5cm}void Shape\+::set\+Brush (
+\begin{DoxyParamCaption}
+\item[{Qt\+::\+Global\+Color}]{, }
+\item[{Qt\+::\+Brush\+Style}]{}
+\end{DoxyParamCaption}
+)}\label{class_shape_a2ec2004e468730778d28ec731c3ae099}
+
+
+set\+Brush takes in two Qt type parameters and sets it equal to member variable object shape. 
+
+set\+Brush function takes in built-\/in Qt\+::\+Global\+Color and Qt\+::\+Brush\+Style, which are Qt namespaces, and sets brush equal to Q\+Brush(gc, bs). Q\+Brush(gc, bs) calls the constructor of Q\+Brush which is a built-\/in class that defines the fill pattern for shapes. \index{Shape@{Shape}!set\+Default\+Style@{set\+Default\+Style}}
+\index{set\+Default\+Style@{set\+Default\+Style}!Shape@{Shape}}
+\subsubsection[{set\+Default\+Style()}]{\setlength{\rightskip}{0pt plus 5cm}void Shape\+::set\+Default\+Style (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_shape_a4530667938d412921f21b39f23d98399}
+
+
+set\+Default\+Style sets pen and brush member objects to a \char`\"{}default setting\char`\"{} provided by Qt namespaces. 
+
+Qt\+::\+Global\+Color and Qt\+::\+Brush\+Style are used to set pen and brush. \index{Shape@{Shape}!set\+Pen@{set\+Pen}}
+\index{set\+Pen@{set\+Pen}!Shape@{Shape}}
+\subsubsection[{set\+Pen(\+Qt\+::\+Global\+Color)}]{\setlength{\rightskip}{0pt plus 5cm}void Shape\+::set\+Pen (
+\begin{DoxyParamCaption}
+\item[{Qt\+::\+Global\+Color}]{}
+\end{DoxyParamCaption}
+)}\label{class_shape_a83027240b45ec72e7d25c1e93044fa50}
+
+
+set\+Pen takes in two built-\/in Qt namespaces. 
+
+set\+Pen function takes in built-\/in Qt\+::\+Global\+Color and sets brush equal to Q\+Pen(gc). Q\+Pen(gc) calls the constructor of Q\+Pen which is a built-\/in class that defines the lines and outlines of the shapes. \index{Shape@{Shape}!set\+Pen@{set\+Pen}}
+\index{set\+Pen@{set\+Pen}!Shape@{Shape}}
+\subsubsection[{set\+Pen(\+Qt\+::\+Global\+Color, int width, Qt\+::\+Pen\+Style, Qt\+::\+Pen\+Cap\+Style, Qt\+::\+Pen\+Join\+Style)}]{\setlength{\rightskip}{0pt plus 5cm}void Shape\+::set\+Pen (
+\begin{DoxyParamCaption}
+\item[{Qt\+::\+Global\+Color}]{, }
+\item[{int}]{width, }
+\item[{Qt\+::\+Pen\+Style}]{, }
+\item[{Qt\+::\+Pen\+Cap\+Style}]{, }
+\item[{Qt\+::\+Pen\+Join\+Style}]{}
+\end{DoxyParamCaption}
+)}\label{class_shape_a2fecea077c3da057aaab21b8ccd31ac2}
+
+
+Alternative set\+Pen sets pen equal to four Qt type parameters and one int parameter. 
+
+Alternative set\+Pen takes in built-\/in Qt\+::\+Globa\+Color, Qt\+::\+Pen\+Style, Qt\+::\+Pen\+Cap\+Style, Qt\+::\+Pen\+Join\+Style, and int width and sets pen equal to Q\+Pen(gc, width, ps, pcs, pjs). Q\+Pen(gc, width, ps, pcs, pjs) calls the constructor of Q\+Pen which is a built-\/in class that defines the lines and outlines of the shapes. \index{Shape@{Shape}!set\+Shape@{set\+Shape}}
+\index{set\+Shape@{set\+Shape}!Shape@{Shape}}
+\subsubsection[{set\+Shape(\+Shape\+Type)}]{\setlength{\rightskip}{0pt plus 5cm}void Shape\+::set\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Shape\+Type}}]{}
+\end{DoxyParamCaption}
+)}\label{class_shape_ad6e31e2ee0a6270ec8a1d08ea066ee66}
+
+
+set\+Shape takes in a Shape\+Type argument 
+
+The passed in argument must be of Shape\+Type. set\+Shape sets shape to the Shape\+Type argument. The passed in argument must be of Shape\+Type. set\+Shape sets shape to the Shape\+Type argument being passed in. Shape\+Type is an enum containing multiple types of shapes. 
+
+\subsection{Member Data Documentation}
+\index{Shape@{Shape}!brush@{brush}}
+\index{brush@{brush}!Shape@{Shape}}
+\subsubsection[{brush}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Brush Shape\+::brush}\label{class_shape_aa67647c3a5d39d1e3f63a241208e59f2}
+
+
+Q\+Brush Object. 
+
+Q\+Brush is a distinct class that defines the fill pattern of shapes drawn by Q\+Painter. \index{Shape@{Shape}!painter@{painter}}
+\index{painter@{painter}!Shape@{Shape}}
+\subsubsection[{painter}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Painter Shape\+::painter}\label{class_shape_a761a117dfc4b157944e512b8a4c89fde}
+
+
+Q\+Painter Object. 
+
+Q\+Painter is a distinct class that performs low-\/level paintings on widgets and other paint devices. \index{Shape@{Shape}!pen@{pen}}
+\index{pen@{pen}!Shape@{Shape}}
+\subsubsection[{pen}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Pen Shape\+::pen}\label{class_shape_a75d192b68eddd2622bdea8a4ac1058d1}
+
+
+Q\+Pen Object. 
+
+Q\+Pen is a distinct class that defines how Q\+Painter should draw line and outlines of shapes. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Shape.\+h\end{DoxyCompactItemize}
