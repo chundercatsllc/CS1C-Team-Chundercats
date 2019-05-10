@@ -10,9 +10,8 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
     //MainWindow w;
    // w.show();
-    //dbConnection db;
-    //db.restTest();
-    //QString response = db.getShapeTypes();
+    dbConnection db;
+   // QString response = db.getShapeTypes();
 
     //qDebug()<<response;
 
