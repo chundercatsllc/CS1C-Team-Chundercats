@@ -95,11 +95,15 @@ private slots:
 
         void on_login_button_clicked();
 
+        void on_shapeID_edit_spin_valueChanged(int arg1);
+
+        void on_reports_button_clicked();
+
 private:
         Ui::MainWindow *ui;
         Testimonials * testis;
-        contactUs * contactPage;
-        Login * loginPage;
+        contactUs    * contactPage;
+        Login        * loginPage;
         bool meddleable{false};
 
         Shape::ShapeType The_shapeType{Shape::ShapeType::Rectangle};

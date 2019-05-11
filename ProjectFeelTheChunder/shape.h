@@ -58,6 +58,24 @@ private:
     ShapeType shape;
 };
 
+class LessThanID
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->getID() < s2->getID(); }
+};
+
+class LessThanArea
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->area() < s2->area(); }
+};
+
+class LessThanPerimeter
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->perimeter() < s2->perimeter(); }
+};
+
 const int DEFAULT_NUM_VERTS = 8;
 class Polygon : public Shape
 {

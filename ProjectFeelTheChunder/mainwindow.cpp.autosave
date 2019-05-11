@@ -704,6 +704,6 @@ void MainWindow::on_reports_button_clicked()
 
     switch(ui->tabWidget->currentIndex())
     {
-    case 0: qSort(basicVector.begin(), basicVector.end(), LessThanID)
+    case 0: qSort(basicVector.begin(), basicVector.end(), LessThanID);
     }
 }

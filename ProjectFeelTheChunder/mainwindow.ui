@@ -73,37 +73,9 @@ border-bottom-color: rgb(0, 0, 0);
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="start_page">
-     <widget class="QLabel" name="admin_title_label">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>51</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Impact</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="text">
-       <string>ADMIN </string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QPushButton" name="start_add_button">
       <property name="geometry">
        <rect>
@@ -218,6 +190,22 @@ border-bottom-color: rgb(0, 0, 0);
       </property>
       <property name="text">
        <string>Login</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="reports_button">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>Reports</string>
       </property>
      </widget>
     </widget>
@@ -533,36 +521,11 @@ border-bottom-color: rgb(0, 0, 0);
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="pen_width_edit_spin">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>210</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 242, 219);</string>
-      </property>
-      <property name="suffix">
-       <string/>
-      </property>
-      <property name="prefix">
-       <string>Pen Width: </string>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>20</number>
-      </property>
-     </widget>
      <widget class="QSpinBox" name="shapeID_edit_spin">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>120</y>
+        <y>140</y>
         <width>121</width>
         <height>22</height>
        </rect>
@@ -586,82 +549,130 @@ border-bottom-color: rgb(0, 0, 0);
        <number>0</number>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_color_edit_box">
+     <widget class="QLineEdit" name="edit_move_x_box">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>150</y>
-        <width>121</width>
-        <height>22</height>
+        <x>20</x>
+        <y>170</y>
+        <width>41</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhDigitsOnly</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_join_style_edit_box">
+     <widget class="QLabel" name="label_103">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>270</y>
-        <width>121</width>
-        <height>22</height>
+        <x>70</x>
+        <y>170</y>
+        <width>16</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>Y:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_style_edit_box">
+     <widget class="QLineEdit" name="edit_move_y_box">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>180</y>
-        <width>121</width>
-        <height>22</height>
+        <x>90</x>
+        <y>170</y>
+        <width>41</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhDigitsOnly</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="pen_cap_style_edit_box">
+     <widget class="QLabel" name="label_104">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>240</y>
-        <width>121</width>
-        <height>22</height>
+        <y>170</y>
+        <width>16</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>X:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="brush_style_edit_box">
+     <widget class="QLabel" name="label_43">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>300</y>
-        <width>121</width>
-        <height>22</height>
+        <y>111</y>
+        <width>81</width>
+        <height>20</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Impact</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>MOVE</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="brush_color_edit_box">
+     <widget class="QSpinBox" name="edit_vertex_num_spin">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>330</y>
+        <y>200</y>
         <width>121</width>
         <height>22</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="suffix">
+       <string/>
+      </property>
+      <property name="prefix">
+       <string>Vertex: </string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>8</number>
+      </property>
+      <property name="value">
+       <number>1</number>
       </property>
      </widget>
     </widget>
@@ -2964,6 +2975,87 @@ border-bottom-color: rgb(0, 0, 0);
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QLabel" name="label_50">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Impact</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 242, 219);</string>
+      </property>
+      <property name="text">
+       <string>REPORTS</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>40</y>
+        <width>141</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="id_tab">
+       <attribute name="title">
+        <string>ID</string>
+       </attribute>
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>141</width>
+          <height>431</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>139</width>
+           <height>429</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="area_tab">
+       <attribute name="title">
+        <string>AREA</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="perimeter_tab">
+       <attribute name="title">
+        <string>PERIMETER</string>
+       </attribute>
       </widget>
      </widget>
     </widget>

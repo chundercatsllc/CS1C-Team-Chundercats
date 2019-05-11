@@ -247,7 +247,7 @@ background-color: rgb(255, 244, 229);</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="siccpixandstuff.qrc">:/pix/logo.png</pixmap>
+    <pixmap>:/pix/logo.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -282,8 +282,6 @@ background-color: rgb(255, 244, 229);</string>
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="siccpixandstuff.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

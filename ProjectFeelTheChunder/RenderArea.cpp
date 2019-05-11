@@ -21,6 +21,11 @@ const AwesomeVector<Shape*> & RenderArea::getShapes()
     return ShapeMagazine;
 }
 
+Shape::ShapeType RenderArea::getShapeType(int index)
+{
+    return ShapeMagazine[index]->getShape();
+}
+
 void RenderArea::addShape(Shape* shapeIn)
 {
     ShapeMagazine.push_back(shapeIn);
