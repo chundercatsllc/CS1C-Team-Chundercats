@@ -1,8 +1,8 @@
 #ifndef DBCONNECTION_H
 #define DBCONNECTION_H
 
-#include <QtSql>
-#include <QSqlQuery>
+//#include <QtSql>
+//#include <QSqlQuery>
 #include <QtCore/QCoreApplication>
 #include <QtDebug>
 #include <QNetworkAccessManager>
@@ -25,16 +25,18 @@ public:
     const AwesomeVector<Shape*>& getShapes();
     void fetch(QUrlQuery);
     QString getResponse();
+    bool saveShape(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString textString="",QString textColor="",
+                   QString textAlignment="",QString textPointSize="",QString fontFamily="",QString fontStyle="",QString fontWeight="");
+    QString getShapeTypeString(Shape::ShapeType);
 
 private slots:
     void onfinish(QNetworkReply*);
 
 private:
-   bool openConnection();
-   void closeConnection();
    Shape* createShapeObject(QString,int);
    QString response;
-   QSqlDatabase db;
+   QUrl url;
+   //QSqlDatabase db;
 };
 
 #endif // DBCONNECTION_H

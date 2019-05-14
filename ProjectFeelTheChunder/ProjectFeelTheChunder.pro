@@ -39,7 +39,6 @@ SOURCES += \
         RenderArea.cpp \
         ./database/dbconnection.cpp \
         create_user.cpp \
-        login.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -49,7 +48,6 @@ HEADERS += \
         shape.h \
         ./database/dbconnection.h \
         create_user.h \
-        login.h
 
 
 FORMS += \
