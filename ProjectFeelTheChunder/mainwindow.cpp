@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->add_stack->addWidget(ui->add_rectangle_page);
     ui->add_stack->addWidget(ui->add_ellipse_page);
 
-//    ui->start_add_button->setEnabled(false);
-//    ui->start_edit_button->setEnabled(false);
-//    ui->start_delete_button->setEnabled(false);
+    ui->start_add_button->setEnabled(false);
+    ui->start_edit_button->setEnabled(false);
+    ui->start_delete_button->setEnabled(false);
 
     comboTrickShapes(ui->shapeType_box);
     comboTrickColors(ui->pen_color_box);
@@ -401,7 +401,7 @@ QString MainWindow::getFontFamily(QComboBox * combo)
 
 void MainWindow::on_build_it_final_button_clicked()
 {
-    debugPrintShapeInfo();
+    //debugPrintShapeInfo();
     switch(The_shapeType)
     {
         case Shape::ShapeType::Line:
@@ -600,7 +600,7 @@ void MainWindow::on_build_it_button_clicked()
     getBrushColor(ui->brush_color_box);
     getBrushStyle(ui->brush_style_box);
 
-    debugPrintShapeInfo();
+    //debugPrintShapeInfo();
 
     switch(The_shapeType)
     {
@@ -683,6 +683,17 @@ void MainWindow::on_thank_kanye_button_clicked()
 void MainWindow::on_login_button_clicked()
 {
     loginPage->show();
+    if(loginPage->coolcool)
+    {
+        ui->start_add_button->setEnabled(true);
+        ui->start_edit_button->setEnabled(true);
+        ui->start_delete_button->setEnabled(true);
+    }
+    else {
+        ui->start_add_button->setEnabled(false);
+        ui->start_edit_button->setEnabled(false);
+        ui->start_delete_button->setEnabled(false);
+    }
 }
 
 void MainWindow::on_shapeID_edit_spin_valueChanged(int arg1)
@@ -694,6 +705,7 @@ void MainWindow::on_shapeID_edit_spin_valueChanged(int arg1)
 
 void MainWindow::on_reports_button_clicked()
 {
+    /*
     ui->page->show();
 
     AwesomeVector<Shape*> repThatVector = ui->target->getShapes();
@@ -704,6 +716,7 @@ void MainWindow::on_reports_button_clicked()
 
     switch(ui->tabWidget->currentIndex())
     {
-    case 0: qSort(basicVector.begin(), basicVector.end(), LessThanID)
+    case 0: qSort(basicVector.begin(), basicVector.end(), LessThanID);
     }
+    */
 }

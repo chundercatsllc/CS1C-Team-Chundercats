@@ -22,8 +22,10 @@ void Login::on_pushButton_login_clicked()
     QString result = db.userLogin(user_name,password);
     if(result == "user"||result == "admin"){
         QMessageBox::information(this,"Login","Login Successful! Welcome, "+result+" "+user_name);
+           coolcool = true;
     }else{
         QMessageBox::warning(this,"Login",result);
+        coolcool = false;
     }
 
 }

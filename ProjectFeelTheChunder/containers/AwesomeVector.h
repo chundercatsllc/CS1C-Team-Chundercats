@@ -1,6 +1,6 @@
 #ifndef AWESOMEVECTOR_H
 #define AWESOMEVECTOR_H
-#include <iostream>
+#include <QDebug>
 
 using namespace std;
 
@@ -313,12 +313,12 @@ template<typename T>
 void AwesomeVector<T>::print()
 {
 	if(size == 0)
-		cout << "Empty";
+        qDebug() << "Empty";
 	else
 	for(int i = head; i != butt; i = (i + 1) % capacity)
-		cout << list[i] << " ";
+        qDebug() << list[i] << " ";
 	
-	cout << endl;
+    qDebug() << endl;
 }
 
 /********************ITERATOR CLASS***********************************/
