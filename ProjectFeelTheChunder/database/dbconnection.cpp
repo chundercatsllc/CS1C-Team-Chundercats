@@ -2,6 +2,7 @@
 
 dbConnection::dbConnection(){
    response = "";
+   //url.setUrl("http://www.chundercats.best/chundercats.php");
    url.setUrl("http://localhost/chundercats/chundercats.php");
 }
 
@@ -91,6 +92,12 @@ Shape* dbConnection::createShapeObject(QString shapeType,int id,QPaintDevice *de
         shape = new Line(device,id);
     }else if(shapeType == "Polyline"){
         shape = new Polyline(device,id);
+        if(shapeType == "Polyline"||shapeType == "Polygon"){
+            for(int j=0;j<dimensions.length();j+2){
+                QPoint coord(dimensions[j].toInt(), dimensions[j+1].toInt());
+                shapes[i]->addPoint(coord6);
+            }
+        }
     }else if(shapeType == "Polygon"){
         shape = new Polygon(device,id);
     }else if(shapeType == "Rectangle"){
@@ -141,15 +148,15 @@ bool dbConnection::saveShape(QString shapetype,QString dimensions,QString penCol
 
 }
 
-const AwesomeVector<Shape*>& dbConnection::getShapes(){
+const AwesomeVector<Shape*>& dbConnection::getShapes(QPaintDevice* dev){
     AwesomeVector<Shape*> shapes;
     QUrlQuery query;
     query.addQueryItem("action","get_shapes");
     fetch(query);
     QStringList resultshapes = response.split("|");
     QString shapetype;
-    QString shape_id;
-    QString dimensions;
+    int shape_id;
+    QStringList dimensions;
     QString penColor;
     QString penWidth;
     QString penStyle;
@@ -166,15 +173,31 @@ const AwesomeVector<Shape*>& dbConnection::getShapes(){
     QString fontWeight;
 
     for(int i=0;i<resultshapes.length();i++){
+        qDebug() << resultshapes[i];
         QStringList shapedetails = resultshapes[i].split(".");
-        shapetype = resultshapes[0];
-        shape_id = resultShapes[1];
+        shapetype = shapedetails[0];
+        shape_id = shapedetails[1].toInt();
         if(shapetype!="Polyline" && shapetype != "Polygon"){
-            dimensions = resultShapes[3];
+            dimensions = shapedetails[3].split(",");
         }else{
-
+            dimensions = shapedetails[18].remove(0, 1).split(",");
         }
-        
+        penColor = shapedetails[4];
+        penWidth = shapedetails[5];
+        penStyle = shapedetails[6];
+        penCapStyle = shapedetails[7];
+        penJoinStyle = shapedetails[8];
+        brushColor = shapedetails[9];
+        brushStyle = shapedetails[10];
+        textString = shapedetails[11];
+        textColor = shapedetails[12];
+        textAlignment = shapedetails[13];
+        textPointSize = shapedetails[14];
+        fontFamily = shapedetails[15];
+        fontStyle = shapedetails[16];
+        fontWeight = shapedetails[17];
+        shapes.push_back(createShapeObject(shapetype,shape_id,dev));
+
     }
     return shapes;
 }

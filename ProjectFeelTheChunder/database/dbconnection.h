@@ -22,7 +22,7 @@ public:
     QString getShapeTypes();
     QString createUser(QString,QString,QString admin_code = "blank");
     QString userLogin(QString,QString);
-    const AwesomeVector<Shape*>& getShapes();
+    const AwesomeVector<Shape*>& getShapes(QPaintDevice* dev);
     void fetch(QUrlQuery);
     QString getResponse();
     bool saveShape(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString textString="",QString textColor="",
