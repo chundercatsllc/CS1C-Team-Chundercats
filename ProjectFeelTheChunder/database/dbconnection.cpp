@@ -85,7 +85,7 @@ QString dbConnection::getShapeTypeString(Shape::ShapeType shapeType){
     return shape;
 }
 
-Shape* dbConnection::createShapeObject(QString shapeType,int id){
+Shape* dbConnection::createShapeObject(QString shapeType,int id,QPaintDevice *device){
     Shape * shape = nullptr;
     if(shapeType == "Line"){
         shape = new Line();
@@ -133,7 +133,6 @@ bool dbConnection::saveShape(QString shapetype,QString dimensions,QString penCol
         query.addQueryItem("text_font_weight",fontWeight);
     }
     fetch(query);
-    qDebug()<<response;
     if(response == "success"){
         return true;
     }else{
@@ -142,8 +141,41 @@ bool dbConnection::saveShape(QString shapetype,QString dimensions,QString penCol
 
 }
 
-const AwesomeVector<Shape*>& dbConnection::getShapes(){
+const AwesomeVector<Shape*>& dbConnection::getShapes(QPaintDevice *device){
     AwesomeVector<Shape*> shapes;
+    QUrlQuery query;
+    query.addQueryItem("action","get_shapes");
+    fetch(query);
+    QStringList resultshapes = response.split("|");
 
+    for(int i=0;i<resultshapes.length();i++){
+       ;
+    }
     return shapes;
+}
+
+bool dbConnection::createTestimonial(QString name,QString testimonial){
+    QUrlQuery query;
+    query.addQueryItem("action","testimonial");
+    query.addQueryItem("name",name);
+    query.addQueryItem("testimonial",testimonial);
+    fetch(query);
+    if(response == "success"){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool dbConnection::deleteShape(int id){
+    QString shape_id = QString::number(id);
+    QUrlQuery query;
+    query.addQueryItem("action","delete_shape");
+    query.addQueryItem("shape_id",shape_id);
+    fetch(query);
+    if(response == "success"){
+        return true;
+    }else{
+        return false;
+    }
 }

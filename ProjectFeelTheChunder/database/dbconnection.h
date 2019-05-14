@@ -22,18 +22,20 @@ public:
     QString getShapeTypes();
     QString createUser(QString,QString,QString admin_code = "blank");
     QString userLogin(QString,QString);
-    const AwesomeVector<Shape*>& getShapes();
+    const AwesomeVector<Shape*>& getShapes(QPaintDevice*);
     void fetch(QUrlQuery);
     QString getResponse();
     bool saveShape(QString,QString,QString,QString,QString,QString,QString,QString,QString,QString textString="",QString textColor="",
                    QString textAlignment="",QString textPointSize="",QString fontFamily="",QString fontStyle="",QString fontWeight="");
     QString getShapeTypeString(Shape::ShapeType);
+    bool createTestimonial(QString,QString);
+    bool deleteShape(int);
 
 private slots:
     void onfinish(QNetworkReply*);
 
 private:
-   Shape* createShapeObject(QString,int);
+   Shape* createShapeObject(QString,int,QPaintDevice*);
    QString response;
    QUrl url;
    //QSqlDatabase db;

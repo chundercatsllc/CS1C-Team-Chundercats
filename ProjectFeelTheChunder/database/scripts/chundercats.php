@@ -62,9 +62,15 @@
 			if($_REQUEST['action'] == 'get_shapes'){
 				$sql = "CALL get_shapes";
 				$result = mysqli_query($conn,$sql);
+				mysqli_close($conn);
+				$conn = openConnection();
 				$sql2 = "SELECT * FROM Poly_Dimensions;";
-				$result2 = mysqli_query($conn,$sql);
+				$result2 = mysqli_query($conn,$sql2);
 				$responseTextPoly='';
+				$polydimensions = array();
+				while($row2 = mysqli_fetch_assoc($result2)){
+					array_push($polydimensions,($row2['shape_id'].":".$row2['value'])); 
+				}
 				while($row = mysqli_fetch_array($result,MYSQLI_NUM)){
 					if($row[0] != "Polyline" && $row[0] != "Polygon"){
 						for($i=0;$i<sizeof($row);$i++){
@@ -78,25 +84,30 @@
 							$responseTextPoly .= $text;
 						}
 						$responseTextPoly .= ":";
-						while($row2 = mysqli_fetch_assoc($result2)){
-							if($row[0] == $row2['shape_id']){
-								$text = $row2['value'] .= ",";
+						for($j=0;$j<sizeof($polydimensions);$j++){
+							$val = explode(":",$polydimensions[$j]);
+							if($row[1] == $val[0]){
+								$text = $val[1] .= ",";
 								$responseTextPoly .= $text;
 							}
 						}
+						$responseTextPoly = substr($responseTextPoly, 0, -1);
 						$responseTextPoly .= "|";
 						$responseText .= $responseTextPoly;
 						$responseTextPoly = '';
 					}
 				}
+				$responseText = substr($responseText, 0, -1);
+				mysqli_free_result($result2);
 			}
 
 			if($_REQUEST['action'] == 'save_shape'){
 				$sql = mysqli_prepare($conn,"INSERT INTO Shapes (shape_id,x1,x2,_a_,_b_,pen_color,pen_width,pen_style,pen_cap_style,pen_join_style,brush_color,brush_style,text_string,text_color,text_alignment,text_point_size,text_font_family,text_font_style,text_font_weight) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");	
-				mysqli_stmt_bind_param($sql,"iiiiisissssssssisss",$x1,$x2,$_a_,$_b_,$pen_color,$pen_width,$pen_style,$pen_cap_style,$pen_join_style,$brush_color,$brush_style,$text_string,$text_color,$text_alignment,$text_point_size,$text_font_family,$text_font_style,$text_font_weight);
+				mysqli_stmt_bind_param($sql,"iiiiisissssssssisss",$shape_id,$x1,$x2,$_a_,$_b_,$pen_color,$pen_width,$pen_style,$pen_cap_style,$pen_join_style,$brush_color,$brush_style,$text_string,$text_color,$text_alignment,$text_point_size,$text_font_family,$text_font_style,$text_font_weight);
 				$shape_id = getShapeId($_REQUEST['shape']);
 				$x1 = $x2 = $_a_ = $_b_ = $pen_color = $pen_width = $pen_style = $pen_cap_style = $pen_join_style = $brush_color = $brush_style = $text_string = $text_color = $text_alignment = $text_point_size = $text_font_family = $text_font_style = $text_font_weight = NULL;
-				$dimensionsArray = $_REQUEST['dimensions'].split(",");
+				$dimensionsArray = explode(",",$_REQUEST['dimensions']);
+				$dimensionsArray = array_map('trim',$dimensionsArray);
 				if($shape_id == 8){
 					$text_string = $_REQUEST['text_string'];
 					$text_color = $_REQUEST['text_color'];
@@ -126,7 +137,7 @@
 						$_b_ = $dimensionsArray[3];
 					}
 				}
-				mysqli_stmt_execute($sql);
+				$result = mysqli_stmt_execute($sql);
 				$newShapeID = mysqli_insert_id($conn);
 				if($newShapeID == 0){
 					$responseText = "error";
@@ -142,7 +153,7 @@
 							}
 						}
 						$sql2.="('".$newShapeID."','y','".$dimensionsArray[sizeof($dimensionsArray)-1]."');";
-						mysqli_query($conn,$sql2);
+						$result = mysqli_query($conn,$sql2);
 					}
 				}
 			}
@@ -157,7 +168,7 @@
 			}
 
 			if($_REQUEST['action'] == 'login'){
-				$sql = "CALL user_login(".$_REQUEST['user_name'].",".$_REQUEST['password'].");";
+				$sql = "CALL user_login('".$_REQUEST['user_name']."','".$_REQUEST['password']."');";
 				$result = mysqli_query($conn,$sql);
 				while($row = mysqli_fetch_assoc($result)){
 					$responseText = $row['user_type'];
@@ -165,16 +176,37 @@
 			}
 
 			if($_REQUEST['action'] == 'create_user'){
-				$sql = "CALL create_user(".$_REQUEST['user_name'].",".$_REQUEST['password'].",".$_REQUEST['type'].");";
+				$sql = "CALL create_user('".$_REQUEST['user_name']."','".$_REQUEST['password']."','".$_REQUEST['type']."');";
 				$result = mysqli_query($conn,$sql);
 				while($row = mysqli_fetch_assoc($result)){
 					$responseText = $row['message'];
 				}
 			}
 
+			if($_REQUEST['action'] == 'delete_shape'){
+				$sql = "DELETE FROM Shapes WHERE id = '".$_REQUEST['shape_id']."';";
+				if(mysqli_query($conn,$sql)){
+					$responseText = "success";
+				}else{
+					$responseText = "error";
+				}
+			}
+
+			if($_REQUEST['action'] == 'testimonial'){
+				$sql = "INSERT INTO Testimonials (name,testimonial) VALUES ('".$_REQUEST['name']."','".$_REQUEST['testimonial']."');";
+				mysqli_query($conn,$sql);
+				if(mysqli_insert_id($conn) != 0){
+					$responseText = "success";
+				}else{
+					$responseText = "error";
+				}
+			}
+
 			echo $responseText;
 
-			mysqli_free_result($result);
+			if($_REQUEST['action'] != 'save_shape' && $_REQUEST['action'] != 'delete_shape' && $_REQUEST['action'] != 'testimonial'){
+				mysqli_free_result($result);
+			}
 
 			mysqli_close($conn);
 		}
