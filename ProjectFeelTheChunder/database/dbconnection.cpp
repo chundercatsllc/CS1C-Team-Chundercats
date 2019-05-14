@@ -88,17 +88,17 @@ QString dbConnection::getShapeTypeString(Shape::ShapeType shapeType){
 Shape* dbConnection::createShapeObject(QString shapeType,int id,QPaintDevice *device){
     Shape * shape = nullptr;
     if(shapeType == "Line"){
-        shape = new Line();
+        shape = new Line(device,id);
     }else if(shapeType == "Polyline"){
-        shape = new Polyline();
+        shape = new Polyline(device,id);
     }else if(shapeType == "Polygon"){
-        shape = new Polygon();
+        shape = new Polygon(device,id);
     }else if(shapeType == "Rectangle"){
-        shape = new Rectangle();
+        shape = new Rectangle(device,id);
     }else if(shapeType == "Ellipse"){
-        shape = new Ellipse();
+        shape = new Ellipse(device,id);
     }else if(shapeType == "Text"){
-        shape = new Text();
+        shape = new Text(device,id);
     }
     return shape;
 }
@@ -141,15 +141,40 @@ bool dbConnection::saveShape(QString shapetype,QString dimensions,QString penCol
 
 }
 
-const AwesomeVector<Shape*>& dbConnection::getShapes(QPaintDevice *device){
+const AwesomeVector<Shape*>& dbConnection::getShapes(){
     AwesomeVector<Shape*> shapes;
     QUrlQuery query;
     query.addQueryItem("action","get_shapes");
     fetch(query);
     QStringList resultshapes = response.split("|");
+    QString shapetype;
+    QString shape_id;
+    QString dimensions;
+    QString penColor;
+    QString penWidth;
+    QString penStyle;
+    QString penCapStyle;
+    QString penJoinStyle;
+    QString brushColor;
+    QString brushStyle;
+    QString textString;
+    QString textColor;
+    QString textAlignment;
+    QString textPointSize;
+    QString fontFamily;
+    QString fontStyle;
+    QString fontWeight;
 
     for(int i=0;i<resultshapes.length();i++){
-       ;
+        QStringList shapedetails = resultshapes[i].split(".");
+        shapetype = resultshapes[0];
+        shape_id = resultShapes[1];
+        if(shapetype!="Polyline" && shapetype != "Polygon"){
+            dimensions = resultShapes[3];
+        }else{
+
+        }
+        
     }
     return shapes;
 }

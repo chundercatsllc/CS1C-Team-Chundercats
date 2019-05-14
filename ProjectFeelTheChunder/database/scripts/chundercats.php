@@ -74,7 +74,11 @@
 				while($row = mysqli_fetch_array($result,MYSQLI_NUM)){
 					if($row[0] != "Polyline" && $row[0] != "Polygon"){
 						for($i=0;$i<sizeof($row);$i++){
-							$text = $row[$i].=".";
+							if($i == 3 || $i== 4 || $i==5){
+								$text = $row[$i].=",";
+							}else{
+								$text = $row[$i].=".";
+							}
 							$responseText .= $text;
 						}
 						$responseText .= "|";
