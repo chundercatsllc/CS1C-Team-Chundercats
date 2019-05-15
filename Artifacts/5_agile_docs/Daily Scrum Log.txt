@@ -1,0 +1,56 @@
+Daily Scrum Log
+
+-----------------------------------------------------SPRINT ONE---------------------------------------------------------
+
+Tuesday, 3/26/2019
+	-Chundercats LLC founded to create best 2D modeling software in existence.
+	-Git repository created
+
+Saturday, 3/30/2019
+	-First team meeting
+	-wrote user stories
+
+Tuesday, 4/2/2019
+	-remote MySQL instance up and running
+	-editing and refining user stories
+	-assigned sprint 1 tasks
+
+Thursday, 4/11/2019
+	-Notre Damed git repo 
+	-new code uploaded, starting from scratch
+
+Saturday, 4/13/2019
+	-set up everyones QT environment correctly
+	-set up everyones git branches correctly
+	-reviewed git commands
+	-worked on completing sprint 1 tasks
+
+-----------------------------------------------------SPRINT TWO---------------------------------------------------------
+
+Tuesday, 4/16/2019
+	-wrapped up shape classes
+	-worked up debugging shape classes
+
+Saturday, 4/20/2019
+	-began working on ui styling
+	-begain working on shapes getting rendered
+
+Tuesday, 4/23/2019
+	-still working on ui styling
+	-still trying to get shapes rendered
+
+Saturday, 4/27/2019
+	-started to revamp some parts of the ui
+	-fixing memory leaks
+	-still trying to get all 8 shapes to render
+
+Thursday, 5/2/2019
+	-began switching database connection from direct connection to http requests
+	-debugging sorting algorithm
+	-debugging loggin
+	-begin doxygen documentation
+
+Tuesday, 5/7/2019
+	-finish doxygen documentation
+	-finish user stories and class uml diagrams
+	-debug adding shapes to render area with menu

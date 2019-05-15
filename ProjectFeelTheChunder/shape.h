@@ -29,6 +29,9 @@ public:
         shape = other.shape;
         return *this;
     }
+   bool operator<(const Shape& other) { return id < other.id; }
+   bool operator==(const Shape& other) { return id == other.id; }
+   bool operator!=(const Shape& other) { return id != other.id; }
 
     void setShape(ShapeType);
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);

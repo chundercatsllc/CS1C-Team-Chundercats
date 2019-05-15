@@ -1,0 +1,20 @@
+Team Chundercats Team Contributions
+
+Name: Alex Golubow
+Contributions: Wrote the database class, set up the sql server with the tables, wrote the stored procedures,
+web domain for the doxygen html files, wrote the login screen, and helped teach the team sql and qt.
+
+Name: Anthony Rachmat
+Contributions: wrote several shape classes, provided extensive doxygen documentation, buddy coded with David to write the RenderArea class
+
+Name: Krupesh Patel
+Contributions: Wrote extensive documentation for doxygen, wrote several shape classes, buddy coded with Alex to write the database class
+
+Name: David Deboer
+Contributions: Wrote the main guts of the program linking all the pieces together, established the gui, wrote the vector class
+
+Name: Andre Abtahi
+Contributions: Helped design the gui, wrote the UML diagrams, assisted in debugging the algorithms, helped write the selection sort code and the input file parser
+
+Name: Jacob Still
+Contributions: Wrote the input file parser, helped David finish the vector class, wrote password hashing algorithm, wrote the sorting algorithm

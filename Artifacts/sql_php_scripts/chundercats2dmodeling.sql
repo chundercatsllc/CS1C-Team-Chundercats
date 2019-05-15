@@ -40,8 +40,6 @@ CREATE TABLE Shapes ( #table contains all attributes for standard shapes and tex
 	FOREIGN KEY (shape_id) REFERENCES Shape_Type(id) #the shape id for each row is the id of a specific shape in Shape_Type table.
 );
 
-INSERT INTO Shapes (shape_id,x1,x2,_a_,_b_,pen_color,pen_width,pen_style,pen_cap_style,pen_join_style) VALUES ('1','20','90','100','20','blue','2','DashDotLine','FlatCap','MiterJoin');
-
 
 CREATE TABLE Poly_Dimensions (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -49,6 +47,12 @@ CREATE TABLE Poly_Dimensions (
 	dimension VARCHAR(255) NOT NULL,
 	value INT NOT NULL,
 	FOREIGN KEY (shape_id) REFERENCES Shapes(id)
+);
+
+CREATE TABLE Testimonials(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	testimonial VARCHAR(1020) NOT NULL
 );
 
 INSERT INTO Shape_Type (shape) VALUES ('Line'),('Polyline'),('Polygon'),('Rectangle'),('Square'),('Ellipse'),('Cirlce'),('Text');
@@ -79,3 +83,12 @@ BEGIN
 	SELECT Shape_Type.shape,Shapes.* FROM Shape_Type INNER JOIN Shapes ON Shape_Type.id = Shapes.shape_id;
 END $$
 DELIMITER ;
+
+--INSERT INTO Shapes (shape_id,x1,x2,_a_,_b_,pen_color,pen_width,pen_style,pen_cap_style,pen_join_style) VALUES ('1','20','90','100','20','blue','2','DashDotLine','FlatCap','MiterJoin');
+--db.saveShape("Polyline","460,90,470,20,530,40,540,80","green","6","SolidLine","FlatCap","MiterJoin","","");
+--db.saveShape("Polygon","900, 90, 910, 20, 970, 40, 980, 80","cyan","6","DashDotDotLine","FlatCap","MiterJoin","yellow","SolidPattern");
+--db.saveShape("Rectangle"," 20, 200, 170, 100","blue","0","DashLine","RoundCap","RoundJoin","red","VerPattern");
+--db.saveShape("Rectangle"," 250, 150, 200","red","0","SolidLine","RoundCap","RoundJoin","blue","HorPattern");
+--db.saveShape("Ellipse"," 520, 200, 170, 100","black","12","SolidLine","FlatCap","MiterJoin","white","NoBrush");
+--db.saveShape("Ellipse"," 750, 150, 200","black","12","SolidLine","FlatCap","MiterJoin","magenta","SolidPattern");
+--db.saveShape("Text","250, 425, 500, 50","","","","","","","","Class Project 2 - 2D Graphics","blue","AlignCenter","10","Comic Sans MS","FlatCap","Normal");

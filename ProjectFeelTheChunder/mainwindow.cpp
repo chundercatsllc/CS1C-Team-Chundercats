@@ -705,8 +705,10 @@ void MainWindow::on_shapeID_edit_spin_valueChanged(int arg1)
 
 void MainWindow::on_reports_button_clicked()
 {
+    //DID NOT FINISH DUE TO A BUG IN THE VECTOR
+    //TABLE WIDGET WORKED FINE BUT VECTOR WOULDNT COOPERATE
     /*
-    ui->page->show();
+
 
     AwesomeVector<Shape*> repThatVector = ui->target->getShapes();
     std::vector<Shape*> basicVector;

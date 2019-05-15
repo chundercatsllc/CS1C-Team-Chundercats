@@ -7,6 +7,9 @@ using namespace std;
 const int DEFAULTCAP = 15;
 
 template<typename T>
+class theVectorator;
+
+template<typename T>
 class AwesomeVector
 {
 public:
@@ -26,6 +29,8 @@ public:
 	*/
 	AwesomeVector(const AwesomeVector<T>& other);
 	
+    AwesomeVector(AwesomeVector<T>&& other);
+
 	//AwesomeVector destructor
 	/** deletes the list*/
 	~AwesomeVector();
@@ -36,6 +41,8 @@ public:
 	@return vector using *this
 	*/
 	const AwesomeVector<T>& operator=(const AwesomeVector<T>& other);
+
+    AwesomeVector<T>& operator=(AwesomeVector<T> &&other);
 	
 	//overloaded bracket
 	/** returns the contents of the vector at the specified index
@@ -61,8 +68,8 @@ public:
 	void push_back(const T&);
 	const T& front();
 	const T& back();
-//	theVectorator<T> begin();
-//	theVectorator<T> end();
+    theVectorator<T> begin();
+    theVectorator<T> end();
 	int   search(const T&);
 	bool  chop(const T&);
     void set(int index, const T& stuff);
@@ -104,6 +111,18 @@ void AwesomeVector<T>::set(int index, const T& stuff)
 {
     if(index < capacity)
         list[index] = stuff;
+}
+
+template<typename T>
+theVectorator<T> AwesomeVector<T>::begin()
+{
+    return theVectorator<T>(list + head);
+}
+
+template<typename T>
+theVectorator<T> AwesomeVector<T>::end()
+{
+    return theVectorator<T>(list + butt);
 }
 
 template<typename T>
@@ -153,6 +172,24 @@ AwesomeVector<T>::AwesomeVector(const AwesomeVector<T> &other)
 }
 
 template<typename T>
+AwesomeVector<T>::AwesomeVector(AwesomeVector<T>&& other)
+{
+    list = new T[other.capacity];
+    for(int i = 0; i < other.capacity; i++)
+        list[i] = other.list[i];
+
+    delete[]other.list;
+    size = other.size;
+    capacity = other.capacity;
+    head = other.head;
+    butt = other.butt;
+    other.size = 0;
+    other.capacity = 0;
+    other.head = 0;
+    other.butt = 0;
+}
+
+template<typename T>
 AwesomeVector<T>::~AwesomeVector()
 {
 	delete []list;
@@ -172,6 +209,13 @@ const AwesomeVector<T> & AwesomeVector<T>::operator=(const AwesomeVector<T> &oth
 		copyV(other);
 	
 	return *this;
+}
+
+template<typename T>
+AwesomeVector<T> & AwesomeVector<T>::operator=(AwesomeVector<T> &&other)
+{
+    other.swap(*this);
+    return *this;
 }
 
 template<typename T>
@@ -322,7 +366,7 @@ void AwesomeVector<T>::print()
 }
 
 /********************ITERATOR CLASS***********************************/
-/*
+
 template <typename T>
 class theVectorator
 {
@@ -331,7 +375,7 @@ public:
      //Default constructor
      //Postcondition: current = nullptr;
 
-   theVectorator(int i);
+   theVectorator(T * i);
      //Constructor with a parameter.
      //Postcondition: current = ptr;
 
@@ -371,21 +415,21 @@ theVectorator<T>::theVectorator()
 }
 
 template <typename T>
-theVectorator<T>::theVectorator(const AwesomeVector<T> & vec)
+theVectorator<T>::theVectorator(T* i)
 {
-    current = 
+    current = i;
 }
 
 template <typename T>
 T theVectorator<T>::operator*()
 {
-    return current->info;
+    return *current;
 }
 
 template <typename T>
 theVectorator<T> theVectorator<T>::operator++()   
 {
-    current = current->next;
+    current = current++;
 
     return *this;
 }
@@ -393,7 +437,7 @@ theVectorator<T> theVectorator<T>::operator++()
 template <typename T>
 theVectorator<T> theVectorator<T>::operator--()   
 {
-    current = current->back;
+    current = current--;
 
     return *this;
 }
@@ -410,6 +454,6 @@ bool theVectorator<T>::operator!=
                  (const theVectorator<T>& right) const
 {    return (current != right.current);
 }
-*/
+
 
 #endif

@@ -1,0 +1,37 @@
+Script started on 2019-05-14 18:56:25-0700
+]0;jacob@CS1A-VM: /media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[01;32mjacob@CS1A-VM[00m:[01;34m/media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[00m$ date
+Tue May 14 18:56:28 PDT 2019
+]0;jacob@CS1A-VM: /media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[01;32mjacob@CS1A-VM[00m:[01;34m/media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[00m$ g++ Driver.cpp -o  Driver -Wall -g
+]0;jacob@CS1A-VM: /media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[01;32mjacob@CS1A-VM[00m:[01;34m/media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[00m$ valgrind ./Driver
+==5104== Memcheck, a memory error detector
+==5104== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==5104== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==5104== Command: ./Driver
+==5104== 
+1
+2
+3
+4
+a
+w
+f
+g
+1s5
+3d4
+-1
+1 2 3 4 a w f g 1s5 3d4 -1 
+
+1 2 3 4 a w f g 1s5 3d4 
+==5104== 
+==5104== HEAP SUMMARY:
+==5104==     in use at exit: 0 bytes in 0 blocks
+==5104==   total heap usage: 4 allocs, 4 frees, 75,240 bytes allocated
+==5104== 
+==5104== All heap blocks were freed -- no leaks are possible
+==5104== 
+==5104== For counts of detected and suppressed errors, rerun with: -v
+==5104== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+]0;jacob@CS1A-VM: /media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[01;32mjacob@CS1A-VM[00m:[01;34m/media/sf_CompSci/CS1C/Projects/CS1C-Team-Chundercats/ProjectFeelTheChunder/containers[00m$ exit
+exit
+
+Script done on 2019-05-14 18:57:05-0700
