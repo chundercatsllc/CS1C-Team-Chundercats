@@ -1,8 +1,6 @@
 #ifndef DBCONNECTION_H
 #define DBCONNECTION_H
 
-//#include <QtSql>
-//#include <QSqlQuery>
 #include <QtCore/QCoreApplication>
 #include <QtDebug>
 #include <QNetworkAccessManager>
@@ -10,7 +8,7 @@
 #include <QUrl>
 #include <QMessageBox>
 #include <AwesomeVector.h>
-#include <shape.h>
+#include "shape.h"
 #include <QObject>
 #include <QEventLoop>
 #include <QUrlQuery>
@@ -35,10 +33,18 @@ private slots:
     void onfinish(QNetworkReply*);
 
 private:
-   Shape* createShapeObject(QString,int,QPaintDevice*);
+   Qt::GlobalColor getColor(QString);
+   Qt::PenCapStyle getPenCapStyle(QString);
+   Qt::PenStyle getPenStyle(QString);
+   Qt::PenJoinStyle getPenJointStyle(QString);
+   Qt::BrushStyle getBrushStyle(QString);
+   Qt::AlignmentFlag getFlag(QString);
+   QFont::Style getFontStyle(QString);
+   QFont::Weight getFontWeight(QString);
+   Shape* createShapeObject(QString,int,QPaintDevice*,QString,QString,QString,QString,QString,QString,QString,QString,QString,QString,
+                            QString,QString,QString,QString,QString);
    QString response;
    QUrl url;
-   //QSqlDatabase db;
 };
 
 #endif // DBCONNECTION_H

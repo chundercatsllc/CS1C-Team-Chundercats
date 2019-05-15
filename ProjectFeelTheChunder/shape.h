@@ -21,7 +21,15 @@ public:
     Shape(QPaintDevice *device = nullptr, int ID = -1, ShapeType shapey = ShapeType::null);
     virtual ~Shape(){}
 
-   // const Shape& operator=(const Shape& other);
+   const Shape& operator=(const Shape& other)
+    {
+        brush = other.brush;
+        pen = other.pen;
+        id = other.id;
+        shape = other.shape;
+        return *this;
+    }
+
     void setShape(ShapeType);
     void setBrush(Qt::GlobalColor, Qt::BrushStyle);
     void setPen(Qt::GlobalColor);
@@ -48,6 +56,24 @@ protected:
 private:
     int id;
     ShapeType shape;
+};
+
+class LessThanID
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->getID() < s2->getID(); }
+};
+
+class LessThanArea
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->area() < s2->area(); }
+};
+
+class LessThanPerimeter
+{
+    bool operator()(Shape* s1, Shape* s2)
+    { return s1->perimeter() < s2->perimeter(); }
 };
 
 const int DEFAULT_NUM_VERTS = 8;
@@ -130,7 +156,7 @@ public:
     double perimeter() override;
 
     void setText(QString newText);
-//    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
+    void setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color);
 
     void setBoxWidth(int newBoxWidth);
     void setBoxHeight(int newBoxHeight);
@@ -166,15 +192,15 @@ public:
 
     void setLocation(int x, int y);
     void setLocation(QPoint pt);
-    void setDimensions(double w, double h);
-    void setAll(double w, double h, int x, int y);
+    void setDimensions(int w, int h);
+    void setAll(int w, int h, int x, int y);
 
-    double getWidth();
-    double getHeight();
+    int getWidth();
+    int getHeight();
     QPoint& getLocation();
 private:
-    double width;
-    double height;
+    int width;
+    int height;
     QPoint location;
 };
 
@@ -193,14 +219,19 @@ public:
     double getHeight();
     QPoint& getLocation();
 
-    void setDimensions(double w, double h);
+    void setDimensions(int w, int h);
     void setLocation(int x, int y);
     void setLocation(QPoint pt);
 private:
-    double width;
-    double height;
+    int width;
+    int height;
     QPoint location;
 };
 
-
+const QString STstringAR[]  = {"Line", "Polyline", "Polygon", "Rectangle", "Ellipse", "Text", "null"};
+const QString CstringAR[]   = {"White", "Black", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "Gray"};
+const QString PSstringAR[]  = {"Solid Line", "Dash Line", "Dot Line", "Dash Dot Line", "Dash Dot Dot Line", "No Pen"};
+const QString PCSstringAR[] = {"Square Cap", "Flat Cap", "Round Cap"};
+const QString PJSstringAR[] = {"Bevel Join", "Miter Join", "Round Join"};
+const QString BSstringAR[]  = {"No Brush", "Solid Pattern", "Horizontal Pattern", "Vertical Pattern"};
 #endif // SHAPE_H

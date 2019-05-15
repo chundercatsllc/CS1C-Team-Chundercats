@@ -6,10 +6,9 @@
 
 QT       += core gui
 QT       += sql
-QT += network
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 
 TARGET = ProjectFeelTheChunder
 TEMPLATE = app
@@ -25,20 +24,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 CONFIG += c++11
-
-INCLUDEPATH += ./containers \
-                ./database \
-
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
         shape.cpp \
         RenderArea.cpp \
-        ./database/dbconnection.cpp \
-        create_user.cpp \
+        dbconnection.cpp \
+    testimonials.cpp \
+    login.cpp \
+    contactus.cpp
+
+
 
 HEADERS += \
         mainwindow.h \
@@ -46,13 +44,17 @@ HEADERS += \
         containers/AwesomeVector.h \
         RenderArea.h \
         shape.h \
-        ./database/dbconnection.h \
-        create_user.h \
+        login.h \
+    dbconnection.h \
+    testimonials.h \
+    contactus.h
 
 
 FORMS += \
         mainwindow.ui \
-    create_user.ui
+    testimonials.ui \
+    login.ui \
+    contactus.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

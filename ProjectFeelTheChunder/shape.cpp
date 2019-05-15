@@ -248,7 +248,6 @@ void Text::setDimensions(int w, int h)
     boxHeight = h;
 }
 
-/*
 void Text::setFont(QString family, QFont::Style style, int size, QFont::Weight weight, Qt::GlobalColor color)
 {
     font.setFamily(family);
@@ -257,7 +256,6 @@ void Text::setFont(QString family, QFont::Style style, int size, QFont::Weight w
     font.setWeight(weight);
     pen.setColor(color);
 }
-*/
 
 void Text::setLocation(int x, int y)
 {
@@ -321,7 +319,7 @@ QPoint& Ellipse::getLocation()
     return location;
 }
 
-void Ellipse::setDimensions(double w, double h)
+void Ellipse::setDimensions(int w, int h)
 {
     if(w > 0 && h > 0)
     {
@@ -387,7 +385,7 @@ void Rectangle::setLocation(QPoint pt)
     location = pt;
 }
 
-void Rectangle::setDimensions(double w, double h)
+void Rectangle::setDimensions(int w, int h)
 {
     if(w > 0)
         width = w;
@@ -400,18 +398,18 @@ void Rectangle::setDimensions(double w, double h)
         qDebug() << "Height cannot be negative";
 }
 
-void Rectangle::setAll(double w, double h, int x, int y)
+void Rectangle::setAll(int w, int h, int x, int y)
 {
     setLocation(x,y);
     setDimensions(w,h);
 }
 
-double Rectangle::getWidth()
+int Rectangle::getWidth()
 {
     return width;
 }
 
-double Rectangle::getHeight()
+int Rectangle::getHeight()
 {
     return height;
 }
